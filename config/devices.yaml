@@ -1,0 +1,10 @@
+devices:
+  - id: "drive_avid"
+    host: "10.1.206.241" 
+    port: 502
+    name: "PLC Principal"
+    critical_parameters: 
+      - "P1.00"
+      - "P1.01"
+      - "P1.02"
+
