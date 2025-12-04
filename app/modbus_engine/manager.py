@@ -153,6 +153,36 @@ class ModbusManager:
         except Exception as e:
             logger.error(f"Error reading device {device_id}: {e}")
 
+    async def write_parameter(self, device_id: str, param_id: str, value: any):
+        client = self.clients.get(device_id)
+        if not client:
+            raise ValueError(f"Device {device_id} not found")
+
+        address = parameter_registry.get_address(param_id)
+        if address is None:
+             raise ValueError(f"Parameter {param_id} not mapped to an address")
+        
+        try:
+            # Convert value to int (assuming raw Modbus register)
+            int_value = int(value)
+            
+            # Note: 'unit' parameter is deprecated in newer pymodbus, replaced by 'slave'
+            # We use 'unit' here to match the read implementation logic seen above
+            success = await client.write_register(address, int_value, unit=1)
+            
+            # In some libraries write_register returns response obj or exception, 
+            # assuming wrapper handles it or returns something truthy on success.
+            
+            logger.info(f"WRITE {device_id} - {param_id} ({address}) = {int_value}")
+            
+            # Optimistic update of state
+            state_manager.update(device_id, {param_id: int_value})
+            
+            return True
+        except Exception as e:
+            logger.error(f"Error writing to device {device_id}: {e}")
+            raise e
+
     async def _loop(self):
         logger.info("Modbus Loop active")
         # Removed Heartbeat logging

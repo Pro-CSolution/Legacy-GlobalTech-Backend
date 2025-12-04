@@ -46,7 +46,9 @@ class MockModbusClient:
                 param_def = parameter_registry.get_parameter(pid)
                 if param_def:
                     # Extraer rangos para generar datos realistas
-                    ranges = param_def.get('range_numeric', {})
+                    ranges = param_def.get('range_numeric') or {}
+                    if not isinstance(ranges, dict):
+                        ranges = {}
                     min_val = ranges.get('min', 0)
                     max_val = ranges.get('max', 100)
                     

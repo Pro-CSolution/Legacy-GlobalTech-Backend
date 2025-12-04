@@ -6,14 +6,15 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% Top Speed to +100.00 % Top Speed",
         "attributes": [
             "O"
         ],
-        "description": "Source: P9.00. Configured by Menu 39."
+        "description": "Source: P9.00. Configured by Menu 39.",
+        "alias": "speedReference"
     },
     {
         "id": "P1.01",
@@ -22,14 +23,15 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 % Top Speed to 300.00% Top Speed",
         "attributes": [
             "R"
         ],
-        "description": "Source: P9.01. Configured by Menu 39."
+        "description": "Source: P9.01. Configured by Menu 39.",
+        "alias": "speedFeedback"
     },
     {
         "id": "P1.02",
@@ -38,14 +40,15 @@
         "unit": "A",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 9999.0
+            "min": 0,
+            "max": 9999
         },
         "range_text": "0.0 A to 9999.0 A (for MicroCubicle Drives) 0 to 9999 A (for DELTAS)",
         "attributes": [
             "R"
         ],
-        "description": "Source: P9.05."
+        "description": "Source: P9.05.",
+        "alias": "motorCurrent"
     },
     {
         "id": "P1.03",
@@ -54,14 +57,15 @@
         "unit": "Hz",
         "default": "0.00",
         "range_numeric": {
-            "min": -200.0,
-            "max": 200.0
+            "min": -200,
+            "max": 200
         },
         "range_text": "-200.00 Hz to +200.00 Hz",
         "attributes": [
             "R"
         ],
-        "description": "Source: P9.09."
+        "description": "Source: P9.09.",
+        "alias": "frequencyFeedback"
     },
     {
         "id": "P1.04",
@@ -70,14 +74,15 @@
         "unit": "Vrms",
         "default": "0",
         "range_numeric": {
-            "min": 10.0,
-            "max": 999.0
+            "min": 10,
+            "max": 999
         },
         "range_text": "10 to 999 Vrms",
         "attributes": [
             "R"
         ],
-        "description": "Source: P9.07."
+        "description": "Source: P9.07.",
+        "alias": "motorVolts"
     },
     {
         "id": "P1.05",
@@ -86,14 +91,15 @@
         "unit": "kW",
         "default": "0.0",
         "range_numeric": {
-            "min": -9999.0,
-            "max": 9999.0
+            "min": -9999,
+            "max": 9999
         },
         "range_text": "-999.0 to +999.9 kW (for MicroCubicle Drives) -9999 to +9999 kW (for DELTAS)",
         "attributes": [
             "R"
         ],
-        "description": "Source: P9.08."
+        "description": "Source: P9.08.",
+        "alias": "motorPower"
     },
     {
         "id": "P1.06",
@@ -157,8 +163,8 @@
         "unit": "Vrms",
         "default": "Size Dependent",
         "range_numeric": {
-            "min": 25.0,
-            "max": 1000.0
+            "min": 25,
+            "max": 1000
         },
         "range_text": "25 V to 1000 V(rms)",
         "attributes": [
@@ -175,8 +181,8 @@
         "unit": "Hz",
         "default": "50.00",
         "range_numeric": {
-            "min": 5.0,
-            "max": 200.0
+            "min": 5,
+            "max": 200
         },
         "range_text": "5.00 Hz to 200.00 Hz",
         "attributes": [
@@ -198,7 +204,8 @@
             "E",
             "N"
         ],
-        "description": "Source: P2.02. Range depends on P99.05."
+        "description": "Source: P2.02. Range depends on P99.05.",
+        "alias": "motorFullLoadCurrent"
     },
     {
         "id": "P1.13",
@@ -207,8 +214,8 @@
         "unit": "rpm",
         "default": "Size Dep.",
         "range_numeric": {
-            "min": 100.0,
-            "max": 9999.0
+            "min": 100,
+            "max": 9999
         },
         "range_text": "100 rpm to 9999 rpm",
         "attributes": [
@@ -216,7 +223,8 @@
             "E",
             "N"
         ],
-        "description": "Source: P2.04."
+        "description": "Source: P2.04.",
+        "alias": "motorNominalSpeed"
     },
     {
         "id": "P1.14",
@@ -233,7 +241,8 @@
             "S",
             "E"
         ],
-        "description": "Source: P2.05 (Corresponds to Power Factor in advanced menus)."
+        "description": "Source: P2.05 (Corresponds to Power Factor in advanced menus).",
+        "alias": "motorFullLoadPower"
     },
     {
         "id": "P1.15",
@@ -242,15 +251,16 @@
         "unit": "rpm",
         "default": "1500",
         "range_numeric": {
-            "min": 10.0,
-            "max": 6000.0
+            "min": 10,
+            "max": 6000
         },
         "range_text": "10 rpm to 6000 rpm",
         "attributes": [
             "S",
             "E"
         ],
-        "description": "Source: P5.15."
+        "description": "Source: P5.15.",
+        "alias": "maximumSpeedFwd"
     },
     {
         "id": "P1.16",
@@ -259,15 +269,16 @@
         "unit": "rpm",
         "default": "1500",
         "range_numeric": {
-            "min": 0.0,
-            "max": 6000.0
+            "min": 0,
+            "max": 6000
         },
         "range_text": "0 rpm to 6000 rpm",
         "attributes": [
             "S",
             "E"
         ],
-        "description": "Source: P5.16."
+        "description": "Source: P5.16.",
+        "alias": "maximumSpeedRev"
     },
     {
         "id": "P1.17",
@@ -281,7 +292,8 @@
             "S",
             "E"
         ],
-        "description": "Source: P5.17."
+        "description": "Source: P5.17.",
+        "alias": "minimumSpeedFwd"
     },
     {
         "id": "P1.18",
@@ -295,7 +307,8 @@
             "S",
             "E"
         ],
-        "description": "Source: P5.18."
+        "description": "Source: P5.18.",
+        "alias": "minimumSpeedRev"
     },
     {
         "id": "P1.19",
@@ -323,8 +336,8 @@
         "unit": "V",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0 V to 50 V",
         "attributes": [
@@ -339,8 +352,8 @@
         "unit": "%",
         "default": "0",
         "range_numeric": {
-            "min": 10.0,
-            "max": 50.0
+            "min": 10,
+            "max": 50
         },
         "range_text": "10% to 50% Nominal Flux",
         "attributes": [
@@ -356,7 +369,7 @@
         "default": "10",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000%/s",
         "attributes": [
@@ -372,7 +385,7 @@
         "default": "10",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000%/s",
         "attributes": [
@@ -424,8 +437,8 @@
         "unit": "%",
         "default": "150% when P1.29=0, 110% when P1.29=1",
         "range_numeric": {
-            "min": 10.0,
-            "max": 150.0
+            "min": 10,
+            "max": 150
         },
         "range_text": "10% to 150% when P1.29=0, 10% to 110% when P1.29=1",
         "attributes": [
@@ -454,7 +467,7 @@
         "default": "0.5",
         "range_numeric": {
             "min": -0.1,
-            "max": 6000.0
+            "max": 6000
         },
         "range_text": "-0.1 kW to 6000.0 kW (-0.1 means NO LIMIT, energy to be absorbed by DB unit)",
         "attributes": [
@@ -535,8 +548,8 @@
         "unit": "Hz",
         "default": "50 Hz",
         "range_numeric": {
-            "min": 5.0,
-            "max": 200.0
+            "min": 5,
+            "max": 200
         },
         "range_text": "5.00 Hz to 200.00 Hz",
         "attributes": [
@@ -552,8 +565,8 @@
         "unit": "Vrms",
         "default": "Size Dep.",
         "range_numeric": {
-            "min": 25.0,
-            "max": 1000.0
+            "min": 25,
+            "max": 1000
         },
         "range_text": "25 V to 1000 V (rms)",
         "attributes": [
@@ -561,7 +574,8 @@
             "E",
             "N"
         ],
-        "description": ""
+        "description": "",
+        "alias": "motorBaseVoltage"
     },
     {
         "id": "P2.02",
@@ -576,7 +590,8 @@
             "E",
             "N"
         ],
-        "description": "Range depends on P99.05."
+        "description": "Range depends on P99.05.",
+        "alias": "motorFullLoadCurrentP2"
     },
     {
         "id": "P2.03",
@@ -591,7 +606,8 @@
             "E",
             "N"
         ],
-        "description": ""
+        "description": "",
+        "alias": "motorNominalPowerP2"
     },
     {
         "id": "P2.04",
@@ -649,8 +665,8 @@
         "unit": "s",
         "default": "60 s",
         "range_numeric": {
-            "min": 10.0,
-            "max": 3600.0
+            "min": 10,
+            "max": 3600
         },
         "range_text": "10 s to 3600 s",
         "attributes": [
@@ -733,8 +749,8 @@
         "unit": "%",
         "default": "100",
         "range_numeric": {
-            "min": 75.0,
-            "max": 125.0
+            "min": 75,
+            "max": 125
         },
         "range_text": "75% to 125%",
         "attributes": [
@@ -750,7 +766,7 @@
         "default": "3.00 kΩ",
         "range_numeric": {
             "min": 0.1,
-            "max": 10.0
+            "max": 10
         },
         "range_text": "Max= 10.00 kΩ, Min= 0.10 kΩ",
         "attributes": [
@@ -766,7 +782,7 @@
         "default": null,
         "range_numeric": {
             "min": 0.1,
-            "max": 10.0
+            "max": 10
         },
         "range_text": "Max= 10.00 kΩ, Min= 0.10 kΩ",
         "attributes": [
@@ -817,8 +833,8 @@
         "unit": "V",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.0 V to 50.0 V",
         "attributes": [
@@ -833,8 +849,8 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 200.0
+            "min": 0,
+            "max": 200
         },
         "range_text": "0.0% Nominal to 200.0% Nominal",
         "attributes": [
@@ -849,8 +865,8 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": -200.0,
-            "max": 200.0
+            "min": -200,
+            "max": 200
         },
         "range_text": "-200.0% Nominal to +200.0% Nominal",
         "attributes": [
@@ -865,8 +881,8 @@
         "unit": "Hz",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.0 Hz to 50.0 Hz",
         "attributes": [
@@ -881,8 +897,8 @@
         "unit": "%",
         "default": "110",
         "range_numeric": {
-            "min": 10.0,
-            "max": 150.0
+            "min": 10,
+            "max": 150
         },
         "range_text": "10% to 110% (If P99.02 = 1), 10% to 150% (If P99.02 = 0)",
         "attributes": [
@@ -915,8 +931,8 @@
         "unit": "%/s",
         "default": "20.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 500.0
+            "min": 0,
+            "max": 500
         },
         "range_text": "0.0%/s to 500.0%/s",
         "attributes": [
@@ -945,8 +961,8 @@
         "unit": "%/s",
         "default": "2.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 500.0
+            "min": 0,
+            "max": 500
         },
         "range_text": "0.0%/s to 500.0%/s",
         "attributes": [
@@ -962,7 +978,7 @@
         "default": "1.00",
         "range_numeric": {
             "min": 0.2,
-            "max": 50.0
+            "max": 50
         },
         "range_text": "0.20 Hz to 50.00 Hz",
         "attributes": [
@@ -1011,7 +1027,7 @@
         "default": "Drive Size",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1 mΩ to 3000 MΩ",
         "attributes": [
@@ -1028,7 +1044,7 @@
         "default": "Drive Size",
         "range_numeric": {
             "min": 0.1,
-            "max": 30.0
+            "max": 30
         },
         "range_text": "0.1 mH to 30.0 mH",
         "attributes": [
@@ -1043,8 +1059,8 @@
         "unit": "Ω",
         "default": "Drive Size",
         "range_numeric": {
-            "min": 12.0,
-            "max": 20000.0
+            "min": 12,
+            "max": 20000
         },
         "range_text": "12 to 20,000 Ω",
         "attributes": [
@@ -1059,8 +1075,8 @@
         "unit": "Hz/(%/scan)",
         "default": "1.000",
         "range_numeric": {
-            "min": 0.0,
-            "max": 4.0
+            "min": 0,
+            "max": 4
         },
         "range_text": "0.000 Hz/(%/scan) to 4.000 Hz/(%/scan)",
         "attributes": [
@@ -1075,8 +1091,8 @@
         "unit": "scans",
         "default": "40",
         "range_numeric": {
-            "min": 0.0,
-            "max": 2000.0
+            "min": 0,
+            "max": 2000
         },
         "range_text": "0 scans to 2000 scans",
         "attributes": [
@@ -1127,8 +1143,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 150.0
+            "min": 0,
+            "max": 150
         },
         "range_text": "0.00% to 150.00%",
         "attributes": [
@@ -1143,8 +1159,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 150.0
+            "min": 0,
+            "max": 150
         },
         "range_text": "0.00% to 150.00%",
         "attributes": [
@@ -1191,8 +1207,8 @@
         "unit": "V",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.0V to 100.0V",
         "attributes": [
@@ -1310,8 +1326,8 @@
         "unit": "%",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0% to 50%",
         "attributes": [
@@ -1326,8 +1342,8 @@
         "unit": "%",
         "default": "Depends on Switching Frequency",
         "range_numeric": {
-            "min": 82.0,
-            "max": 107.0
+            "min": 82,
+            "max": 107
         },
         "range_text": "82.00% to 107.00%",
         "attributes": [
@@ -1378,8 +1394,8 @@
         "unit": "%",
         "default": "50",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0% to 100% (% of drive rated current)",
         "attributes": [
@@ -1394,8 +1410,8 @@
         "unit": "%/s",
         "default": "10",
         "range_numeric": {
-            "min": 0.0,
-            "max": 250.0
+            "min": 0,
+            "max": 250
         },
         "range_text": "0%/s to 250%/s",
         "attributes": [
@@ -1504,8 +1520,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 500.0
+            "min": 0,
+            "max": 500
         },
         "range_text": "0.0 s to 500.0 s",
         "attributes": [
@@ -1521,8 +1537,8 @@
         "unit": "s",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3600.0
+            "min": 0,
+            "max": 3600
         },
         "range_text": "0 s to 3600 s (0= No Stop Limit)",
         "attributes": [
@@ -1539,7 +1555,7 @@
         "default": "Drive Size dependent",
         "range_numeric": {
             "min": -0.1,
-            "max": 6000.0
+            "max": 6000
         },
         "range_text": "-0.1 kW to 6000.0 kW (-0.1 means NO LIMIT, energy to be absorbed by DB unit)",
         "attributes": [
@@ -1554,8 +1570,8 @@
         "unit": "%",
         "default": "10.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.0% to 100.0% speed at which DC injection begins.",
         "attributes": [
@@ -1570,8 +1586,8 @@
         "unit": "%",
         "default": "100",
         "range_numeric": {
-            "min": 0.0,
-            "max": 150.0
+            "min": 0,
+            "max": 150
         },
         "range_text": "0% to 150%",
         "attributes": [
@@ -1586,8 +1602,8 @@
         "unit": "s",
         "default": "5",
         "range_numeric": {
-            "min": 1.0,
-            "max": 120.0
+            "min": 1,
+            "max": 120
         },
         "range_text": "1s to 120 s",
         "attributes": [
@@ -1602,8 +1618,8 @@
         "unit": "s",
         "default": "0.5",
         "range_numeric": {
-            "min": 0.0,
-            "max": 20.0
+            "min": 0,
+            "max": 20
         },
         "range_text": "0.0 s to 20.0 s",
         "attributes": [
@@ -1673,8 +1689,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.00 to 100.00%",
         "attributes": [
@@ -1690,8 +1706,8 @@
         "unit": null,
         "default": "0.10",
         "range_numeric": {
-            "min": -1.0,
-            "max": 1.0
+            "min": -1,
+            "max": 1
         },
         "range_text": "-1.00 to 1.00",
         "attributes": [
@@ -1795,14 +1811,15 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% Top Speed to +100.00% Top Speed",
         "attributes": [
             "O"
         ],
-        "description": "0.01% of Top Speed (0.1% from Push Buttons)"
+        "description": "0.01% of Top Speed (0.1% from Push Buttons)",
+        "alias": "speedReferenceP5"
     },
     {
         "id": "P5.01",
@@ -2019,14 +2036,15 @@
         "unit": "% Top Speed",
         "default": "0.0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.0% Top Speed to +100.0% Top Speed",
         "attributes": [
             "O"
         ],
-        "description": "0.1% of Top Speed"
+        "description": "0.1% of Top Speed",
+        "alias": "jogSpeed1"
     },
     {
         "id": "P5.15",
@@ -2035,8 +2053,8 @@
         "unit": "rpm",
         "default": "1500",
         "range_numeric": {
-            "min": 10.0,
-            "max": 6000.0
+            "min": 10,
+            "max": 6000
         },
         "range_text": "10 r/min to 6000 r/min",
         "attributes": [
@@ -2052,8 +2070,8 @@
         "unit": "rpm",
         "default": "1500",
         "range_numeric": {
-            "min": 0.0,
-            "max": 6000.0
+            "min": 0,
+            "max": 6000
         },
         "range_text": "0 r/min to 6000 r/min",
         "attributes": [
@@ -2139,14 +2157,15 @@
         "unit": "Units",
         "default": "1000",
         "range_numeric": {
-            "min": -9999.0,
-            "max": 9999.0
+            "min": -9999,
+            "max": 9999
         },
         "range_text": "-9999 Units to +9999 Units",
         "attributes": [
             "E"
         ],
-        "description": "User defined units"
+        "description": "User defined units",
+        "alias": "processTopSpeed"
     },
     {
         "id": "P5.23",
@@ -2155,8 +2174,8 @@
         "unit": "% Top Speed",
         "default": "100.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% Top Speed to +100.00% Top Speed",
         "attributes": [
@@ -2171,8 +2190,8 @@
         "unit": "% Top Speed",
         "default": "-100.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% Top Speed to +100.00% Top Speed",
         "attributes": [
@@ -2201,8 +2220,8 @@
         "unit": "s",
         "default": "0.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 5.0
+            "min": 0,
+            "max": 5
         },
         "range_text": "0.00 s to 5.00 s",
         "attributes": [
@@ -2217,8 +2236,8 @@
         "unit": "% Top Speed",
         "default": "0.0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% Top Speed to +100.00% Top Speed",
         "attributes": [
@@ -2248,7 +2267,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -2263,8 +2282,8 @@
         "unit": "%/s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0%/s to 3000.0%/s (0 = As Forward)",
         "attributes": [
@@ -2280,7 +2299,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -2295,8 +2314,8 @@
         "unit": "%/s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0%/s to 3000.0%/s (0 = As Forward)",
         "attributes": [
@@ -2311,8 +2330,8 @@
         "unit": "% Top Speed",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.0% Top Speed to 50.0% Top Speed",
         "attributes": [
@@ -2397,8 +2416,8 @@
         "unit": "% Top Speed",
         "default": "5.00%",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.00% Top Speed to 100.00% Top Speed",
         "attributes": [
@@ -2428,7 +2447,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -2444,7 +2463,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -2459,8 +2478,8 @@
         "unit": "%/s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0%/s to 3000.0%/s",
         "attributes": [
@@ -2475,8 +2494,8 @@
         "unit": "%/s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0%/s to 3000.0%/s",
         "attributes": [
@@ -2505,8 +2524,8 @@
         "unit": "V",
         "default": "Drive Size dependent",
         "range_numeric": {
-            "min": 685.0,
-            "max": 1500.0
+            "min": 685,
+            "max": 1500
         },
         "range_text": "685 to 1500 V",
         "attributes": [
@@ -2521,7 +2540,7 @@
         "unit": null,
         "default": "1.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -2539,7 +2558,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -2554,8 +2573,8 @@
         "unit": "%/s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0%/s to 3000.0%/s",
         "attributes": [
@@ -2571,7 +2590,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s (0.0 = As Increase Rate +ve)",
         "attributes": [
@@ -2586,8 +2605,8 @@
         "unit": "%/s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0%/s to 3000.0%/s (0.0 = As Decrease Rate +ve)",
         "attributes": [
@@ -2602,8 +2621,8 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.0% to 50.0%",
         "attributes": [
@@ -2689,7 +2708,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -2705,7 +2724,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -2721,7 +2740,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -2737,7 +2756,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -2797,8 +2816,8 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.0% to +100.0%",
         "attributes": [
@@ -2813,8 +2832,8 @@
         "unit": "pu",
         "default": "1.00",
         "range_numeric": {
-            "min": -2.0,
-            "max": 2.0
+            "min": -2,
+            "max": 2
         },
         "range_text": "-2.00pu to +2.00pu",
         "attributes": [
@@ -2829,8 +2848,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [],
@@ -2861,8 +2880,8 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.0% to +100.0%",
         "attributes": [
@@ -2877,8 +2896,8 @@
         "unit": "pu",
         "default": "1.00",
         "range_numeric": {
-            "min": -2.0,
-            "max": 2.0
+            "min": -2,
+            "max": 2
         },
         "range_text": "-2.00pu to +2.00pu",
         "attributes": [
@@ -2893,8 +2912,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [],
@@ -2907,8 +2926,8 @@
         "unit": "ms",
         "default": "50",
         "range_numeric": {
-            "min": 0.0,
-            "max": 5000.0
+            "min": 0,
+            "max": 5000
         },
         "range_text": "0 ms to 5000 ms",
         "attributes": [
@@ -2923,7 +2942,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -3003,7 +3022,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -3125,14 +3144,15 @@
         "unit": "%",
         "default": "100.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "0.0% to 300.0%",
         "attributes": [
             "E"
         ],
-        "description": "0.1% of nominal torque."
+        "description": "0.1% of nominal torque.",
+        "alias": "torqueLimitPositive1"
     },
     {
         "id": "P8.01",
@@ -3141,8 +3161,8 @@
         "unit": "%",
         "default": "-0.1",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "-0.1% = As P8.00, 0.0% to 300.0%",
         "attributes": [
@@ -3157,8 +3177,8 @@
         "unit": "%",
         "default": "-0.1",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "-0.1% = As P8.00, 0.0% to 300.0%",
         "attributes": [
@@ -3173,8 +3193,8 @@
         "unit": "%",
         "default": "-0.1",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "-0.1% = As P8.00, 0.0% to 300.0%",
         "attributes": [
@@ -3317,8 +3337,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% Top Speed to +100.00% Top Speed",
         "attributes": [],
@@ -3331,8 +3351,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00% Top Speed to +300.00% Top Speed",
         "attributes": [
@@ -3360,8 +3380,8 @@
         "unit": "rpm",
         "default": "0",
         "range_numeric": {
-            "min": -30000.0,
-            "max": 30000.0
+            "min": -30000,
+            "max": 30000
         },
         "range_text": "0 to +/-30,000 r/min",
         "attributes": [
@@ -3376,14 +3396,15 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.0% to +300.0%",
         "attributes": [
             "R"
         ],
-        "description": "0.1% of nominal torque"
+        "description": "0.1% of nominal torque",
+        "alias": "torqueDemand"
     },
     {
         "id": "P9.05",
@@ -3392,14 +3413,15 @@
         "unit": "A",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 9999.0
+            "min": 0,
+            "max": 9999
         },
         "range_text": "0.0 A to 9999.0 A (for MicroCubicle Drives), 0 to 9999 A (for DELTAS)",
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "motorCurrentP9"
     },
     {
         "id": "P9.06",
@@ -3408,14 +3430,15 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "0.0% to 300.0%",
         "attributes": [
             "R"
         ],
-        "description": "0.1% of Drive FLC"
+        "description": "0.1% of Drive FLC",
+        "alias": "driveCurrent"
     },
     {
         "id": "P9.07",
@@ -3424,8 +3447,8 @@
         "unit": "Vrms",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 1000.0
+            "min": 0,
+            "max": 1000
         },
         "range_text": "0 to 1000 Vrms",
         "attributes": [
@@ -3440,14 +3463,15 @@
         "unit": "kW",
         "default": "0.0",
         "range_numeric": {
-            "min": -9999.0,
-            "max": 9999.0
+            "min": -9999,
+            "max": 9999
         },
         "range_text": "-999.0 to +999.9 kW (for MicroCubicle Drives), -9999 to +9999 kW (for DELTAS)",
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "motorPowerP9"
     },
     {
         "id": "P9.09",
@@ -3456,8 +3480,8 @@
         "unit": "Hz",
         "default": "0",
         "range_numeric": {
-            "min": -200.0,
-            "max": 200.0
+            "min": -200,
+            "max": 200
         },
         "range_text": "-200 to +200 Hz",
         "attributes": [
@@ -3472,8 +3496,8 @@
         "unit": "%",
         "default": "100%",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "100 to 0%",
         "attributes": [
@@ -3488,8 +3512,8 @@
         "unit": "%",
         "default": "100%",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "100 to 0%",
         "attributes": [],
@@ -3509,7 +3533,8 @@
         "attributes": [
             "R"
         ],
-        "description": "Represents Warning No. 1 to Warning No. 10 (P10.00 to P10.09)"
+        "description": "Represents Warning No. 1 to Warning No. 10 (P10.00 to P10.09)",
+        "alias": "warning1"
     },
     {
         "id": "P10.10",
@@ -3522,7 +3547,8 @@
         "attributes": [
             "R"
         ],
-        "description": "Represents Trip No. 1 to Trip No. 10 (P10.10 to P10.19)"
+        "description": "Represents Trip No. 1 to Trip No. 10 (P10.10 to P10.19)",
+        "alias": "trip1"
     },
     {
         "id": "P10.20",
@@ -3547,8 +3573,8 @@
         "unit": "s",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3599.0
+            "min": 0,
+            "max": 3599
         },
         "range_text": "0 to 3599 s",
         "attributes": [
@@ -3563,8 +3589,8 @@
         "unit": "h",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 672.0
+            "min": 0,
+            "max": 672
         },
         "range_text": "0 to 672 h",
         "attributes": [
@@ -3706,14 +3732,15 @@
         "unit": "% Top Speed",
         "default": "0.0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.0% Top Speed to +100.0% Top Speed",
         "attributes": [
             "O"
         ],
-        "description": "0.1% of Top Speed"
+        "description": "0.1% of Top Speed",
+        "alias": "jogSpeed1"
     },
     {
         "id": "P5.15",
@@ -3722,8 +3749,8 @@
         "unit": "rpm",
         "default": "1500",
         "range_numeric": {
-            "min": 10.0,
-            "max": 6000.0
+            "min": 10,
+            "max": 6000
         },
         "range_text": "10 r/min to 6000 r/min",
         "attributes": [
@@ -3739,8 +3766,8 @@
         "unit": "rpm",
         "default": "1500",
         "range_numeric": {
-            "min": 0.0,
-            "max": 6000.0
+            "min": 0,
+            "max": 6000
         },
         "range_text": "0 r/min to 6000 r/min",
         "attributes": [
@@ -3826,14 +3853,15 @@
         "unit": "Units",
         "default": "1000",
         "range_numeric": {
-            "min": -9999.0,
-            "max": 9999.0
+            "min": -9999,
+            "max": 9999
         },
         "range_text": "-9999 Units to +9999 Units",
         "attributes": [
             "E"
         ],
-        "description": "User defined units"
+        "description": "User defined units",
+        "alias": "processTopSpeed"
     },
     {
         "id": "P5.23",
@@ -3842,8 +3870,8 @@
         "unit": "% Top Speed",
         "default": "100.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% Top Speed to +100.00% Top Speed",
         "attributes": [
@@ -3858,8 +3886,8 @@
         "unit": "% Top Speed",
         "default": "-100.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% Top Speed to +100.00% Top Speed",
         "attributes": [
@@ -3888,8 +3916,8 @@
         "unit": "s",
         "default": "0.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 5.0
+            "min": 0,
+            "max": 5
         },
         "range_text": "0.00 s to 5.00 s",
         "attributes": [
@@ -3904,8 +3932,8 @@
         "unit": "% Top Speed",
         "default": "0.0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% Top Speed to +100.00% Top Speed",
         "attributes": [
@@ -3935,7 +3963,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -3950,8 +3978,8 @@
         "unit": "%/s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0%/s to 3000.0%/s (0 = As Forward)",
         "attributes": [
@@ -3967,7 +3995,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -3982,8 +4010,8 @@
         "unit": "%/s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0%/s to 3000.0%/s (0 = As Forward)",
         "attributes": [
@@ -3998,8 +4026,8 @@
         "unit": "% Top Speed",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.0% Top Speed to 50.0% Top Speed",
         "attributes": [
@@ -4084,8 +4112,8 @@
         "unit": "% Top Speed",
         "default": "5.00%",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.00% Top Speed to 100.00% Top Speed",
         "attributes": [
@@ -4115,7 +4143,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -4131,7 +4159,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -4146,8 +4174,8 @@
         "unit": "%/s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0%/s to 3000.0%/s",
         "attributes": [
@@ -4162,8 +4190,8 @@
         "unit": "%/s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0%/s to 3000.0%/s",
         "attributes": [
@@ -4192,8 +4220,8 @@
         "unit": "V",
         "default": "Drive Size dependent",
         "range_numeric": {
-            "min": 685.0,
-            "max": 1500.0
+            "min": 685,
+            "max": 1500
         },
         "range_text": "685 to 1500 V",
         "attributes": [
@@ -4208,7 +4236,7 @@
         "unit": null,
         "default": "1.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -4226,7 +4254,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -4241,8 +4269,8 @@
         "unit": "%/s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0%/s to 3000.0%/s",
         "attributes": [
@@ -4258,7 +4286,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s (0.0 = As Increase Rate +ve)",
         "attributes": [
@@ -4273,8 +4301,8 @@
         "unit": "%/s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0%/s to 3000.0%/s (0.0 = As Decrease Rate +ve)",
         "attributes": [
@@ -4289,8 +4317,8 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.0% to 50.0%",
         "attributes": [
@@ -4376,7 +4404,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -4392,7 +4420,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -4408,7 +4436,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -4424,7 +4452,7 @@
         "default": "10.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000.0%/s",
         "attributes": [
@@ -4484,8 +4512,8 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.0% to +100.0%",
         "attributes": [
@@ -4500,8 +4528,8 @@
         "unit": "pu",
         "default": "1.00",
         "range_numeric": {
-            "min": -2.0,
-            "max": 2.0
+            "min": -2,
+            "max": 2
         },
         "range_text": "-2.00pu to +2.00pu",
         "attributes": [
@@ -4516,8 +4544,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [],
@@ -4548,8 +4576,8 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.0% to +100.0%",
         "attributes": [
@@ -4564,8 +4592,8 @@
         "unit": "pu",
         "default": "1.00",
         "range_numeric": {
-            "min": -2.0,
-            "max": 2.0
+            "min": -2,
+            "max": 2
         },
         "range_text": "-2.00pu to +2.00pu",
         "attributes": [
@@ -4580,8 +4608,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [],
@@ -4594,8 +4622,8 @@
         "unit": "ms",
         "default": "50",
         "range_numeric": {
-            "min": 0.0,
-            "max": 5000.0
+            "min": 0,
+            "max": 5000
         },
         "range_text": "0 ms to 5000 ms",
         "attributes": [
@@ -4610,7 +4638,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -4690,7 +4718,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -4812,14 +4840,15 @@
         "unit": "%",
         "default": "100.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "0.0% to 300.0%",
         "attributes": [
             "E"
         ],
-        "description": "0.1% of nominal torque."
+        "description": "0.1% of nominal torque.",
+        "alias": "torqueLimitPositive1"
     },
     {
         "id": "P8.01",
@@ -4828,8 +4857,8 @@
         "unit": "%",
         "default": "-0.1",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "-0.1% = As P8.00, 0.0% to 300.0%",
         "attributes": [
@@ -4844,8 +4873,8 @@
         "unit": "%",
         "default": "-0.1",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "-0.1% = As P8.00, 0.0% to 300.0%",
         "attributes": [
@@ -4860,8 +4889,8 @@
         "unit": "%",
         "default": "-0.1",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "-0.1% = As P8.00, 0.0% to 300.0%",
         "attributes": [
@@ -5004,8 +5033,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% Top Speed to +100.00% Top Speed",
         "attributes": [],
@@ -5018,8 +5047,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00% Top Speed to +300.00% Top Speed",
         "attributes": [
@@ -5047,8 +5076,8 @@
         "unit": "rpm",
         "default": "0",
         "range_numeric": {
-            "min": -30000.0,
-            "max": 30000.0
+            "min": -30000,
+            "max": 30000
         },
         "range_text": "0 to +/-30,000 r/min",
         "attributes": [
@@ -5063,14 +5092,15 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.0% to +300.0%",
         "attributes": [
             "R"
         ],
-        "description": "0.1% of nominal torque"
+        "description": "0.1% of nominal torque",
+        "alias": "torqueDemand"
     },
     {
         "id": "P9.05",
@@ -5079,14 +5109,15 @@
         "unit": "A",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 9999.0
+            "min": 0,
+            "max": 9999
         },
         "range_text": "0.0 A to 9999.0 A (for MicroCubicle Drives), 0 to 9999 A (for DELTAS)",
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "motorCurrentP9"
     },
     {
         "id": "P9.06",
@@ -5095,14 +5126,15 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "0.0% to 300.0%",
         "attributes": [
             "R"
         ],
-        "description": "0.1% of Drive FLC"
+        "description": "0.1% of Drive FLC",
+        "alias": "driveCurrent"
     },
     {
         "id": "P9.07",
@@ -5111,8 +5143,8 @@
         "unit": "Vrms",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 1000.0
+            "min": 0,
+            "max": 1000
         },
         "range_text": "0 to 1000 Vrms",
         "attributes": [
@@ -5127,14 +5159,15 @@
         "unit": "kW",
         "default": "0.0",
         "range_numeric": {
-            "min": -9999.0,
-            "max": 9999.0
+            "min": -9999,
+            "max": 9999
         },
         "range_text": "-999.0 to +999.9 kW (for MicroCubicle Drives), -9999 to +9999 kW (for DELTAS)",
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "motorPowerP9"
     },
     {
         "id": "P9.09",
@@ -5143,8 +5176,8 @@
         "unit": "Hz",
         "default": "0",
         "range_numeric": {
-            "min": -200.0,
-            "max": 200.0
+            "min": -200,
+            "max": 200
         },
         "range_text": "-200 to +200 Hz",
         "attributes": [
@@ -5159,8 +5192,8 @@
         "unit": "%",
         "default": "100%",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "100 to 0%",
         "attributes": [
@@ -5175,8 +5208,8 @@
         "unit": "%",
         "default": "100%",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "100 to 0%",
         "attributes": [],
@@ -5196,7 +5229,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "warning1"
     },
     {
         "id": "P10.01",
@@ -5212,7 +5246,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "warning2"
     },
     {
         "id": "P10.02",
@@ -5228,7 +5263,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "warning3"
     },
     {
         "id": "P10.03",
@@ -5244,7 +5280,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "warning4"
     },
     {
         "id": "P10.04",
@@ -5260,7 +5297,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "warning5"
     },
     {
         "id": "P10.05",
@@ -5276,7 +5314,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "warning6"
     },
     {
         "id": "P10.06",
@@ -5292,7 +5331,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "warning7"
     },
     {
         "id": "P10.07",
@@ -5308,7 +5348,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "warning8"
     },
     {
         "id": "P10.08",
@@ -5324,7 +5365,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "warning9"
     },
     {
         "id": "P10.09",
@@ -5340,7 +5382,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "warning10"
     },
     {
         "id": "P10.10",
@@ -5353,7 +5396,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "trip1"
     },
     {
         "id": "P10.11",
@@ -5366,7 +5410,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "trip2"
     },
     {
         "id": "P10.12",
@@ -5379,7 +5424,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "trip3"
     },
     {
         "id": "P10.13",
@@ -5392,7 +5438,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "trip4"
     },
     {
         "id": "P10.14",
@@ -5405,7 +5452,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "trip5"
     },
     {
         "id": "P10.15",
@@ -5418,7 +5466,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "trip6"
     },
     {
         "id": "P10.16",
@@ -5431,7 +5480,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "trip7"
     },
     {
         "id": "P10.17",
@@ -5444,7 +5494,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "trip8"
     },
     {
         "id": "P10.18",
@@ -5457,7 +5508,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "trip9"
     },
     {
         "id": "P10.19",
@@ -5470,7 +5522,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "trip10"
     },
     {
         "id": "P10.20",
@@ -5639,8 +5692,8 @@
         "unit": "s",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3599.0
+            "min": 0,
+            "max": 3599
         },
         "range_text": "0 to 3599 s",
         "attributes": [
@@ -5655,8 +5708,8 @@
         "unit": "h",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 672.0
+            "min": 0,
+            "max": 672
         },
         "range_text": "0 to 672 h",
         "attributes": [
@@ -6073,14 +6126,15 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": -150.0,
-            "max": 150.0
+            "min": -150,
+            "max": 150
         },
         "range_text": "-150.0 to +150.0%",
         "attributes": [
             "R"
         ],
-        "description": "% of drive FLC"
+        "description": "% of drive FLC",
+        "alias": "activeCurrentFLC"
     },
     {
         "id": "P11.01",
@@ -6089,14 +6143,15 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": -150.0,
-            "max": 150.0
+            "min": -150,
+            "max": 150
         },
         "range_text": "-150.0 to +150.0%",
         "attributes": [
             "R"
         ],
-        "description": "% of drive FLC"
+        "description": "% of drive FLC",
+        "alias": "magnetisingCurrentFLC"
     },
     {
         "id": "P11.02",
@@ -6105,8 +6160,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -6128,7 +6183,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "dcLinkVoltage"
     },
     {
         "id": "P11.04",
@@ -6144,7 +6200,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "cdcElectronicsTemperature"
     },
     {
         "id": "P11.05",
@@ -6160,7 +6217,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "outputBridge1Temperature"
     },
     {
         "id": "P11.06",
@@ -6176,7 +6234,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "outputBridge2Temperature"
     },
     {
         "id": "P11.07",
@@ -6192,7 +6251,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "outputBridge3Temperature"
     },
     {
         "id": "P11.08",
@@ -6208,7 +6268,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "inputBridgeTemperature"
     },
     {
         "id": "P11.09",
@@ -6224,7 +6285,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "outputBridge4Temperature"
     },
     {
         "id": "P11.10",
@@ -6240,7 +6302,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "outputBridge5Temperature"
     },
     {
         "id": "P11.11",
@@ -6256,7 +6319,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "outputBridge6Temperature"
     },
     {
         "id": "P11.12",
@@ -6377,14 +6441,15 @@
         "unit": "kWh",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
+            "min": 0,
             "max": 999.9
         },
         "range_text": "0 kWh to 999.9 kWh",
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "kWHours"
     },
     {
         "id": "P11.20",
@@ -6400,7 +6465,8 @@
         "attributes": [
             "R"
         ],
-        "description": ""
+        "description": "",
+        "alias": "mWHours"
     },
     {
         "id": "P11.21",
@@ -6604,8 +6670,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -6620,8 +6686,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -6636,8 +6702,8 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.0% to +100.0%",
         "attributes": [
@@ -6652,8 +6718,8 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.0% to +100.0%",
         "attributes": [
@@ -6694,8 +6760,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -6710,8 +6776,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00% to +300.00%",
         "attributes": [
@@ -6726,8 +6792,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00% to +300.00%",
         "attributes": [
@@ -6742,8 +6808,8 @@
         "unit": null,
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00% to +300.00%",
         "attributes": [
@@ -6758,14 +6824,15 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "0.00% to 300.00%",
         "attributes": [
             "R"
         ],
-        "description": "Calculated on line by the drive."
+        "description": "Calculated on line by the drive.",
+        "alias": "maximumTorqueAvailable"
     },
     {
         "id": "P11.50",
@@ -6774,14 +6841,15 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
             "O"
         ],
-        "description": "% of nominal torque (not available in VVVF mode)"
+        "description": "% of nominal torque (not available in VVVF mode)",
+        "alias": "torqueReference"
     },
     {
         "id": "P11.51",
@@ -6790,8 +6858,8 @@
         "unit": null,
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00% to +300.00%",
         "attributes": [
@@ -6806,8 +6874,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 107.0
+            "min": 0,
+            "max": 107
         },
         "range_text": "0.00 to 107%",
         "attributes": [
@@ -7020,8 +7088,8 @@
         "unit": "μs",
         "default": "5.080 μs",
         "range_numeric": {
-            "min": 0.0,
-            "max": 20.0
+            "min": 0,
+            "max": 20
         },
         "range_text": "0.000 μs to 20.000 μs",
         "attributes": [
@@ -7036,8 +7104,8 @@
         "unit": "% Drive FLC",
         "default": "1.1% Drive FLC",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.0 to 50.0% Drive FLC",
         "attributes": [
@@ -7052,8 +7120,8 @@
         "unit": "μs",
         "default": "4.240 μs",
         "range_numeric": {
-            "min": 0.0,
-            "max": 20.0
+            "min": 0,
+            "max": 20
         },
         "range_text": "0.000 μs to 20.000 μs",
         "attributes": [
@@ -7068,8 +7136,8 @@
         "unit": "% Drive FLC",
         "default": "1.1% Drive FLC",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.0 to 50.0% Drive FLC",
         "attributes": [
@@ -7084,8 +7152,8 @@
         "unit": "μs",
         "default": "3.880 μs",
         "range_numeric": {
-            "min": 0.0,
-            "max": 20.0
+            "min": 0,
+            "max": 20
         },
         "range_text": "0.000 μs to 20.000 μs",
         "attributes": [
@@ -7100,8 +7168,8 @@
         "unit": "% Drive FLC",
         "default": "1.2% Drive FLC",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.0 to 50.0% Drive FLC",
         "attributes": [
@@ -7116,8 +7184,8 @@
         "unit": "μs",
         "default": "3.760 μs",
         "range_numeric": {
-            "min": 0.0,
-            "max": 20.0
+            "min": 0,
+            "max": 20
         },
         "range_text": "0.000 μs to 20.000 μs",
         "attributes": [
@@ -7132,8 +7200,8 @@
         "unit": "% Drive FLC",
         "default": "1.4% Drive FLC",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.0 to 50.0% Drive FLC",
         "attributes": [
@@ -7148,7 +7216,7 @@
         "unit": "A",
         "default": "Size of Drive",
         "range_numeric": {
-            "min": 0.0,
+            "min": 0,
             "max": 9999
         },
         "range_text": "0.0 A to 9999 A",
@@ -7264,8 +7332,8 @@
         "unit": "%/s/%",
         "default": "2.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3.0
+            "min": 0,
+            "max": 3
         },
         "range_text": "0.0%/s/% to 3.0%/s/%",
         "attributes": [
@@ -7512,8 +7580,8 @@
         "unit": "V",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "0.0 V to 300.0 V (0.0 = Calculated using motor equivalent circuit parameters)",
         "attributes": [
@@ -7576,8 +7644,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.00 to 100.00%",
         "attributes": [
@@ -7661,8 +7729,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -15.0,
-            "max": 15.0
+            "min": -15,
+            "max": 15
         },
         "range_text": "-15.00% to +15.00%",
         "attributes": [
@@ -7694,8 +7762,8 @@
         "unit": "Tr",
         "default": "1.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 10.0
+            "min": 0,
+            "max": 10
         },
         "range_text": "0.00 to 10.00Tr",
         "attributes": [
@@ -7728,8 +7796,8 @@
         "unit": "%",
         "default": "Depends on Switching Frequency",
         "range_numeric": {
-            "min": 95.0,
-            "max": 107.0
+            "min": 95,
+            "max": 107
         },
         "range_text": "95.00% to 107.00%",
         "attributes": [
@@ -7760,8 +7828,8 @@
         "unit": "ms",
         "default": "3.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0ms to 3000.0ms",
         "attributes": [
@@ -7955,7 +8023,7 @@
         "default": "0.1",
         "range_numeric": {
             "min": 0.1,
-            "max": 200.0
+            "max": 200
         },
         "range_text": "0.1 to 200.0kW",
         "attributes": [
@@ -8153,8 +8221,8 @@
         "unit": "Hz",
         "default": "0.0",
         "range_numeric": {
-            "min": -150.0,
-            "max": 150.0
+            "min": -150,
+            "max": 150
         },
         "range_text": "-150.0 Hz to +150.0 Hz",
         "attributes": [
@@ -8170,7 +8238,7 @@
         "default": "0.1",
         "range_numeric": {
             "min": 0.1,
-            "max": 10.0
+            "max": 10
         },
         "range_text": "0.1 Hz/s to 10.0 Hz/s",
         "attributes": [
@@ -8205,7 +8273,7 @@
         "default": "90.0",
         "range_numeric": {
             "min": 33.3,
-            "max": 90.0
+            "max": 90
         },
         "range_text": "33.3% to 90.0%",
         "attributes": [
@@ -8281,7 +8349,7 @@
         "default": "2.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 100.0
+            "max": 100
         },
         "range_text": "0.1% Top Speed to 100% Top Speed (see P13.07)",
         "attributes": [
@@ -8297,7 +8365,7 @@
         "default": "5.00",
         "range_numeric": {
             "min": 0.01,
-            "max": 125.0
+            "max": 125
         },
         "range_text": "0.01pu to 125.00pu",
         "attributes": [
@@ -8312,8 +8380,8 @@
         "unit": "pu/s",
         "default": "100.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.00pu/s to 3000.00pu/s",
         "attributes": [
@@ -8328,8 +8396,8 @@
         "unit": "pu.s",
         "default": "0.000",
         "range_numeric": {
-            "min": 0.0,
-            "max": 10.0
+            "min": 0,
+            "max": 10
         },
         "range_text": "0.000pu.s to 10.000pu.s",
         "attributes": [
@@ -8345,7 +8413,7 @@
         "default": "5.00",
         "range_numeric": {
             "min": 0.01,
-            "max": 125.0
+            "max": 125
         },
         "range_text": "0.01pu to 125.00pu",
         "attributes": [
@@ -8360,8 +8428,8 @@
         "unit": "pu/s",
         "default": "100.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.00pu/s to 3000.00pu/s",
         "attributes": [
@@ -8376,8 +8444,8 @@
         "unit": "pu.s",
         "default": "0.000",
         "range_numeric": {
-            "min": 0.0,
-            "max": 10.0
+            "min": 0,
+            "max": 10
         },
         "range_text": "0.000pu.s to 10.000pu.s",
         "attributes": [
@@ -8434,8 +8502,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -8482,8 +8550,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00% to +300.00%",
         "attributes": [
@@ -8514,8 +8582,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.00% to 100.00%",
         "attributes": [
@@ -8557,8 +8625,8 @@
         "unit": "% Top Speed",
         "default": "0.0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.0% Top Speed to +100.0% Top Speed",
         "attributes": [
@@ -8589,8 +8657,8 @@
         "unit": "% Top Speed",
         "default": "0.50%",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.00% to 100.00%",
         "attributes": [
@@ -8637,8 +8705,8 @@
         "unit": "% Nominal Torque",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -8653,8 +8721,8 @@
         "unit": "%",
         "default": "100.0%",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "0.0% to 300.0%",
         "attributes": [],
@@ -8768,8 +8836,8 @@
         "unit": "%",
         "default": "100.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "0.0% to 300.0%",
         "attributes": [
@@ -8785,7 +8853,7 @@
         "default": "500.0",
         "range_numeric": {
             "min": 0.1,
-            "max": 500.0
+            "max": 500
         },
         "range_text": "0.1% to 500.0%",
         "attributes": [
@@ -8800,8 +8868,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0 s to 3000.0 s",
         "attributes": [
@@ -8816,8 +8884,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0 s to 3000.0 s",
         "attributes": [
@@ -8832,8 +8900,8 @@
         "unit": "s",
         "default": "0.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 5.0
+            "min": 0,
+            "max": 5
         },
         "range_text": "0.00 s to 5.00 s",
         "attributes": [
@@ -8848,8 +8916,8 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.0% to 50.0%",
         "attributes": [
@@ -8882,8 +8950,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9067,7 +9135,7 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
+            "min": 0,
             "max": 59.9
         },
         "range_text": "0.0 s to 59.9 s",
@@ -9101,7 +9169,7 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
+            "min": 0,
             "max": 59.9
         },
         "range_text": "0.0 s to 59.9 s",
@@ -9135,7 +9203,7 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
+            "min": 0,
             "max": 59.9
         },
         "range_text": "0.0 s to 59.9 s",
@@ -9169,7 +9237,7 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
+            "min": 0,
             "max": 59.9
         },
         "range_text": "0.0 s to 59.9 s",
@@ -9203,7 +9271,7 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
+            "min": 0,
             "max": 59.9
         },
         "range_text": "0.0 s to 59.9 s",
@@ -9279,8 +9347,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00% motor top speed",
         "attributes": [
@@ -9296,7 +9364,7 @@
         "default": "10",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000%/s",
         "attributes": [
@@ -9312,7 +9380,7 @@
         "default": "10",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1%/s to 3000%/s",
         "attributes": [
@@ -9345,8 +9413,8 @@
         "unit": "% Top Speed",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.0% to 100.0%",
         "attributes": [
@@ -9403,8 +9471,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9457,8 +9525,8 @@
         "unit": "%",
         "default": "100.0",
         "range_numeric": {
-            "min": -150.0,
-            "max": 150.0
+            "min": -150,
+            "max": 150
         },
         "range_text": "-150.0% to +150.0%",
         "attributes": [
@@ -9473,8 +9541,8 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": -150.0,
-            "max": 150.0
+            "min": -150,
+            "max": 150
         },
         "range_text": "-150.0% to +150.0%",
         "attributes": [
@@ -9489,8 +9557,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9522,8 +9590,8 @@
         "unit": "kHz",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 650.0
+            "min": 0,
+            "max": 650
         },
         "range_text": "0.0 kHz to 650.0 kHz",
         "attributes": [
@@ -9538,8 +9606,8 @@
         "unit": "kHz",
         "default": "100.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 650.0
+            "min": 0,
+            "max": 650
         },
         "range_text": "0.0 kHz to 650.0 kHz",
         "attributes": [
@@ -9554,8 +9622,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% Top Speed to +100.00% Top Speed",
         "attributes": [
@@ -9570,8 +9638,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9586,8 +9654,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9602,8 +9670,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9618,8 +9686,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9634,8 +9702,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9650,8 +9718,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9666,8 +9734,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9682,8 +9750,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9698,8 +9766,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9714,8 +9782,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9730,8 +9798,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9746,8 +9814,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9762,8 +9830,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9778,8 +9846,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9794,8 +9862,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9810,8 +9878,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9882,8 +9950,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -9898,8 +9966,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% Top Speed to +100.00% Top Speed",
         "attributes": [
@@ -9914,8 +9982,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.00% Top Speed to 50.00% Top Speed",
         "attributes": [
@@ -9930,8 +9998,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% Top Speed to +100.00% Top Speed",
         "attributes": [
@@ -9946,8 +10014,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.00% Top Speed to 50.00% Top Speed",
         "attributes": [
@@ -9962,8 +10030,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% Top Speed to +100.00% Top Speed",
         "attributes": [
@@ -9978,8 +10046,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.00% Top Speed to 50.00% Top Speed",
         "attributes": [
@@ -9994,8 +10062,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% Top Speed to +100.00% Top Speed",
         "attributes": [
@@ -10010,8 +10078,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.00% Top Speed to 50.00% Top Speed",
         "attributes": [
@@ -10027,7 +10095,7 @@
         "default": "Drive size dependent",
         "range_numeric": {
             "min": 0.1,
-            "max": 1000.0
+            "max": 1000
         },
         "range_text": "0.1 Ω to 1000.0 Ω",
         "attributes": [
@@ -10043,7 +10111,7 @@
         "default": "Drive size dependent",
         "range_numeric": {
             "min": 0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "0.1 kW to 3000.0 kW",
         "attributes": [
@@ -10059,7 +10127,7 @@
         "default": "Drive size dependent",
         "range_numeric": {
             "min": null,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "Value in P23.01 to 3000.0 kW",
         "attributes": [
@@ -10075,7 +10143,7 @@
         "default": "18.0 s",
         "range_numeric": {
             "min": 0.1,
-            "max": 1800.0
+            "max": 1800
         },
         "range_text": "0.1s to 1800.0s",
         "attributes": [
@@ -10107,7 +10175,7 @@
         "default": "Drive size dependent",
         "range_numeric": {
             "min": -0.1,
-            "max": 3000.0
+            "max": 3000
         },
         "range_text": "-0.1kW to 3000.0kW",
         "attributes": [
@@ -10269,8 +10337,8 @@
         "unit": "%",
         "default": "100%",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.00% to 100.00%",
         "attributes": [
@@ -10285,8 +10353,8 @@
         "unit": "%",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.00% to 100.00%",
         "attributes": [
@@ -10317,8 +10385,8 @@
         "unit": "%",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.00% to 100.00%",
         "attributes": [
@@ -10371,8 +10439,8 @@
         "unit": "A",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 2000.0
+            "min": 0,
+            "max": 2000
         },
         "range_text": "0.0 A to 2000.0 A",
         "attributes": [
@@ -10387,8 +10455,8 @@
         "unit": "kW",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3000.0
+            "min": 0,
+            "max": 3000
         },
         "range_text": "0.0 kW to 3000.0 kW",
         "attributes": [
@@ -10440,8 +10508,8 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.0% to +100.0%",
         "attributes": [
@@ -10456,8 +10524,8 @@
         "unit": "%",
         "default": "0.0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.0% to +100.0%",
         "attributes": [
@@ -10516,8 +10584,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "0.0 s to 300.0 s",
         "attributes": [
@@ -10613,7 +10681,7 @@
         "unit": null,
         "default": "Basic Drive: 9.02, SFE: 51.04",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (any Parameter)",
@@ -10648,7 +10716,7 @@
         "unit": null,
         "default": "Basic Drive: 9.06, SFE: 51.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (any Parameter)",
@@ -10683,7 +10751,7 @@
         "unit": null,
         "default": "Basic Drive: 9.08, SFE: 51.06",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (any Parameter)",
@@ -10718,7 +10786,7 @@
         "unit": null,
         "default": "Basic Drive: 9.09, SFE: 51.03",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (any Parameter)",
@@ -10753,7 +10821,7 @@
         "unit": null,
         "default": "9.10",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (any Parameter)",
@@ -10788,7 +10856,7 @@
         "unit": null,
         "default": "11.05",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (any Parameter)",
@@ -10823,7 +10891,7 @@
         "unit": null,
         "default": "Basic Drive: 11.03, SFE: 51.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (any Parameter)",
@@ -10858,7 +10926,7 @@
         "unit": null,
         "default": "Basic Drive: 9.01, SFE: 50.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (any Parameter)",
@@ -10893,7 +10961,7 @@
         "unit": null,
         "default": "Basic Drive: 9.00, SFE: 51.10",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (any Parameter)",
@@ -10928,7 +10996,7 @@
         "unit": null,
         "default": "10.10",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (any Parameter)",
@@ -10963,7 +11031,7 @@
         "unit": null,
         "default": "0",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (any Parameter, 0 = None)",
@@ -11077,7 +11145,7 @@
         "unit": null,
         "default": "26.30",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -11094,7 +11162,7 @@
         "unit": null,
         "default": "26.31",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -11668,8 +11736,8 @@
         "unit": "% Top Speed",
         "default": "120.0",
         "range_numeric": {
-            "min": 10.0,
-            "max": 300.0
+            "min": 10,
+            "max": 300
         },
         "range_text": "10.0% Top Speed to 300.0% Top Speed",
         "attributes": [
@@ -11684,8 +11752,8 @@
         "unit": "% Top Speed",
         "default": "120.0",
         "range_numeric": {
-            "min": 10.0,
-            "max": 300.0
+            "min": 10,
+            "max": 300
         },
         "range_text": "10.0% Top Speed to 300.0% Top Speed",
         "attributes": [
@@ -11718,8 +11786,8 @@
         "unit": "% Top Speed",
         "default": "0.0",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.0% Top Speed to +300.0% Top Speed",
         "attributes": [
@@ -11734,8 +11802,8 @@
         "unit": "% Top Speed",
         "default": "0.0",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.0% Top Speed to +300.0% Top Speed",
         "attributes": [
@@ -11750,8 +11818,8 @@
         "unit": "% Top Speed",
         "default": "5.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 50.0
+            "min": 0,
+            "max": 50
         },
         "range_text": "0.0% Top Speed to 50.0% Top Speed",
         "attributes": [
@@ -11766,8 +11834,8 @@
         "unit": "% Nominal Torque",
         "default": "0.0",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.0% Nominal Torque to +300.0% Nominal Torque",
         "attributes": [
@@ -11782,8 +11850,8 @@
         "unit": "% Nominal Torque",
         "default": "0.0",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.0% Nominal Torque to +300.0% Nominal Torque",
         "attributes": [
@@ -11798,8 +11866,8 @@
         "unit": "% Nominal Torque",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.0% Nominal Torque to 100.0% Nominal Torque",
         "attributes": [
@@ -11814,8 +11882,8 @@
         "unit": "%",
         "default": "0.50",
         "range_numeric": {
-            "min": 0.0,
-            "max": 10.0
+            "min": 0,
+            "max": 10
         },
         "range_text": "0.00% to 10.00%",
         "attributes": [
@@ -11830,7 +11898,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1 to 99.99",
@@ -12031,7 +12099,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1 to 99.99",
@@ -12232,7 +12300,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1 to 99.99",
@@ -12433,7 +12501,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1 to 99.99",
@@ -12926,8 +12994,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -12942,8 +13010,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -12958,8 +13026,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -12974,8 +13042,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -12990,8 +13058,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -13006,8 +13074,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -13022,8 +13090,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -13038,8 +13106,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -13054,8 +13122,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -13070,8 +13138,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -13086,8 +13154,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -13102,8 +13170,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -13118,8 +13186,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -13134,8 +13202,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -13150,8 +13218,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -13166,8 +13234,8 @@
         "unit": "s",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 3200.0
+            "min": 0,
+            "max": 3200
         },
         "range_text": "0.0 s to 3200.0 s",
         "attributes": [
@@ -13344,7 +13412,7 @@
         "unit": "s",
         "default": "10.0",
         "range_numeric": {
-            "min": 0.0,
+            "min": 0,
             "max": 99.9
         },
         "range_text": "0.0 s= No Timeout, 0.1 s to 99.9 s",
@@ -13410,8 +13478,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -13426,8 +13494,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -13530,7 +13598,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13547,7 +13615,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13564,7 +13632,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13581,7 +13649,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13598,7 +13666,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13615,7 +13683,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13632,7 +13700,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13649,7 +13717,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13666,7 +13734,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13683,7 +13751,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13700,7 +13768,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13717,7 +13785,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13734,7 +13802,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13751,7 +13819,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13768,7 +13836,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13785,7 +13853,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13802,7 +13870,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13819,7 +13887,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13836,7 +13904,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13853,7 +13921,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -13939,7 +14007,7 @@
         "unit": "s",
         "default": "10.0",
         "range_numeric": {
-            "min": 0.0,
+            "min": 0,
             "max": 99.9
         },
         "range_text": "0.0s = No Timeout, 0.1 s to 99.9 s",
@@ -14005,8 +14073,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -14021,8 +14089,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -14125,7 +14193,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14142,7 +14210,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14159,7 +14227,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14176,7 +14244,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14193,7 +14261,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14210,7 +14278,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14227,7 +14295,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14244,7 +14312,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14261,7 +14329,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14278,7 +14346,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14295,7 +14363,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14312,7 +14380,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14329,7 +14397,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14346,7 +14414,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14363,7 +14431,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14380,7 +14448,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14397,7 +14465,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14414,7 +14482,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14431,7 +14499,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14448,7 +14516,7 @@
         "unit": null,
         "default": "9.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -14465,7 +14533,7 @@
         "unit": null,
         "default": "0",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "0= No Parameter sent, 1.00 to 99.99",
@@ -14482,7 +14550,7 @@
         "unit": null,
         "default": "0",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "0= No Parameter sent, 1.00 to 99.99",
@@ -14499,7 +14567,7 @@
         "unit": null,
         "default": "0",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "0= No Parameter sent, 1.00 to 99.99",
@@ -14516,7 +14584,7 @@
         "unit": null,
         "default": "0",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "0= No Parameter sent, 1.00 to 99.99",
@@ -14533,8 +14601,8 @@
         "unit": null,
         "default": "1.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00 to +100.00",
         "attributes": [
@@ -14549,8 +14617,8 @@
         "unit": null,
         "default": "1.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00 to +100.00",
         "attributes": [
@@ -14565,8 +14633,8 @@
         "unit": null,
         "default": "1.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00 to +100.00",
         "attributes": [
@@ -14581,8 +14649,8 @@
         "unit": null,
         "default": "1.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00 to +100.00",
         "attributes": [
@@ -14776,7 +14844,7 @@
         "default": "0.7",
         "range_numeric": {
             "min": 0.5,
-            "max": 10.0
+            "max": 10
         },
         "range_text": "0.5 Lines/Second to 10.0 Lines/Second",
         "attributes": [
@@ -15043,8 +15111,8 @@
         "unit": "% PWM Period",
         "default": "0.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.0 to 100% PWM Period",
         "attributes": [
@@ -15266,8 +15334,8 @@
         "unit": "% position",
         "default": "-20.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 0.0
+            "min": -100,
+            "max": 0
         },
         "range_text": "-100.00% to 0% position",
         "attributes": [
@@ -15282,8 +15350,8 @@
         "unit": "% Top Speed",
         "default": "-44.72",
         "range_numeric": {
-            "min": -100.0,
-            "max": 0.0
+            "min": -100,
+            "max": 0
         },
         "range_text": "-100.00% Top Speed to 0.00% Top Speed",
         "attributes": [
@@ -15298,8 +15366,8 @@
         "unit": "% position",
         "default": "-40.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 0.0
+            "min": -100,
+            "max": 0
         },
         "range_text": "-100.00% to 0% position",
         "attributes": [
@@ -15314,8 +15382,8 @@
         "unit": "% Top Speed",
         "default": "-63.25",
         "range_numeric": {
-            "min": -100.0,
-            "max": 0.0
+            "min": -100,
+            "max": 0
         },
         "range_text": "-100.00% Top Speed to 0.00% Top Speed",
         "attributes": [
@@ -15330,8 +15398,8 @@
         "unit": "% position",
         "default": "-60.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 0.0
+            "min": -100,
+            "max": 0
         },
         "range_text": "-100.00% to 0% position",
         "attributes": [
@@ -15346,8 +15414,8 @@
         "unit": "% Top Speed",
         "default": "-77.46",
         "range_numeric": {
-            "min": -100.0,
-            "max": 0.0
+            "min": -100,
+            "max": 0
         },
         "range_text": "-100.00% Top Speed to 0.00% Top Speed",
         "attributes": [
@@ -15362,8 +15430,8 @@
         "unit": "% position",
         "default": "-80.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 0.0
+            "min": -100,
+            "max": 0
         },
         "range_text": "-100.00% to 0% position",
         "attributes": [
@@ -15378,8 +15446,8 @@
         "unit": "% Top Speed",
         "default": "-89.44",
         "range_numeric": {
-            "min": -100.0,
-            "max": 0.0
+            "min": -100,
+            "max": 0
         },
         "range_text": "-100.00% Top Speed to 0.00% Top Speed",
         "attributes": [
@@ -15394,8 +15462,8 @@
         "unit": "% position",
         "default": "-100.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 0.0
+            "min": -100,
+            "max": 0
         },
         "range_text": "-100.00% to 0% position",
         "attributes": [
@@ -15410,8 +15478,8 @@
         "unit": "% Top Speed",
         "default": "-100.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 0.0
+            "min": -100,
+            "max": 0
         },
         "range_text": "-100.00% Top Speed to 0.00% Top Speed",
         "attributes": [
@@ -15426,8 +15494,8 @@
         "unit": "% position",
         "default": "20.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "100.00% to 0% position",
         "attributes": [
@@ -15442,8 +15510,8 @@
         "unit": "% Top Speed",
         "default": "44.72",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "100.00% Top Speed to 0.00% Top Speed",
         "attributes": [
@@ -15458,8 +15526,8 @@
         "unit": "% position",
         "default": "40.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "100.00% to 0% position",
         "attributes": [
@@ -15474,8 +15542,8 @@
         "unit": "% Top Speed",
         "default": "63.25",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "100.00% Top Speed to 0.00% Top Speed",
         "attributes": [
@@ -15490,8 +15558,8 @@
         "unit": "% position",
         "default": "60.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "100.00% to 0% position",
         "attributes": [
@@ -15506,8 +15574,8 @@
         "unit": "% Top Speed",
         "default": "77.46",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "100.00% Top Speed to 0.00% Top Speed",
         "attributes": [
@@ -15522,8 +15590,8 @@
         "unit": "% position",
         "default": "80.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "100.00% to 0% position",
         "attributes": [
@@ -15538,8 +15606,8 @@
         "unit": "% Top Speed",
         "default": "89.44",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "100.00% Top Speed to 0.00% Top Speed",
         "attributes": [
@@ -15554,8 +15622,8 @@
         "unit": "% position",
         "default": "100.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "100.00% to 0% position",
         "attributes": [
@@ -15570,8 +15638,8 @@
         "unit": "% Top Speed",
         "default": "100.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "100.00% Top Speed to 0.00% Top Speed",
         "attributes": [
@@ -15635,8 +15703,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.00% Top Speed to 100.00% Top Speed",
         "attributes": [
@@ -15651,8 +15719,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.00% Top Speed to 100.00% Top Speed",
         "attributes": [
@@ -15667,8 +15735,8 @@
         "unit": "% Top Speed",
         "default": "0.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.00% Top Speed to 100.00% Top Speed",
         "attributes": [
@@ -16714,8 +16782,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -16730,8 +16798,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -16746,8 +16814,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -16801,8 +16869,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -16817,7 +16885,7 @@
         "unit": null,
         "default": "Modes 0-3: 9.00, Mode 4: 50.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -16834,7 +16902,7 @@
         "unit": null,
         "default": "Modes 0-3: 9.01, Mode 4: 51.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -16851,7 +16919,7 @@
         "unit": null,
         "default": "Modes 0-3: 9.05, Mode 4: 51.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -16868,7 +16936,7 @@
         "unit": null,
         "default": "Modes 0-3: 9.09, Mode 4: 51.03",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -16885,7 +16953,7 @@
         "unit": null,
         "default": "Modes 0-3: 9.07, Mode 4: 51.04",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -16902,7 +16970,7 @@
         "unit": null,
         "default": "Modes 0-3: 9.08, Mode 4: 51.06",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -16919,7 +16987,7 @@
         "unit": null,
         "default": "Modes 0-3: 10.00, Mode 4: 10.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -16936,7 +17004,7 @@
         "unit": null,
         "default": "Modes 0-3: 10.10, Mode 4: 10.10",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -16953,7 +17021,7 @@
         "unit": null,
         "default": "Modes 0-3: 10.11, Mode 4: 10.11",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -16970,7 +17038,7 @@
         "unit": null,
         "default": "Modes 0-3: 99.10, Mode 4: 99.10",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -16987,7 +17055,7 @@
         "unit": null,
         "default": "Modes 0-3: 2.01, Mode 4: 50.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17004,7 +17072,7 @@
         "unit": null,
         "default": "Modes 0-3: 2.00, Mode 4: 50.02",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17021,7 +17089,7 @@
         "unit": null,
         "default": "Modes 0-3: 2.02, Mode 4: 50.03",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17038,7 +17106,7 @@
         "unit": null,
         "default": "Modes 0-3: 2.04, Mode 4: 50.04",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17055,7 +17123,7 @@
         "unit": null,
         "default": "Modes 0-3: 2.05, Mode 4: 52.08",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17072,7 +17140,7 @@
         "unit": null,
         "default": "Modes 0-3: 5.15, Mode 4: 52.09",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17089,7 +17157,7 @@
         "unit": null,
         "default": "Modes 0-3: 5.16, Mode 4: 52.10",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17106,7 +17174,7 @@
         "unit": null,
         "default": "Modes 0-3: 5.17, Mode 4: 52.11",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17123,7 +17191,7 @@
         "unit": null,
         "default": "Modes 0-3: 5.18, Mode 4: 53.03",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17140,7 +17208,7 @@
         "unit": null,
         "default": "Modes 0-3: 3.00, Mode 4: 51.10",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17157,7 +17225,7 @@
         "unit": null,
         "default": "Modes 0-3: 3.01, Mode 4: 51.13",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17174,7 +17242,7 @@
         "unit": null,
         "default": "Modes 0-3: 3.31, Mode 4: 7.27",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17191,7 +17259,7 @@
         "unit": null,
         "default": "Modes 0-3: 6.00, Mode 4: 7.28",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17208,7 +17276,7 @@
         "unit": null,
         "default": "Modes 0-3: 6.02, Mode 4: 7.29",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17225,7 +17293,7 @@
         "unit": null,
         "default": "Modes 0-3: 4.00, Mode 4: 33.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17242,7 +17310,7 @@
         "unit": null,
         "default": "Modes 0-3: 4.07, Mode 4: 33.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17259,7 +17327,7 @@
         "unit": null,
         "default": "Modes 0-3: 3.05, Mode 4: 34.16",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17276,7 +17344,7 @@
         "unit": null,
         "default": "Modes 0-3: 99.05, Mode 4: 99.05",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17293,7 +17361,7 @@
         "unit": null,
         "default": "Modes 0-3: 4.12, Mode 4: 99.11",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17310,7 +17378,7 @@
         "unit": null,
         "default": "Modes 0-3: 99.02, Mode 4: 99.02",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17327,7 +17395,7 @@
         "unit": null,
         "default": "Modes 0-3: 99.00, Mode 4: 99.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (0= No Parameter)",
@@ -17344,7 +17412,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -17361,7 +17429,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -17378,8 +17446,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -17394,8 +17462,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -17410,8 +17478,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00 to +100.00",
         "attributes": [
@@ -17426,7 +17494,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -17443,7 +17511,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -17460,8 +17528,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -17476,8 +17544,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -17492,8 +17560,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00 to +100.00",
         "attributes": [
@@ -17508,7 +17576,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -17525,7 +17593,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -17542,8 +17610,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -17558,8 +17626,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -17574,8 +17642,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00 to +100.00",
         "attributes": [
@@ -17590,7 +17658,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -17607,7 +17675,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -17624,8 +17692,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -17640,8 +17708,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -17656,8 +17724,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00 to +100.00",
         "attributes": [
@@ -17744,7 +17812,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -17761,7 +17829,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -17778,8 +17846,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -17794,8 +17862,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -17810,8 +17878,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00 to +100.00",
         "attributes": [
@@ -17826,7 +17894,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -17843,7 +17911,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -17860,8 +17928,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -17876,8 +17944,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -17892,8 +17960,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00 to +100.00",
         "attributes": [
@@ -17908,7 +17976,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -17925,7 +17993,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -17942,8 +18010,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -17958,8 +18026,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -17974,8 +18042,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00 to +100.00",
         "attributes": [
@@ -17990,7 +18058,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18007,7 +18075,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18024,8 +18092,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -18040,8 +18108,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to +300.00",
         "attributes": [
@@ -18056,8 +18124,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00 to +100.00",
         "attributes": [
@@ -18144,7 +18212,7 @@
         "unit": null,
         "default": "1.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18174,7 +18242,7 @@
         "unit": null,
         "default": "1.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18204,7 +18272,7 @@
         "unit": null,
         "default": "1.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18221,7 +18289,7 @@
         "unit": null,
         "default": "40.54",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18295,7 +18363,7 @@
         "unit": null,
         "default": "1.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18312,7 +18380,7 @@
         "unit": null,
         "default": "40.60",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18386,7 +18454,7 @@
         "unit": null,
         "default": "1.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18403,7 +18471,7 @@
         "unit": null,
         "default": "40.66",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18477,7 +18545,7 @@
         "unit": null,
         "default": "1.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18494,7 +18562,7 @@
         "unit": null,
         "default": "40.72",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18568,7 +18636,7 @@
         "unit": null,
         "default": "40.78",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18585,7 +18653,7 @@
         "unit": null,
         "default": "40.79",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18602,8 +18670,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to 300.00",
         "attributes": [
@@ -18618,8 +18686,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to 300.00",
         "attributes": [
@@ -18664,7 +18732,7 @@
         "unit": null,
         "default": "40.84",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18681,7 +18749,7 @@
         "unit": null,
         "default": "40.85",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18698,8 +18766,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to 300.00",
         "attributes": [
@@ -18714,8 +18782,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to 300.00",
         "attributes": [
@@ -18760,7 +18828,7 @@
         "unit": null,
         "default": "40.90",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18777,7 +18845,7 @@
         "unit": null,
         "default": "40.91",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18794,8 +18862,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to 300.00",
         "attributes": [
@@ -18810,8 +18878,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to 300.00",
         "attributes": [
@@ -18856,7 +18924,7 @@
         "unit": null,
         "default": "40.96",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18873,7 +18941,7 @@
         "unit": null,
         "default": "40.97",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -18890,8 +18958,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to 300.00",
         "attributes": [
@@ -18906,8 +18974,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.00 to 300.00",
         "attributes": [
@@ -19478,8 +19546,8 @@
         "unit": "%",
         "default": "10.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 100.0
+            "min": 1,
+            "max": 100
         },
         "range_text": "1.00% to 100.00%",
         "attributes": [
@@ -19494,8 +19562,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 300.0
+            "min": 1,
+            "max": 300
         },
         "range_text": "1.00% to 300.00%",
         "attributes": [
@@ -19510,8 +19578,8 @@
         "unit": "%",
         "default": "1.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 300.0
+            "min": 1,
+            "max": 300
         },
         "range_text": "1.00% to 300.00%",
         "attributes": [
@@ -19526,8 +19594,8 @@
         "unit": "%",
         "default": "10.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 100.0
+            "min": 1,
+            "max": 100
         },
         "range_text": "1.00% to 100.00%",
         "attributes": [
@@ -19542,8 +19610,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 300.0
+            "min": 1,
+            "max": 300
         },
         "range_text": "1.00% to 300.00%",
         "attributes": [
@@ -19558,8 +19626,8 @@
         "unit": "%",
         "default": "1.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 300.0
+            "min": 1,
+            "max": 300
         },
         "range_text": "1.00% to 300.00%",
         "attributes": [
@@ -19574,8 +19642,8 @@
         "unit": "%",
         "default": "10.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 100.0
+            "min": 1,
+            "max": 100
         },
         "range_text": "1.00% to 100.00%",
         "attributes": [
@@ -19590,8 +19658,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 300.0
+            "min": 1,
+            "max": 300
         },
         "range_text": "1.00% to 300.00%",
         "attributes": [
@@ -19606,8 +19674,8 @@
         "unit": "%",
         "default": "1.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 300.0
+            "min": 1,
+            "max": 300
         },
         "range_text": "1.00% to 300.00%",
         "attributes": [
@@ -19622,8 +19690,8 @@
         "unit": "%",
         "default": "10.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 100.0
+            "min": 1,
+            "max": 100
         },
         "range_text": "1.00% to 100.00%",
         "attributes": [
@@ -19638,8 +19706,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 300.0
+            "min": 1,
+            "max": 300
         },
         "range_text": "1.00% to 300.00%",
         "attributes": [
@@ -19654,8 +19722,8 @@
         "unit": "%",
         "default": "1.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 300.0
+            "min": 1,
+            "max": 300
         },
         "range_text": "1.00% to 300.00%",
         "attributes": [
@@ -19670,8 +19738,8 @@
         "unit": "%",
         "default": "10.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 100.0
+            "min": 1,
+            "max": 100
         },
         "range_text": "1.00% to 100.00%",
         "attributes": [
@@ -19686,8 +19754,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 300.0
+            "min": 1,
+            "max": 300
         },
         "range_text": "1.00% to 300.00%",
         "attributes": [
@@ -19702,8 +19770,8 @@
         "unit": "%",
         "default": "1.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 300.0
+            "min": 1,
+            "max": 300
         },
         "range_text": "1.00% to 300.00%",
         "attributes": [
@@ -19718,8 +19786,8 @@
         "unit": "%",
         "default": "10.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 100.0
+            "min": 1,
+            "max": 100
         },
         "range_text": "1.00% to 100.00%",
         "attributes": [
@@ -19734,8 +19802,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 300.0
+            "min": 1,
+            "max": 300
         },
         "range_text": "1.00% to 300.00%",
         "attributes": [
@@ -19750,8 +19818,8 @@
         "unit": "%",
         "default": "1.00",
         "range_numeric": {
-            "min": 1.0,
-            "max": 300.0
+            "min": 1,
+            "max": 300
         },
         "range_text": "1.00% to 300.00%",
         "attributes": [
@@ -19766,8 +19834,8 @@
         "unit": "%",
         "default": "-100.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -19782,8 +19850,8 @@
         "unit": "%",
         "default": "-100.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -19798,8 +19866,8 @@
         "unit": "%",
         "default": "-80.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -19814,8 +19882,8 @@
         "unit": "%",
         "default": "-80.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -19830,8 +19898,8 @@
         "unit": "%",
         "default": "-60.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -19846,8 +19914,8 @@
         "unit": "%",
         "default": "-60.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -19862,8 +19930,8 @@
         "unit": "%",
         "default": "-40.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -19878,8 +19946,8 @@
         "unit": "%",
         "default": "-40.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -19894,8 +19962,8 @@
         "unit": "%",
         "default": "-20.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -19910,8 +19978,8 @@
         "unit": "%",
         "default": "-20.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -19926,8 +19994,8 @@
         "unit": "%",
         "default": "20.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -19942,8 +20010,8 @@
         "unit": "%",
         "default": "20.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -19958,8 +20026,8 @@
         "unit": "%",
         "default": "40.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -19974,8 +20042,8 @@
         "unit": "%",
         "default": "40.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -19990,8 +20058,8 @@
         "unit": "%",
         "default": "60.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -20006,8 +20074,8 @@
         "unit": "%",
         "default": "60.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to 100.00%",
         "attributes": [
@@ -20022,8 +20090,8 @@
         "unit": "%",
         "default": "80.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -20038,8 +20106,8 @@
         "unit": "%",
         "default": "80.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -20054,8 +20122,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -20070,8 +20138,8 @@
         "unit": "%",
         "default": "100.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -20086,8 +20154,8 @@
         "unit": "%",
         "default": "0.00",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "-100.00% to +100.00%",
         "attributes": [
@@ -20617,8 +20685,8 @@
         "unit": "%",
         "default": "Monitor",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "0.00 to 300.00%",
         "attributes": [
@@ -20633,8 +20701,8 @@
         "unit": "%",
         "default": "80.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.00 to 100.00%",
         "attributes": [
@@ -20766,7 +20834,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -20921,7 +20989,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -21076,7 +21144,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -21231,7 +21299,7 @@
         "unit": null,
         "default": "9.01",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99",
@@ -22023,8 +22091,8 @@
         "unit": "%",
         "default": "10.0",
         "range_numeric": {
-            "min": -150.0,
-            "max": 150.0
+            "min": -150,
+            "max": 150
         },
         "range_text": "As P11.00 (-150.0 to +150.0%)",
         "attributes": [
@@ -22039,8 +22107,8 @@
         "unit": "% Top Speed",
         "default": "10.0",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "As P9.01 (-300.00 to +300.00%)",
         "attributes": [
@@ -22221,8 +22289,8 @@
         "unit": "% SFE nom current",
         "default": "110.00%",
         "range_numeric": {
-            "min": 0.0,
-            "max": 150.0
+            "min": 0,
+            "max": 150
         },
         "range_text": "0.00% to 150.00% (SFE nom current)",
         "attributes": [
@@ -22238,8 +22306,8 @@
         "unit": "% SFE nom current",
         "default": "110.00%",
         "range_numeric": {
-            "min": 0.0,
-            "max": 150.0
+            "min": 0,
+            "max": 150
         },
         "range_text": "0.00% to 150.00% (SFE nom current)",
         "attributes": [
@@ -22350,8 +22418,8 @@
         "unit": "A",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 9999.0
+            "min": 0,
+            "max": 9999
         },
         "range_text": "0.0A to 9999.0A",
         "attributes": [
@@ -22367,8 +22435,8 @@
         "unit": "% SFE nom current",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "0.0% to 300.0% (SFE nom current)",
         "attributes": [
@@ -22384,8 +22452,8 @@
         "unit": "Hz",
         "default": "0",
         "range_numeric": {
-            "min": -70.0,
-            "max": 70.0
+            "min": -70,
+            "max": 70
         },
         "range_text": "+40.00Hz to +70.00Hz, -40.00Hz to -70.00Hz",
         "attributes": [
@@ -22435,7 +22503,7 @@
         "unit": "kW",
         "default": "0",
         "range_numeric": {
-            "min": -999.0,
+            "min": -999,
             "max": 999.9
         },
         "range_text": "-999.0 to 999.9kW",
@@ -22452,7 +22520,7 @@
         "unit": "kW",
         "default": "0",
         "range_numeric": {
-            "min": -999.0,
+            "min": -999,
             "max": 999.9
         },
         "range_text": "-999.0 to 999.9kW",
@@ -22469,8 +22537,8 @@
         "unit": "A",
         "default": "0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 9999.0
+            "min": 0,
+            "max": 9999
         },
         "range_text": "0.0A to 9999.0A",
         "attributes": [
@@ -22486,8 +22554,8 @@
         "unit": "A",
         "default": "0",
         "range_numeric": {
-            "min": -9999.0,
-            "max": 9999.0
+            "min": -9999,
+            "max": 9999
         },
         "range_text": "-9999.0A to 9999.0A",
         "attributes": [
@@ -22503,8 +22571,8 @@
         "unit": "A",
         "default": "0",
         "range_numeric": {
-            "min": -9999.0,
-            "max": 9999.0
+            "min": -9999,
+            "max": 9999
         },
         "range_text": "-9999.0A to 9999.0A",
         "attributes": [
@@ -22520,8 +22588,8 @@
         "unit": "%",
         "default": "100.0",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.0% to +300.0%",
         "attributes": [
@@ -22615,8 +22683,8 @@
         "unit": "%",
         "default": "80.00",
         "range_numeric": {
-            "min": 0.0,
-            "max": 100.0
+            "min": 0,
+            "max": 100
         },
         "range_text": "0.00 to 100.00%",
         "attributes": [
@@ -22651,8 +22719,8 @@
         "unit": "%",
         "default": "100.0",
         "range_numeric": {
-            "min": -300.0,
-            "max": 300.0
+            "min": -300,
+            "max": 300
         },
         "range_text": "-300.0 to 300.0%",
         "attributes": [
@@ -22908,8 +22976,8 @@
         "unit": "mΩ",
         "default": "10.0",
         "range_numeric": {
-            "min": 0.0,
-            "max": 300.0
+            "min": 0,
+            "max": 300
         },
         "range_text": "0.0 to 300.0mOhms",
         "attributes": [
@@ -22939,8 +23007,8 @@
         "unit": "%Id%/Vac",
         "default": "0.400",
         "range_numeric": {
-            "min": 0.0,
-            "max": 10.0
+            "min": 0,
+            "max": 10
         },
         "range_text": "0.000 to 10.000%Id%/Vac nominal",
         "attributes": [
@@ -23018,7 +23086,7 @@
         "unit": "%Id/%",
         "default": "0.300",
         "range_numeric": {
-            "min": 0.0,
+            "min": 0,
             "max": 0.5
         },
         "range_text": "0.000 to 0.500%Id/% modulation depth",
@@ -23066,7 +23134,7 @@
         "unit": null,
         "default": "56.00",
         "range_numeric": {
-            "min": 1.0,
+            "min": 1,
             "max": 99.99
         },
         "range_text": "1.00 to 99.99 (any parameter)",
@@ -23473,8 +23541,8 @@
         "unit": null,
         "default": "0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "0.00 to ±100.00",
         "attributes": [],
@@ -23487,8 +23555,8 @@
         "unit": null,
         "default": "0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "0.00 to ±100.00",
         "attributes": [],
@@ -23527,8 +23595,8 @@
         "unit": null,
         "default": "0",
         "range_numeric": {
-            "min": -200.0,
-            "max": 200.0
+            "min": -200,
+            "max": 200
         },
         "range_text": "0.00 to ±200.00",
         "attributes": [
@@ -23543,8 +23611,8 @@
         "unit": null,
         "default": "0",
         "range_numeric": {
-            "min": -200.0,
-            "max": 200.0
+            "min": -200,
+            "max": 200
         },
         "range_text": "0.00 to ±200.00",
         "attributes": [
@@ -23585,7 +23653,7 @@
         "unit": "s",
         "default": "10.0",
         "range_numeric": {
-            "min": 0.0,
+            "min": 0,
             "max": 99.9
         },
         "range_text": "0.0 to 99.9 seconds",
@@ -24158,8 +24226,8 @@
         "unit": null,
         "default": "0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "0.00 to ±100.00",
         "attributes": [],
@@ -24172,8 +24240,8 @@
         "unit": null,
         "default": "0",
         "range_numeric": {
-            "min": -100.0,
-            "max": 100.0
+            "min": -100,
+            "max": 100
         },
         "range_text": "0.00 to ±100.00",
         "attributes": [],
@@ -24212,8 +24280,8 @@
         "unit": null,
         "default": "0",
         "range_numeric": {
-            "min": -200.0,
-            "max": 200.0
+            "min": -200,
+            "max": 200
         },
         "range_text": "0.00 to ±200.00",
         "attributes": [
@@ -24228,8 +24296,8 @@
         "unit": null,
         "default": "0",
         "range_numeric": {
-            "min": -200.0,
-            "max": 200.0
+            "min": -200,
+            "max": 200
         },
         "range_text": "0.00 to ±200.00",
         "attributes": [
@@ -24270,7 +24338,7 @@
         "unit": "s",
         "default": "10.0",
         "range_numeric": {
-            "min": 0.0,
+            "min": 0,
             "max": 99.9
         },
         "range_text": "0.0 to 99.9 seconds",
@@ -26136,7 +26204,7 @@
         "unit": null,
         "default": "As Issue",
         "range_numeric": {
-            "min": 0.0,
+            "min": 0,
             "max": 99.99
         },
         "range_text": "0.00 to 99.99",
