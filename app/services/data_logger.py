@@ -1,10 +1,11 @@
 import asyncio
 import logging
-from datetime import datetime
+from datetime import datetime	
 from app.modbus_engine.state import state_manager
 from app.db.session import async_session_factory
 from app.db.models import TrendData
 from app.modbus_engine.manager import modbus_manager
+from app.core.utils import utc_now
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +31,7 @@ class DataLogger:
                 
                 async with async_session_factory() as session:
                     entries = []
-                    timestamp = datetime.utcnow()
+                    timestamp = utc_now()
                     
                     current_data = state_manager.get_snapshot()
                     

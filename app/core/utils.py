@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 import re
 
 def calculate_modbus_address(parameter_id: str) -> int:
@@ -22,3 +23,5 @@ def calculate_modbus_address(parameter_id: str) -> int:
     
     return (menu * 100) + parameter - 1
 
+def utc_now() -> datetime:
+    return datetime.now(timezone.utc)

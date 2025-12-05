@@ -30,7 +30,7 @@ async def disconnect(sid):
 async def subscribe_device(sid, device_id):
     """Frontend asks to subscribe to a device channel"""
     logger.info(f"Client {sid} subscribed to {device_id}")
-    sio.enter_room(sid, device_id)
+    await sio.enter_room(sid, device_id)
     # Send initial snapshot
     snapshot = state_manager.get_snapshot(device_id)
     if snapshot:
