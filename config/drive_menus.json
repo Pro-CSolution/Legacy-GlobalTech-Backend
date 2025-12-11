@@ -1,0 +1,222 @@
+[
+  {
+    "menu": 1,
+    "name": "User Configured Menu"
+  },
+  {
+    "menu": 2,
+    "name": "Basic Motor Settings"
+  },
+  {
+    "menu": 3,
+    "name": "Frequency Control Settings"
+  },
+  {
+    "menu": 4,
+    "name": "Start & Stop Control"
+  },
+  {
+    "menu": 5,
+    "name": "Speed Reference Settings"
+  },
+  {
+    "menu": 6,
+    "name": "Ramp Settings"
+  },
+  {
+    "menu": 7,
+    "name": "Plant I/O Settings"
+  },
+  {
+    "menu": 8,
+    "name": "Torque Limit Settings"
+  },
+  {
+    "menu": 9,
+    "name": "Basic Drive Monitoring"
+  },
+  {
+    "menu": 10,
+    "name": "Trips & Warnings"
+  },
+  {
+    "menu": 11,
+    "name": "Advanced Drive Monitoring"
+  },
+  {
+    "menu": 12,
+    "name": "Motor Advanced Settings (Vector Only)"
+  },
+  {
+    "menu": 13,
+    "name": "Speed Feedback Settings (Vector Only)"
+  },
+  {
+    "menu": 14,
+    "name": "Speed Loop Settings (Vector Only)"
+  },
+  {
+    "menu": 15,
+    "name": "Torque Reference Settings (Vector Only)"
+  },
+  {
+    "menu": 16,
+    "name": "PID Controller Settings"
+  },
+  {
+    "menu": 17,
+    "name": "Reference Sequencer Settings"
+  },
+  {
+    "menu": 18,
+    "name": "Motorised Potentiometer Settings"
+  },
+  {
+    "menu": 19,
+    "name": "Trim Reference Settings"
+  },
+  {
+    "menu": 20,
+    "name": "High Speed Digital I/O Settings"
+  },
+  {
+    "menu": 21,
+    "name": "Fixed Reference Settings"
+  },
+  {
+    "menu": 22,
+    "name": "Skip Speed Settings"
+  },
+  {
+    "menu": 23,
+    "name": "Dynamic Brake Control"
+  },
+  {
+    "menu": 24,
+    "name": "Speed Trim Settings"
+  },
+  {
+    "menu": 25,
+    "name": "Inertia Compensation Settings"
+  },
+  {
+    "menu": 26,
+    "name": "History Log Settings"
+  },
+  {
+    "menu": 27,
+    "name": "History Log Playback Settings"
+  },
+  {
+    "menu": 28,
+    "name": "Auto-Reset Settings"
+  },
+  {
+    "menu": 29,
+    "name": "Speed & Torque Monitor Settings"
+  },
+  {
+    "menu": 30,
+    "name": "Logic Block Settings"
+  },
+  {
+    "menu": 31,
+    "name": "Status Flag Generator Settings"
+  },
+  {
+    "menu": 32,
+    "name": "Serial Link Settings"
+  },
+  {
+    "menu": 33,
+    "name": "Control Flags 0 to 99 Connection Settings"
+  },
+  {
+    "menu": 34,
+    "name": "Control Flags 100 to 127 Connection Settings"
+  },
+  {
+    "menu": 35,
+    "name": "Miscellaneous Features Settings"
+  },
+  {
+    "menu": 36,
+    "name": "Position Control Settings (Vector with Encoder Only)"
+  },
+  {
+    "menu": 37,
+    "name": "Position Reference Settings"
+  },
+  {
+    "menu": 38,
+    "name": "Position Control Monitor"
+  },
+  {
+    "menu": 39,
+    "name": "User Configurable Menu (Menu 1) Settings"
+  },
+  {
+    "menu": 40,
+    "name": "Summing Nodes Settings"
+  },
+  {
+    "menu": 41,
+    "name": "Programmable Status Words Settings"
+  },
+  {
+    "menu": 43,
+    "name": "Load Fault Detection Window Settings"
+  },
+  {
+    "menu": 44,
+    "name": "Reference Shaper Settings"
+  },
+  {
+    "menu": 45,
+    "name": "Temperature"
+  },
+  {
+    "menu": 46,
+    "name": "AC Loss Ridethrough (Vector Control Only)"
+  },
+  {
+    "menu": 47,
+    "name": "Second Logic Menu"
+  },
+  {
+    "menu": 50,
+    "name": "Basic SFE Setup Menu"
+  },
+  {
+    "menu": 51,
+    "name": "Basic SFE Monitoring Menu"
+  },
+  {
+    "menu": 53,
+    "name": "SFE Reference Setup Menu"
+  },
+  {
+    "menu": 54,
+    "name": "Mains Monitor Menu"
+  },
+  {
+    "menu": 56,
+    "name": "AC Voltage Control Menu"
+  },
+  {
+    "menu": 86,
+    "name": "Ethernet Interface Menu"
+  },
+  {
+    "menu": 91,
+    "name": "Fast Analogue Menu"
+  },
+  {
+    "menu": 98,
+    "name": "Menu Enable Selection Settings"
+  },
+  {
+    "menu": 99,
+    "name": "Configuration Settings"
+  }
+]

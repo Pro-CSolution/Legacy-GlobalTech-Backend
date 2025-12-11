@@ -13,7 +13,8 @@ class ModbusManager:
     def __init__(self):
         self.devices: Dict[str, Dict] = {} # Config data
         self.clients: Dict[str, ModbusClientWrapper] = {}
-        self.critical_addresses: Dict[str, List[int]] = {} # device_id -> [addr1, addr2]
+        # device_id -> {register_type: [addresses]}
+        self.critical_addresses: Dict[str, Dict[str, List[int]]] = {}
         self.running = False
 
     def load_config(self):
@@ -29,6 +30,10 @@ class ModbusManager:
             for device_conf in config.get("devices", []):
                 device_id = device_conf["id"]
                 self.devices[device_id] = device_conf
+
+                # Registrar parámetros por dispositivo
+                param_file = device_conf.get("parameter_file") or "parameters/default.parameters.json"
+                parameter_registry.register_device(device_id, param_file)
                 
                 # Init Client
                 if settings.USE_MOCK_DATA:
@@ -45,14 +50,19 @@ class ModbusManager:
                 
                 # Resolve critical parameters
                 crit_ids = device_conf.get("critical_parameters", [])
-                addresses = []
+                addresses_by_type: Dict[str, Set[int]] = {}
                 for pid in crit_ids:
-                    addr = parameter_registry.get_address(pid)
+                    addr = parameter_registry.get_address(pid, device_id=device_id)
+                    reg_type = parameter_registry.get_register_type(pid, device_id=device_id)
                     if addr is not None:
-                        addresses.append(addr)
+                        addresses_by_type.setdefault(reg_type, set()).add(addr)
                     else:
                         logger.warning(f"Critical parameter {pid} not found in registry for device {device_id}")
-                self.critical_addresses[device_id] = sorted(list(set(addresses)))
+
+                # Normalizar a listas ordenadas
+                self.critical_addresses[device_id] = {
+                    rtype: sorted(list(addrs)) for rtype, addrs in addresses_by_type.items()
+                }
                 
             logger.info(f"Loaded {len(self.devices)} devices configuration.")
         except Exception as e:
@@ -113,40 +123,52 @@ class ModbusManager:
 
         try:
             # 1. Combine Critical + OnDemand
-            addresses = set(self.critical_addresses.get(device_id, []))
-            
-            # Add OnDemand addresses
+            critical_by_type = self.critical_addresses.get(device_id, {})
+            addresses_by_type: Dict[str, Set[int]] = {
+                rtype: set(addrs) for rtype, addrs in critical_by_type.items()
+            }
+
+            # Add OnDemand addresses (por parámetro)
             active_params = state_manager.get_active_parameters(device_id)
             for pid in active_params:
-                addr = parameter_registry.get_address(pid)
+                addr = parameter_registry.get_address(pid, device_id=device_id)
+                reg_type = parameter_registry.get_register_type(pid, device_id=device_id)
                 if addr is not None:
-                    addresses.add(addr)
+                    addresses_by_type.setdefault(reg_type, set()).add(addr)
             
-            if not addresses:
+            if not any(addresses_by_type.values()):
                 return
 
-            # 2. Optimize
-            blocks = self.optimize_blocks(list(addresses))
-            
-            # 3. Execute Reads
+            # 2. Optimize por tipo y leer
             device_data = {}
-            
-            for start, count in blocks:
-                # Note: 'unit' parameter is deprecated in newer pymodbus, replaced by 'slave' or 'device_id'
-                # We use 'slave' which is compatible with the wrapper
-                registers = await client.read_holding_registers(start, count, unit=1)
-                if registers:
-                    for i, val in enumerate(registers):
-                        addr = start + i
-                        pid = parameter_registry.get_id_by_address(addr)
-                        if pid:
-                            # TODO: Implementar scaling/factores según parameters.json si es necesario
-                            # Por ahora guardamos el valor raw
-                            device_data[pid] = val
-            
-            # 4. Update State
+
+            for reg_type, addr_set in addresses_by_type.items():
+                if not addr_set:
+                    continue
+
+                blocks = self.optimize_blocks(list(addr_set))
+
+                for start, count in blocks:
+                    registers = None
+                    # Note: 'unit' parameter es equivalente a 'device_id' en pymodbus moderno
+                    if reg_type == "holding":
+                        registers = await client.read_holding_registers(start, count, unit=1)
+                    elif reg_type == "input":
+                        registers = await client.read_input_registers(start, count, unit=1)
+                    elif reg_type == "coil":
+                        registers = await client.read_coils(start, count, unit=1)
+                    elif reg_type == "discrete":
+                        registers = await client.read_discrete_inputs(start, count, unit=1)
+
+                    if registers:
+                        for i, val in enumerate(registers):
+                            addr = start + i
+                            pid = parameter_registry.get_id_by_address(addr, reg_type, device_id=device_id)
+                            if pid:
+                                device_data[pid] = val
+
+            # 3. Update State
             if device_data:
-                # Logging explícito de los valores leídos para depuración (MANTENIDO)
                 logger.info(f"READ {device_id}: {device_data}")
                 state_manager.update(device_id, device_data)
                 
@@ -158,7 +180,9 @@ class ModbusManager:
         if not client:
             raise ValueError(f"Device {device_id} not found")
 
-        address = parameter_registry.get_address(param_id)
+        address = parameter_registry.get_address(param_id, device_id=device_id)
+        register_type = parameter_registry.get_register_type(param_id, device_id=device_id)
+
         if address is None:
              raise ValueError(f"Parameter {param_id} not mapped to an address")
         
@@ -166,9 +190,13 @@ class ModbusManager:
             # Convert value to int (assuming raw Modbus register)
             int_value = int(value)
             
-            # Note: 'unit' parameter is deprecated in newer pymodbus, replaced by 'slave'
-            # We use 'unit' here to match the read implementation logic seen above
-            success = await client.write_register(address, int_value, unit=1)
+            if register_type in ["input", "discrete"]:
+                raise ValueError(f"Parameter {param_id} ({register_type}) is read-only")
+            elif register_type == "coil":
+                success = await client.write_coil(address, bool(int_value), unit=1)
+            else:
+                # holding (por defecto)
+                success = await client.write_register(address, int_value, unit=1)
             
             # In some libraries write_register returns response obj or exception, 
             # assuming wrapper handles it or returns something truthy on success.

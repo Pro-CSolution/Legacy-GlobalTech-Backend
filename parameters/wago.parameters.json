@@ -1,0 +1,534 @@
+[
+  {
+    "id": "Remote_Speed_In",
+    "name": "Test Stand A Remote SPD IN",
+    "description": "Test Stand A Remote SPD IN",
+    "address": 0,
+    "register_type": "input",
+    "scale_factor": 1,
+    "unit": "Raw",
+    "range_text": "4-20mA",
+    "module": "750-476",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Auto_Speed_SP1",
+    "name": "Test Stand A Analog In SP 1",
+    "description": "Test Stand A Analog In SP 1",
+    "address": 1,
+    "register_type": "input",
+    "scale_factor": 1,
+    "unit": "Raw",
+    "range_text": "4-20mA",
+    "module": "750-476",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Cooling_Water_Press",
+    "name": "Converter Cooling Water Pressure",
+    "description": "Converter Cooling Water Pressure",
+    "address": 2,
+    "register_type": "input",
+    "scale_factor": 1,
+    "unit": "Raw",
+    "range_text": "4-20mA",
+    "module": "750-476",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Speed_Out_Drive",
+    "name": "Relay Booster Pump Speed Ref to Drive",
+    "description": "Relay Booster Pump Speed Ref to Drive",
+    "address": 0,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "Raw",
+    "range_text": "0-20mA",
+    "module": "750-552",
+    "attributes": [
+      "R",
+      "W"
+    ]
+  },
+  {
+    "id": "Temp_Winding_A1",
+    "alias": "temperaturexdd",
+    "name": "Test Motor A Temp Winding A1",
+    "description": "Test Motor A Temp Winding A1",
+    "address": 4,
+    "register_type": "input",
+    "scale_factor": 1,
+    "unit": "Raw",
+    "range_text": "PT100",
+    "module": "750-461",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Temp_Winding_B1",
+    "name": "Test Motor A Temp Winding B1",
+    "description": "Test Motor A Temp Winding B1",
+    "address": 5,
+    "register_type": "input",
+    "scale_factor": 1,
+    "unit": "Raw",
+    "range_text": "PT100",
+    "module": "750-461",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Temp_Winding_C1",
+    "name": "Test Motor A Temp Winding C1",
+    "description": "Test Motor A Temp Winding C1",
+    "address": 6,
+    "register_type": "input",
+    "scale_factor": 1,
+    "unit": "Raw",
+    "range_text": "PT100",
+    "module": "750-461",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Temp_Bearing_DE",
+    "name": "Test Motor A Temp Bearing Drive End",
+    "description": "Test Motor A Temp Bearing Drive End",
+    "address": 10,
+    "register_type": "input",
+    "scale_factor": 1,
+    "unit": "Raw",
+    "range_text": "PT100",
+    "module": "750-461",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Temp_Bearing_NDE",
+    "name": "Test Motor A Temp Bearing Non-Drive End",
+    "description": "Test Motor A Temp Bearing Non-Drive End",
+    "address": 11,
+    "register_type": "input",
+    "scale_factor": 1,
+    "unit": "Raw",
+    "range_text": "PT100",
+    "module": "750-461",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Drive_Cooling_Temp",
+    "name": "Drive Cooling Water Temp",
+    "description": "Drive Cooling Water Temp",
+    "address": 20,
+    "register_type": "input",
+    "scale_factor": 1,
+    "unit": "Raw",
+    "range_text": "PT100",
+    "module": "750-461",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "RB_Local_Control",
+    "name": "Relay Booster Local Control",
+    "description": "Relay Booster Local Control",
+    "address": 3,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "RB_Remote_Control",
+    "name": "Relay Booster Remote Control",
+    "description": "Relay Booster Remote Control",
+    "address": 4,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "RB_Breaker_Close",
+    "name": "Relay Booster Breaker Close",
+    "description": "Relay Booster Breaker Close",
+    "address": 7,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "RB_Breaker_Open",
+    "name": "Relay Booster Breaker Open",
+    "description": "Relay Booster Breaker Open",
+    "address": 8,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "RB_Estop_Status",
+    "name": "Relay Booster E-Stop Status",
+    "description": "Relay Booster E-Stop Status",
+    "address": 11,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Drive_Coolant_Leak",
+    "name": "Spare",
+    "description": "Spare",
+    "address": 19,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Supply_480VAC_On",
+    "name": "480VAC Supply ON",
+    "description": "480VAC Supply ON",
+    "address": 20,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Conv_Pump_Auto",
+    "name": "Converter Cooling Water Pump Auto",
+    "description": "Converter Cooling Water Pump Auto",
+    "address": 35,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Conv_Pump_Run",
+    "name": "Converter Cooling Water Pump 1 Running",
+    "description": "Converter Cooling Water Pump 1 Running",
+    "address": 36,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Drive_Coolant_Flow",
+    "name": "Drive Coolant Flow",
+    "description": "Drive Coolant Flow",
+    "address": 39,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Drive_Coolant_Press",
+    "name": "Drive Coolant Pressure",
+    "description": "Drive Coolant Pressure",
+    "address": 40,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Drive_Coolant_Leak",
+    "name": "Drive Coolant Leakage",
+    "description": "Drive Coolant Leakage",
+    "address": 43,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "RB_Drive_OK",
+    "name": "Relay Booster Pump Drive DO1 Drive OK",
+    "description": "Relay Booster Pump Drive DO1 Drive OK",
+    "address": 59,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "RB_Drive_Running",
+    "name": "Relay Booster Pump Drive DO2 Drive Running",
+    "description": "Relay Booster Pump Drive DO2 Drive Running",
+    "address": 60,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "RB_Precharge_OK",
+    "name": "Relay Booster Pump Drive DO3 Precharge Complete",
+    "description": "Relay Booster Pump Drive DO3 Precharge Complete",
+    "address": 63,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Conv_Cooling_Start",
+    "name": "Converter Cooling Water Pump 1 Start",
+    "description": "Converter Cooling Water Pump 1 Start",
+    "address": 0,
+    "register_type": "coil",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-600",
+    "attributes": [
+      "R",
+      "W"
+    ]
+  },
+  {
+    "id": "Trans_Cooling_Start",
+    "name": "Transformer Cooling Fan Start",
+    "description": "Transformer Cooling Fan Start",
+    "address": 1,
+    "register_type": "coil",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-600",
+    "attributes": [
+      "R",
+      "W"
+    ]
+  },
+  {
+    "id": "Motor_Heater_Ctrl",
+    "name": "Motor Heater Control Relay (DRV Running)",
+    "description": "Motor Heater Control Relay (DRV Running)",
+    "address": 4,
+    "register_type": "coil",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-600",
+    "attributes": [
+      "R",
+      "W"
+    ]
+  },
+  {
+    "id": "RB_Main_Brk_Open",
+    "name": "Relay Booster Main Breaker Open",
+    "description": "Relay Booster Main Breaker Open",
+    "address": 5,
+    "register_type": "coil",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-600",
+    "attributes": [
+      "R",
+      "W"
+    ]
+  },
+  {
+    "id": "RB_Estop_Reset",
+    "name": "Relay Pump E-Stop Reset",
+    "description": "Relay Pump E-Stop Reset",
+    "address": 7,
+    "register_type": "coil",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-600",
+    "attributes": [
+      "R",
+      "W"
+    ]
+  },
+  {
+    "id": "RB_Blower_Start",
+    "name": "Relay Booster Pump Motor Blower Start",
+    "description": "Relay Booster Pump Motor Blower Start",
+    "address": 8,
+    "register_type": "coil",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-600",
+    "attributes": [
+      "R",
+      "W"
+    ]
+  },
+  {
+    "id": "RB_Main_Brk_Close",
+    "name": "Relay Pump Main Breaker Close",
+    "description": "Relay Pump Main Breaker Close",
+    "address": 12,
+    "register_type": "coil",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-600",
+    "attributes": [
+      "R",
+      "W"
+    ]
+  },
+  {
+    "id": "Drive_Cooling_Start",
+    "name": "Drive Cooling Water Pump 2 Start",
+    "description": "Drive Cooling Water Pump 2 Start",
+    "address": 17,
+    "register_type": "coil",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-600",
+    "attributes": [
+      "R",
+      "W"
+    ]
+  },
+  {
+    "id": "Main_CB_Closed_Light",
+    "name": "Main CB Closed Light",
+    "description": "Main CB Closed Light",
+    "address": 19,
+    "register_type": "coil",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-600",
+    "attributes": [
+      "R",
+      "W"
+    ]
+  },
+  {
+    "id": "RB_Drive_Start",
+    "name": "Relay Booster Pump Drive Start",
+    "description": "Relay Booster Pump Drive Start",
+    "address": 20,
+    "register_type": "coil",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-600",
+    "attributes": [
+      "R",
+      "W"
+    ]
+  },
+  {
+    "id": "RB_Drive_Reset",
+    "name": "Relay Booster Pump Drive Reset",
+    "description": "Relay Booster Pump Drive Reset",
+    "address": 21,
+    "register_type": "coil",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-600",
+    "attributes": [
+      "R",
+      "W"
+    ]
+  },
+  {
+    "id": "Wago_Discrete_15",
+    "alias": "wagoDiscrete15",
+    "name": "Wago discrete test @15",
+    "description": "Discrete input at address 15 for trend validation",
+    "address": 23,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  }
+]

@@ -4,6 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
 from datetime import datetime, timedelta
 
+from app.core.utils import utc_now
 from app.db.session import get_session
 from app.db.models import TrendData
 
@@ -13,8 +14,8 @@ router = APIRouter()
 async def get_history(
     device_id: str,
     parameter_id: str,
-    start_time: datetime = Query(default_factory=lambda: datetime.utcnow() - timedelta(hours=1)),
-    end_time: datetime = Query(default_factory=datetime.utcnow),
+    start_time: datetime = Query(default_factory=lambda: utc_now() - timedelta(hours=1)),
+    end_time: datetime = Query(default_factory=utc_now),
     limit: int = 100,
     session: AsyncSession = Depends(get_session)
 ):

@@ -12,7 +12,7 @@ from app.db.session import init_db
 from app.modbus_engine.manager import modbus_manager
 from app.services.socket_manager import sio
 from app.services.data_logger import data_logger
-from app.api.v1.endpoints import data, commands
+from app.api.v1.endpoints import data, commands, trend, drive, profiles
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -54,6 +54,9 @@ app.add_middleware(
 # API Routers
 app.include_router(data.router, prefix="/api/v1", tags=["Data"])
 app.include_router(commands.router, prefix="/api/v1/commands", tags=["Commands"])
+app.include_router(trend.router, prefix="/api/v1")
+app.include_router(drive.router, prefix="/api/v1")
+app.include_router(profiles.router, prefix="/api/v1", tags=["Profiles"])
 
 @app.get("/")
 async def root():

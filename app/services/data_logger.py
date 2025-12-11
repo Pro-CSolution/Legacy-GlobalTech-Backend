@@ -6,14 +6,15 @@ from app.db.session import async_session_factory
 from app.db.models import TrendData
 from app.modbus_engine.manager import modbus_manager
 from app.core.utils import utc_now
+from app.core.config import settings
 
 logger = logging.getLogger(__name__)
 
 class DataLogger:
     def __init__(self):
         self.running = False
-        # Intervalo de guardado en DB (independiente del polling de Modbus)
-        self.log_interval = 5.0 
+        # Intervalo de guardado en DB alineado al polling (configurable)
+        self.log_interval = settings.DATA_LOG_INTERVAL or settings.MODBUS_POLL_INTERVAL
         
     async def start(self):
         self.running = True

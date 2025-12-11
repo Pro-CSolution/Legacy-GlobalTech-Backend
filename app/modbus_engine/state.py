@@ -6,6 +6,7 @@ class SystemState:
     _data: Dict[str, Dict[str, Any]] = {} # device_id -> {param_id: value}
     _on_demand_subscriptions: Dict[str, Set[str]] = {} # device_id -> {param_id_1, param_id_2}
     _subscribers: List[Callable] = [] # Callbacks for updates
+    _on_demand_limit: int = 18
 
     def __new__(cls):
         if cls._instance is None:
@@ -14,6 +15,7 @@ class SystemState:
             cls._instance._data = {}
             cls._instance._on_demand_subscriptions = {}
             cls._instance._subscribers = []
+            cls._instance._on_demand_limit = 18
         return cls._instance
 
     def update(self, device_id: str, values: Dict[str, Any]):
@@ -32,14 +34,54 @@ class SystemState:
 
     def subscribe_parameter(self, device_id: str, param_id: str):
         """Añade un parámetro a la lista de monitoreo bajo demanda"""
-        if device_id not in self._on_demand_subscriptions:
-            self._on_demand_subscriptions[device_id] = set()
-        self._on_demand_subscriptions[device_id].add(param_id)
+        self.add_parameters(device_id, [param_id])
 
     def unsubscribe_parameter(self, device_id: str, param_id: str):
         """Elimina un parámetro de la lista de monitoreo bajo demanda"""
         if device_id in self._on_demand_subscriptions:
             self._on_demand_subscriptions[device_id].discard(param_id)
+
+    def add_parameters(self, device_id: str, param_ids: List[str]) -> List[str]:
+        """
+        Añade múltiples parámetros respetando el límite configurado.
+        Retorna la lista de parámetros que fueron agregados.
+        """
+        if not param_ids:
+            return []
+
+        current = self._on_demand_subscriptions.get(device_id, set())
+        added: List[str] = []
+
+        # Mantener límite
+        space_left = max(self._on_demand_limit - len(current), 0)
+        for pid in param_ids:
+            if pid in current:
+                continue
+            if space_left <= 0:
+                break
+            current.add(pid)
+            added.append(pid)
+            space_left -= 1
+
+        # En caso de overflow previo, recorta a límite
+        if len(current) > self._on_demand_limit:
+            current = set(list(current)[: self._on_demand_limit])
+
+        self._on_demand_subscriptions[device_id] = current
+        return added
+
+    def remove_parameters(self, device_id: str, param_ids: List[str]):
+        if device_id not in self._on_demand_subscriptions:
+            return
+        for pid in param_ids:
+            self._on_demand_subscriptions[device_id].discard(pid)
+
+    def get_on_demand_limit(self) -> int:
+        return self._on_demand_limit
+
+    def set_on_demand_limit(self, limit: int):
+        if limit > 0:
+            self._on_demand_limit = limit
 
     def get_active_parameters(self, device_id: str) -> Set[str]:
         """Retorna los parámetros que se están viendo actualmente en el frontend"""
