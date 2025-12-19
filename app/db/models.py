@@ -16,6 +16,49 @@ class TrendData(SQLModel, table=True):
     parameter_id: str = Field(primary_key=True, nullable=False)
     value: float = Field(nullable=False)
 
+
+# Manual Trend Models
+class ManualTrendSeries(SQLModel, table=True):
+    __tablename__ = "manual_trend_series"
+
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str = Field(index=True)
+    unit: Optional[str] = Field(default=None)
+    color: str = Field(default="#3b82f6")  # Hex color (paleta fija en frontend)
+    created_at: datetime = Field(
+        default_factory=utc_now,
+        sa_column=Column(DateTime(timezone=True), nullable=False),
+    )
+    updated_at: datetime = Field(
+        default_factory=utc_now,
+        sa_column=Column(DateTime(timezone=True), nullable=False, onupdate=utc_now),
+    )
+
+    points: List["ManualTrendPoint"] = Relationship(
+        back_populates="series", sa_relationship_kwargs={"cascade": "all, delete-orphan"}
+    )
+
+
+class ManualTrendPoint(SQLModel, table=True):
+    __tablename__ = "manual_trend_points"
+
+    id: Optional[int] = Field(default=None, primary_key=True)
+    series_id: int = Field(foreign_key="manual_trend_series.id", nullable=False)
+    time: datetime = Field(
+        default_factory=utc_now,
+        sa_column=Column(DateTime(timezone=True), nullable=False),
+    )
+    value: float = Field(nullable=False)
+    note: Optional[str] = Field(default=None)
+    created_by: Optional[str] = Field(default=None)
+    created_at: datetime = Field(
+        default_factory=utc_now,
+        sa_column=Column(DateTime(timezone=True), nullable=False),
+    )
+
+    series: Optional[ManualTrendSeries] = Relationship(back_populates="points")
+
+
 # New Profile Models
 class Profile(SQLModel, table=True):
     __tablename__ = "profiles"

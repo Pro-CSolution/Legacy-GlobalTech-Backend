@@ -2,7 +2,7 @@ import asyncio
 import logging
 from datetime import datetime	
 from app.modbus_engine.state import state_manager
-from app.db.session import async_session_factory
+from app.db.session import async_session_factory, is_db_ready
 from app.db.models import TrendData
 from app.modbus_engine.manager import modbus_manager
 from app.core.utils import utc_now
@@ -29,6 +29,10 @@ class DataLogger:
         while self.running:
             try:
                 await asyncio.sleep(self.log_interval)
+
+                # If DB is not ready yet (e.g. Docker/Postgres still starting), skip without error spam.
+                if not is_db_ready():
+                    continue
                 
                 async with async_session_factory() as session:
                     entries = []

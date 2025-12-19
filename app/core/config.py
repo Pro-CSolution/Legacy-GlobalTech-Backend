@@ -1,18 +1,31 @@
 import json
 import os
+import logging
 from typing import Dict, Any, Optional
 from pydantic_settings import BaseSettings
 from functools import lru_cache
 from app.core.utils import calculate_modbus_address
+from app.core.paths import resolve_resource
+
+logger = logging.getLogger("app.core.config")
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "GlobalTech IIoT"
     DATABASE_URL: str = "postgresql+asyncpg://user:password@localhost:5432/globaltech_db"
-    MODBUS_POLL_INTERVAL: float = 5.0
+    MODBUS_POLL_INTERVAL: float = 0.35
     DATA_LOG_INTERVAL: float | None = None
+
+    # Integraciones externas (opcional)
+    RESEND_API_KEY: str | None = None
+
+    # System Actions (reboot, etc.)
+    # Seguridad: token obligatorio para endpoints críticos
+    SYSTEM_ACTIONS_TOKEN: str | None = None
+    # Por defecto: NO permitir requests remotos para acciones críticas
+    SYSTEM_ACTIONS_ALLOW_REMOTE: bool = False
     
     # Mock Configuration
-    USE_MOCK_DATA: bool = True
+    USE_MOCK_DATA: bool = False
 
     class Config:
         env_file = ".env"
@@ -65,16 +78,15 @@ class ParameterRegistry:
         - Primero intenta parameters/default.parameters.json
         - Si no existe, usa parameters.json (compatibilidad)
         """
-        cwd = os.getcwd()
-        default_path = os.path.join(cwd, "parameters", "default.parameters.json")
-        legacy_path = os.path.join(cwd, "parameters.json")
+        default_path = resolve_resource("parameters/default.parameters.json")
+        legacy_path = resolve_resource("parameters.json")
 
-        if os.path.exists(default_path):
-            self.register_device(self._default_device, default_path)
-        elif os.path.exists(legacy_path):
-            self.register_device(self._default_device, legacy_path)
+        if default_path.exists():
+            self.register_device(self._default_device, str(default_path))
+        elif legacy_path.exists():
+            self.register_device(self._default_device, str(legacy_path))
         else:
-            print("Warning: No se encontró archivo de parámetros por defecto.")
+            logger.warning("No se encontró archivo de parámetros por defecto.")
 
     def _normalize_menu(self, menu_value):
         """
@@ -98,11 +110,16 @@ class ParameterRegistry:
 
     def _load_parameters(self, device_id: str, file_path: str):
         try:
-            if not os.path.exists(file_path):
-                print(f"Warning: parameters file not found for {device_id} at {file_path}")
+            resolved_path = resolve_resource(file_path)
+            if not resolved_path.exists():
+                logger.warning(
+                    "Parameters file not found for device %s at %s",
+                    device_id,
+                    str(resolved_path),
+                )
                 return
 
-            with open(file_path, "r", encoding="utf-8") as f:
+            with resolved_path.open("r", encoding="utf-8") as f:
                 data = json.load(f)
                 
             count = 0
@@ -142,10 +159,17 @@ class ParameterRegistry:
                 reverse_map[address_int] = pid
                 count += 1
             
-            print(f"Loaded {count} parameters for device {device_id} from {file_path}")
+            logger.info(
+                "Loaded %d parameters for device %s from %s",
+                count,
+                device_id,
+                str(resolved_path),
+            )
             
         except Exception as e:
-            print(f"Error loading parameters for {device_id} from {file_path}: {e}")
+            logger.error(
+                "Error loading parameters for %s from %s: %s", device_id, file_path, str(e)
+            )
 
     def register_device(self, device_id: str, file_path: str):
         """
@@ -154,8 +178,9 @@ class ParameterRegistry:
         """
         if device_id in self._parameters:
             return
-        self._device_files[device_id] = file_path
-        self._load_parameters(device_id, file_path)
+        resolved_path = resolve_resource(file_path)
+        self._device_files[device_id] = str(resolved_path)
+        self._load_parameters(device_id, str(resolved_path))
 
     def _resolve_device(self, device_id: Optional[str]) -> str:
         return device_id or self._default_device
@@ -186,6 +211,17 @@ class ParameterRegistry:
         did = self._resolve_device(device_id)
         normalized = self._normalize_register_type(register_type)
         return self._reverse_address_map.get(did, {}).get(normalized, {}).get(address)
+
+    def get_scale_factor(self, param_id: str, device_id: str | None = None) -> int:
+        """
+        Retorna el scale_factor para aplicar al parámetro (1, 10, 100, o 1000).
+        Si no está definido, retorna 100 por defecto.
+        """
+        did = self._resolve_device(device_id)
+        param = self._parameters.get(did, {}).get(param_id)
+        if param and "scale_factor" in param:
+            return param["scale_factor"]
+        return 100  # Default scale factor
 
 settings = get_settings()
 parameter_registry = ParameterRegistry()

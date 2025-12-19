@@ -1,5 +1,8 @@
 from typing import Dict, Any, Set, List, Callable
 import asyncio
+import logging
+
+logger = logging.getLogger("app.modbus_engine.state")
 
 class SystemState:
     _instance = None
@@ -100,7 +103,7 @@ class SystemState:
                 else:
                     callback(device_id, values)
             except Exception as e:
-                print(f"Error in state listener: {e}")
+                logger.error("Error in state listener: %s", str(e))
 
 state_manager = SystemState()
 

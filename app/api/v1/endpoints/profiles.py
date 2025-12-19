@@ -1,6 +1,7 @@
-from typing import List, Optional, Any
+from typing import List, Optional, Any, Tuple
 from fastapi import APIRouter, Depends, HTTPException, Body
 from sqlmodel import select
+from sqlalchemy import delete
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 from datetime import datetime
@@ -11,9 +12,8 @@ from app.db.models import Profile, ProfileParameter
 from app.core.utils import utc_now
 from app.modbus_engine.manager import modbus_manager
 
-logger = logging.getLogger(__name__)
-
 router = APIRouter()
+logger = logging.getLogger("app.api.v1.endpoints.profiles")
 
 # --- Pydantic Schemas for API ---
 from pydantic import BaseModel
@@ -104,7 +104,10 @@ async def create_profile(profile_in: ProfileCreate, session: AsyncSession = Depe
 
 @router.put("/profiles/{profile_id}", response_model=ProfileRead)
 async def update_profile(profile_id: int, profile_in: ProfileUpdate, session: AsyncSession = Depends(get_session)):
-    db_profile = await session.get(Profile, profile_id)
+    # Lock the profile row to serialize concurrent updates and prevent parameter duplication
+    # if the frontend (or client) accidentally sends multiple update requests at once.
+    result = await session.execute(select(Profile).where(Profile.id == profile_id).with_for_update())
+    db_profile = result.scalars().one_or_none()
     if not db_profile:
         raise HTTPException(status_code=404, detail="Profile not found")
 
@@ -116,20 +119,32 @@ async def update_profile(profile_id: int, profile_in: ProfileUpdate, session: As
         db_profile.icon = profile_in.icon
 
     if profile_in.parameters is not None:
-        # Delete existing parameters
-        # Note: In a more complex app we might diff them, but full replace is simpler/safer for this scope
-        result = await session.execute(select(ProfileParameter).where(ProfileParameter.profile_id == profile_id))
-        existing_params = result.scalars().all()
-        for p in existing_params:
-            session.delete(p)
-        
-        # Add new parameters
+        # Full replace: delete all existing parameters for this profile, then insert the new list.
+        # IMPORTANT: do a bulk delete under the row lock (FOR UPDATE) to avoid race duplication.
+        await session.execute(delete(ProfileParameter).where(ProfileParameter.profile_id == profile_id))
+
+        # Deduplicate input by (device_id, parameter_id). If duplicates exist, the last one wins.
+        deduped: dict[Tuple[str, str], ProfileParameterCreate] = {}
+        duplicate_count = 0
         for param in profile_in.parameters:
+            key = (param.device_id, param.parameter_id)
+            if key in deduped:
+                duplicate_count += 1
+            deduped[key] = param
+
+        if duplicate_count:
+            logger.warning(
+                "update_profile profile_id=%s received %d duplicate parameters; keeping last occurrence",
+                profile_id,
+                duplicate_count,
+            )
+
+        for (device_id, parameter_id), param in deduped.items():
             db_param = ProfileParameter(
                 profile_id=db_profile.id,
-                device_id=param.device_id,
-                parameter_id=param.parameter_id,
-                value=str(param.value)
+                device_id=device_id,
+                parameter_id=parameter_id,
+                value=str(param.value),
             )
             session.add(db_param)
 
@@ -158,14 +173,11 @@ async def apply_profile(profile_id: int, session: AsyncSession = Depends(get_ses
     The frontend should verify success via realtime data or polling if needed,
     but here we attempt the write via modbus_manager.
     """
-    print(f"APPLY_PROFILE: Request to apply profile {profile_id}")
-    
     result = await session.execute(
         select(Profile).options(selectinload(Profile.parameters)).where(Profile.id == profile_id)
     )
     db_profile = result.scalars().one_or_none()
     if not db_profile:
-        print(f"APPLY_PROFILE: Profile {profile_id} not found")
         raise HTTPException(status_code=404, detail="Profile not found")
 
     # Update last_used
@@ -175,15 +187,7 @@ async def apply_profile(profile_id: int, session: AsyncSession = Depends(get_ses
 
     results = []
     
-    print(f"APPLY_PROFILE: Profile loaded '{db_profile.name}' with {len(db_profile.parameters)} parameters")
-    
-    # We process writes.
-    # Note: modbus_manager.write_parameter is usually async.
-    # We will attempt them one by one or in parallel groups.
-    # For now, let's process sequentially to ensure order/safety and return results.
-    
     for param in db_profile.parameters:
-        print(f"APPLY_PROFILE: Processing {param.parameter_id} for {param.device_id} with val={param.value}")
         try:
             # Determine value type. Simple heuristic: try int, then float, else string
             # Or reliance on modbus manager to handle string conversion if needed.
@@ -201,7 +205,6 @@ async def apply_profile(profile_id: int, session: AsyncSession = Depends(get_ses
                 except ValueError:
                     pass # Keep as string
             
-            print(f"APPLY_PROFILE: Writing {val_to_write} to {param.device_id}:{param.parameter_id}")
             await modbus_manager.write_parameter(param.device_id, param.parameter_id, val_to_write)
             
             results.append(ApplyProfileResult(
@@ -210,9 +213,7 @@ async def apply_profile(profile_id: int, session: AsyncSession = Depends(get_ses
                 status="success", # Or 'writing' if async queued
                 message="Command sent"
             ))
-            print(f"APPLY_PROFILE: Write success for {param.parameter_id}")
         except Exception as e:
-            print(f"APPLY_PROFILE: Write failed for {param.parameter_id}: {e}")
             results.append(ApplyProfileResult(
                 device_id=param.device_id,
                 parameter_id=param.parameter_id,
@@ -220,5 +221,6 @@ async def apply_profile(profile_id: int, session: AsyncSession = Depends(get_ses
                 message=str(e)
             ))
 
-    print(f"APPLY_PROFILE: Completed with {len(results)} results")
     return ApplyProfileResponse(results=results)
+
+

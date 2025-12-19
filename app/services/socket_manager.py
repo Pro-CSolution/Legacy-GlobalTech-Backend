@@ -103,8 +103,23 @@ async def subscribe_parameter(sid, data):
     if not param_ids:
         return
 
-    added = state_manager.add_parameters(device_id, param_ids)
-    skipped = len(param_ids) - len(added)
+    # Evitar warnings falsos por IDs ya activos o duplicados: solo contamos "skipped" por límite real.
+    active_before = state_manager.get_active_parameters(device_id)
+    requested_unique = []
+    seen = set()
+    for pid in param_ids:
+        if pid in seen:
+            continue
+        seen.add(pid)
+        if pid in active_before:
+            continue
+        requested_unique.append(pid)
+
+    if not requested_unique:
+        return
+
+    added = state_manager.add_parameters(device_id, requested_unique)
+    skipped = len(requested_unique) - len(added)
     if added:
         logger.debug(f"Client {sid} added on-demand params for {device_id}: {added}")
     if skipped > 0:

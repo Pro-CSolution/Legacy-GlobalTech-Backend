@@ -1,16 +1,18 @@
 import json
 import re
-from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, HTTPException, Query
 
 from app.core.config import parameter_registry
+from app.core.paths import resolve_resource
 
 router = APIRouter(prefix="/drive", tags=["Drive"])
 
-MENUS_PATH = Path(__file__).resolve().parents[4] / "config" / "drive_menus.json"
+MENUS_PATH = resolve_resource("config/drive_menus.json")
 MENU_OPTIONS_CACHE: Optional[List[Dict[str, Any]]] = None
+FAULT_CODES_PATH = resolve_resource("config/fault_codes.json")
+FAULT_CODES_CACHE: Optional[List[Dict[str, Any]]] = None
 
 
 def _load_menus() -> List[Dict[str, Any]]:
@@ -22,6 +24,17 @@ def _load_menus() -> List[Dict[str, Any]]:
     with MENUS_PATH.open("r", encoding="utf-8") as f:
         MENU_OPTIONS_CACHE = json.load(f)
     return MENU_OPTIONS_CACHE or []
+
+
+def _load_fault_codes() -> List[Dict[str, Any]]:
+    global FAULT_CODES_CACHE
+    if FAULT_CODES_CACHE is not None:
+        return FAULT_CODES_CACHE
+    if not FAULT_CODES_PATH.exists():
+        raise HTTPException(status_code=500, detail="fault_codes.json no encontrado")
+    with FAULT_CODES_PATH.open("r", encoding="utf-8") as f:
+        FAULT_CODES_CACHE = json.load(f)
+    return FAULT_CODES_CACHE or []
 
 
 _range_list_regex = re.compile(r"^\s*\d+\s*=\s*[^,]+(,\s*\d+\s*=\s*[^,]+)+\s*$")
@@ -65,6 +78,15 @@ async def get_drive_menus():
     Devuelve el catálogo de menús del drive.
     """
     return _load_menus()
+
+
+@router.get("/fault-codes")
+async def get_fault_codes():
+    """
+    Devuelve el catálogo de códigos de falla (warnings/trips) del drive.
+    Fuente: config/fault_codes.json
+    """
+    return _load_fault_codes()
 
 
 @router.get("/parameters")
@@ -119,6 +141,7 @@ async def get_drive_parameters(
                 "range_text": range_text,
                 "default": item.get("default"),
                 "modbus_address": modbus_address,
+                "scale_factor": item.get("scale_factor", 100),
                 "options": _parse_range_options(range_text),
             }
         )
