@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     SYSTEM_ACTIONS_ALLOW_REMOTE: bool = False
     
     # Mock Configuration
-    USE_MOCK_DATA: bool = False
+    USE_MOCK_DATA: bool = True
 
     class Config:
         env_file = ".env"
@@ -86,7 +86,7 @@ class ParameterRegistry:
         elif legacy_path.exists():
             self.register_device(self._default_device, str(legacy_path))
         else:
-            logger.warning("No se encontró archivo de parámetros por defecto.")
+            logger.warning("Default parameters file not found.")
 
     def _normalize_menu(self, menu_value):
         """

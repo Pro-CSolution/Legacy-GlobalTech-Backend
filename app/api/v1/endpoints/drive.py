@@ -91,8 +91,8 @@ async def get_fault_codes():
 
 @router.get("/parameters")
 async def get_drive_parameters(
-    device_id: str = Query("drive_avid", description="ID del dispositivo drive"),
-    menu: Optional[int] = Query(None, description="Número de menú para filtrar"),
+    device_id: str = Query("drive_avid", description="Drive device ID"),
+    menu: Optional[int] = Query(None, description="Menu number to filter by"),
     search: Optional[str] = Query(None, description="Buscar por id o nombre"),
     page: int = Query(1, ge=1),
     page_size: int = Query(12, ge=1, le=100),
@@ -102,7 +102,7 @@ async def get_drive_parameters(
     """
     params_by_id = parameter_registry.list_parameters(device_id)
     if not params_by_id:
-        raise HTTPException(status_code=404, detail=f"Dispositivo {device_id} sin parámetros")
+        raise HTTPException(status_code=404, detail=f"Device {device_id} has no parameters")
 
     # Filtro base
     search_text = (search or "").strip().lower()

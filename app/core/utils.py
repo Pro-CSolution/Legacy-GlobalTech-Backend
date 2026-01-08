@@ -16,7 +16,7 @@ def calculate_modbus_address(parameter_id: str) -> int:
     match = re.match(r"^P(\d+)\.(\d+)$", clean_id)
     
     if not match:
-        raise ValueError(f"Formato de ID inválido: {parameter_id}. Se espera formato Pxx.yy")
+        raise ValueError(f"Invalid ID format: {parameter_id}. Expected format Pxx.yy")
     
     menu = int(match.group(1))
     parameter = int(match.group(2))

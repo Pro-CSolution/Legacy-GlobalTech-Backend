@@ -67,6 +67,10 @@ async def init_db() -> None:
         # Create tables defined in SQLModel
         await conn.run_sync(SQLModel.metadata.create_all)
 
+    # Ensure performance indexes (best-effort; no migrations in this project)
+    async with engine.connect() as conn:
+        await _ensure_trend_data_indexes(conn)
+
     # Setup TimescaleDB Hypertable in a separate connection/transaction (best-effort)
     async with engine.connect() as conn:
         try:
@@ -158,6 +162,7 @@ async def _ensure_trend_data_schema(conn):
     """Correcciones rápidas para ambientes locales sin migraciones."""
     await _enforce_composite_pk(conn)
     await _ensure_time_timestamptz(conn)
+    # Índices se aseguran luego de `create_all` (ver init_db)
 
 
 async def _enforce_composite_pk(conn):
@@ -177,7 +182,7 @@ async def _enforce_composite_pk(conn):
 
     if pk_count is not None and pk_count > 0 and pk_count < 3:
         logger.warning(
-            "Migración DB: Detectada estructura antigua (PK simple). Recreando tabla trend_data..."
+            "DB Migration: Detected old structure (simple PK). Recreating trend_data table..."
         )
         try:
             await conn.execute(text("SELECT drop_chunks(interval '1 day', 'trend_data');"))
@@ -199,7 +204,7 @@ async def _ensure_time_timestamptz(conn):
 
     data_type = result.scalar()
     if data_type and data_type.strip().lower() == "timestamp without time zone":
-        logger.warning("Migración DB: Recreando trend_data con columna time TIMESTAMPTZ...")
+        logger.warning("DB Migration: Recreating trend_data with TIMESTAMPTZ time column...")
         # Para evitar conflictos de índices en hypertables, se recrea la tabla.
         try:
             await conn.execute(text("SELECT drop_chunks(interval '1 day', 'trend_data');"))
@@ -209,3 +214,28 @@ async def _ensure_time_timestamptz(conn):
 
         await conn.execute(text("DROP TABLE IF EXISTS trend_data CASCADE;"))
         await conn.commit()
+
+
+async def _ensure_trend_data_indexes(conn):
+    """
+    Índices recomendados para queries típicas de tendencia:
+    - Filtrado por device_id + parameter_id
+    - Rango temporal (time) + ORDER BY time DESC + LIMIT
+    """
+    try:
+        await conn.execute(
+            text(
+                """
+                CREATE INDEX IF NOT EXISTS idx_trend_data_device_param_time_desc
+                ON trend_data (device_id, parameter_id, time DESC);
+                """
+            )
+        )
+        await conn.commit()
+        logger.info("DB Migration: ensured idx_trend_data_device_param_time_desc")
+    except Exception:
+        # Nunca debe bloquear el arranque (especialmente si el usuario no tiene permisos)
+        await conn.rollback()
+        logger.warning(
+            "DB Migration: could not ensure trend_data indexes (continuing).", exc_info=True
+        )

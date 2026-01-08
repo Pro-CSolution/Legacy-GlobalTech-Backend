@@ -1,4 +1,5 @@
 import base64
+import html as html_utils
 import io
 import math
 import re
@@ -7,7 +8,7 @@ import asyncio
 from datetime import datetime, timezone
 from typing import Dict, List, Literal, Optional, Tuple, Union, Annotated
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form
 from pydantic import BaseModel, Field, field_validator
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlmodel import select
@@ -39,17 +40,17 @@ class TrendReportImageAttachment(BaseModel):
         cleaned = re.sub(r"[\\/:*?\"<>|]+", "-", cleaned)
         cleaned = re.sub(r"\s+", " ", cleaned).strip()
         if not cleaned:
-            raise ValueError("filename vacío")
+            raise ValueError("Empty filename")
         return cleaned
 
     @field_validator("contentBase64")
     @classmethod
     def _validate_base64(cls, v: str) -> str:
         if not v or not isinstance(v, str):
-            raise ValueError("contentBase64 requerido")
-        # Validación liviana: que parezca base64 (sin decodificar bytes completos)
+            raise ValueError("contentBase64 required")
+        # Lightweight validation: check if it looks like base64 (without decoding full bytes)
         if len(v) < 8:
-            raise ValueError("contentBase64 inválido")
+            raise ValueError("Invalid contentBase64")
         return v
 
 
@@ -72,6 +73,53 @@ TrendReportSeries = Annotated[
 ]
 
 
+class ClientMotorExtraField(BaseModel):
+    label: str = ""
+    value: str = ""
+
+    @field_validator("label", "value")
+    @classmethod
+    def _trim_strings(cls, v: str) -> str:
+        if not isinstance(v, str):
+            return ""
+        return v.strip()
+
+
+class ClientMotorInfo(BaseModel):
+    customer: Optional[str] = None
+    model: Optional[str] = None
+    catalog: Optional[str] = None
+    hp: Optional[str] = None
+    rpm: Optional[str] = None
+    volts: Optional[str] = None
+    amps: Optional[str] = None
+    hz: Optional[str] = None
+    frame: Optional[str] = None
+    duty: Optional[str] = None
+    enclosure: Optional[str] = None
+    tempRise: Optional[str] = None
+    serviceFactor: Optional[str] = None
+    efficiency: Optional[str] = None
+    inverterRating: Optional[str] = None
+    extras: List[ClientMotorExtraField] = Field(default_factory=list)
+
+    @field_validator("extras")
+    @classmethod
+    def _sanitize_extras(cls, v: List[ClientMotorExtraField]) -> List[ClientMotorExtraField]:
+        if not isinstance(v, list):
+            return []
+        cleaned: List[ClientMotorExtraField] = []
+        for item in v:
+            if not item:
+                continue
+            label = (item.label or "").strip()
+            value = (item.value or "").strip()
+            if not label:
+                continue
+            cleaned.append(ClientMotorExtraField(label=label, value=value))
+        return cleaned[:30]
+
+
 class SendTrendReportEmailRequest(BaseModel):
     recipients: List[str] = Field(..., min_length=1)
     privateMode: bool = False
@@ -80,14 +128,15 @@ class SendTrendReportEmailRequest(BaseModel):
     timeRange: TrendReportTimeRange
     series: List[TrendReportSeries] = Field(default_factory=list)
     images: List[TrendReportImageAttachment] = Field(default_factory=list)
-    # Hoy el TrendScreen trabaja solo con drive_avid, pero dejamos opcional para futuro.
+    # TrendScreen currently works only with drive_avid, but we leave it optional for future use.
     deviceId: Optional[str] = None
+    clientMotorInfo: Optional[ClientMotorInfo] = None
 
     @field_validator("recipients")
     @classmethod
     def _validate_recipients(cls, v: List[str]) -> List[str]:
         if not v:
-            raise ValueError("recipients requerido")
+            raise ValueError("recipients required")
         cleaned: List[str] = []
         seen = set()
         for raw in v:
@@ -97,13 +146,13 @@ class SendTrendReportEmailRequest(BaseModel):
             if not email:
                 continue
             if not EMAIL_REGEX.match(email):
-                raise ValueError(f"Email inválido: {raw}")
+                raise ValueError(f"Invalid email: {raw}")
             if email in seen:
                 continue
             seen.add(email)
             cleaned.append(email)
         if not cleaned:
-            raise ValueError("recipients vacío")
+            raise ValueError("Empty recipients")
         return cleaned
 
 
@@ -141,10 +190,10 @@ def _derive_sample_seconds(
                 diffs.append(dt)
         med = _median(diffs)
         if med and med > 0:
-            # Clamps defensivos
+            # Defensive clamps
             return float(max(0.5, min(med, 60.0)))
 
-    # 2) Fallback a configuración
+    # 2) Fallback to configuration
     if settings.DATA_LOG_INTERVAL and settings.DATA_LOG_INTERVAL > 0:
         return float(settings.DATA_LOG_INTERVAL)
     if settings.MODBUS_POLL_INTERVAL and settings.MODBUS_POLL_INTERVAL > 0:
@@ -168,9 +217,67 @@ def _build_grid_epochs(start_epoch: float, end_epoch: float, sample_seconds: flo
         rows = int(math.floor(total_seconds / sample_seconds)) + 1
 
     epochs = [start_epoch + i * sample_seconds for i in range(rows)]
-    # Asegurar que el último no se pase demasiado (por float)
+    # Ensure the last one doesn't exceed too much (due to float precision)
     epochs = [e for e in epochs if e <= end_epoch + 1e-6]
     return epochs, sample_seconds
+
+
+def _build_client_motor_info_table_html(info: Optional[ClientMotorInfo]) -> str:
+    if not info:
+        return ""
+
+    def esc(v: Optional[str]) -> str:
+        txt = (v or "").strip()
+        return html_utils.escape(txt) if txt else "—"
+
+    rows: List[Tuple[str, str]] = [
+        ("Customer", esc(info.customer)),
+        ("Model", esc(info.model)),
+        ("Catalog", esc(info.catalog)),
+        ("HP", esc(info.hp)),
+        ("RPM", esc(info.rpm)),
+        ("Volts", esc(info.volts)),
+        ("Amps", esc(info.amps)),
+        ("Hz", esc(info.hz)),
+        ("Frame", esc(info.frame)),
+        ("Duty", esc(info.duty)),
+        ("Enclosure", esc(info.enclosure)),
+        ("Temp Rise", esc(info.tempRise)),
+        ("Service Factor", esc(info.serviceFactor)),
+        ("Efficiency", esc(info.efficiency)),
+        ("Inverter", esc(info.inverterRating)),
+    ]
+
+    extras: List[Tuple[str, str]] = []
+    for e in (info.extras or []):
+        label = (e.label or "").strip()
+        if not label:
+            continue
+        extras.append((html_utils.escape(label), esc(e.value)))
+
+    def row_html(label: str, value: str) -> str:
+        return (
+            "<tr>"
+            f'<td style="padding:6px 8px;border:1px solid #e5e7eb;background:#f1f5f9;width:35%;"><strong>{label}</strong></td>'
+            f'<td style="padding:6px 8px;border:1px solid #e5e7eb;">{value}</td>'
+            "</tr>"
+        )
+
+    body = "".join(row_html(label, value) for (label, value) in rows)
+    if extras:
+        body += (
+            '<tr><td colspan="2" style="padding:8px;border:1px solid #e5e7eb;background:#111827;color:#ffffff;"><strong>Custom Fields</strong></td></tr>'
+        )
+        body += "".join(row_html(label, value) for (label, value) in extras)
+
+    return f"""
+      <h3 style="margin: 16px 0 8px 0;">Client &amp; Motor</h3>
+      <table style="border-collapse: collapse; width: 100%; max-width: 720px; font-size: 13px;">
+        <tbody>
+          {body}
+        </tbody>
+      </table>
+    """.strip()
 
 
 def _build_xlsx_bytes(
@@ -181,6 +288,7 @@ def _build_xlsx_bytes(
     sample_seconds: float,
     grid_epochs: List[float],
     columns: List[Dict[str, object]],
+    client_motor_info: Optional[ClientMotorInfo] = None,
 ) -> bytes:
     """
     columns: [{ 'header': str, 'points': List[(epoch_seconds,value)] }]
@@ -188,7 +296,7 @@ def _build_xlsx_bytes(
     try:
         import xlsxwriter  # type: ignore
     except Exception as err:  # pragma: no cover
-        raise HTTPException(status_code=500, detail=f"Dependencia xlsxwriter no disponible: {err}")
+        raise HTTPException(status_code=500, detail=f"xlsxwriter dependency not available: {err}")
 
     buffer = io.BytesIO()
     workbook = xlsxwriter.Workbook(buffer, {"in_memory": True})
@@ -203,7 +311,60 @@ def _build_xlsx_bytes(
     fmt_time = workbook.add_format({"num_format": "yyyy-mm-dd hh:mm:ss", "border": 1})
     fmt_num = workbook.add_format({"num_format": "0.00", "border": 1})
 
-    # Meta (una sola hoja, arriba)
+    # --- Client & Motor sheet (if provided) ---
+    ws_info = workbook.add_worksheet("Client & Motor")
+    ws_info.write(0, 0, "Field", fmt_header)
+    ws_info.write(0, 1, "Value", fmt_header)
+    ws_info.set_column(0, 0, 22)
+    ws_info.set_column(1, 1, 56)
+
+    if client_motor_info:
+        def excel_val(v: Optional[str]) -> str:
+            txt = (v or "").strip()
+            return txt if txt else "—"
+
+        info_rows: List[Tuple[str, str]] = [
+            ("Customer", excel_val(client_motor_info.customer)),
+            ("Model", excel_val(client_motor_info.model)),
+            ("Catalog", excel_val(client_motor_info.catalog)),
+            ("HP", excel_val(client_motor_info.hp)),
+            ("RPM", excel_val(client_motor_info.rpm)),
+            ("Volts", excel_val(client_motor_info.volts)),
+            ("Amps", excel_val(client_motor_info.amps)),
+            ("Hz", excel_val(client_motor_info.hz)),
+            ("Frame", excel_val(client_motor_info.frame)),
+            ("Duty", excel_val(client_motor_info.duty)),
+            ("Enclosure", excel_val(client_motor_info.enclosure)),
+            ("Temp Rise", excel_val(client_motor_info.tempRise)),
+            ("Service Factor", excel_val(client_motor_info.serviceFactor)),
+            ("Efficiency", excel_val(client_motor_info.efficiency)),
+            ("Inverter", excel_val(client_motor_info.inverterRating)),
+        ]
+
+        row = 1
+        for k, v in info_rows:
+            ws_info.write(row, 0, k, fmt_meta_key)
+            ws_info.write(row, 1, v, fmt_meta_val)
+            row += 1
+
+        extras = client_motor_info.extras or []
+        if extras:
+            row += 1
+            ws_info.write(row, 0, "Custom Fields", fmt_header)
+            ws_info.write(row, 1, "", fmt_header)
+            row += 1
+            for e in extras:
+                label = (e.label or "").strip()
+                if not label:
+                    continue
+                ws_info.write(row, 0, label, fmt_meta_key)
+                ws_info.write(row, 1, excel_val(e.value), fmt_meta_val)
+                row += 1
+    else:
+        ws_info.write(1, 0, "Info", fmt_meta_key)
+        ws_info.write(1, 1, "No client motor info provided", fmt_meta_val)
+
+    # Meta (single sheet, at the top)
     ws.write(0, 0, "Generated At (UTC)", fmt_meta_key)
     ws.write(0, 1, generated_at_iso, fmt_meta_val)
     ws.write(1, 0, "Start (UTC)", fmt_meta_key)
@@ -227,7 +388,7 @@ def _build_xlsx_bytes(
     ws.set_column(0, 0, 22)
     ws.set_column(1, max(len(columns), 1), 18)
 
-    # Estado por columna para forward-fill
+    # State per column for forward-fill
     states: List[Dict[str, object]] = []
     for col in columns:
         pts = col.get("points") or []
@@ -275,18 +436,18 @@ async def send_trend_report_email(
     logger.debug("[reports] subject=%s note_len=%s", payload.subject, len(payload.note or ""))
 
     if not settings.RESEND_API_KEY:
-        raise HTTPException(status_code=500, detail="RESEND_API_KEY no está configurada")
+        raise HTTPException(status_code=500, detail="RESEND_API_KEY is not configured")
 
-    # Import local para que la app arranque aunque falte la dependencia
+    # Local import so the app starts even if the dependency is missing
     try:
         import resend  # type: ignore
     except Exception as err:  # pragma: no cover
-        raise HTTPException(status_code=500, detail=f"Dependencia resend no disponible: {err}")
+        raise HTTPException(status_code=500, detail=f"Resend dependency not available: {err}")
 
     start = payload.timeRange.start
     end = payload.timeRange.end
     if start >= end:
-        raise HTTPException(status_code=400, detail="timeRange.start debe ser anterior a timeRange.end")
+        raise HTTPException(status_code=400, detail="timeRange.start must be before timeRange.end")
 
     device_id = payload.deviceId or "drive_avid"
 
@@ -325,7 +486,7 @@ async def send_trend_report_email(
             epoch = _to_utc_epoch_seconds(row.time)
             sensor_points_by_pid.setdefault(row.parameter_id, []).append((epoch, float(row.value)))
 
-        # Último antes de start para forward-fill inicial (hasta 15 queries típicamente)
+        # Last point before start for initial forward-fill (typically up to 15 queries)
         for pid in sensor_ids:
             stmt_prev = (
                 select(TrendData)
@@ -341,7 +502,7 @@ async def send_trend_report_email(
             prev = prev_res.scalars().first()
             if prev:
                 epoch = _to_utc_epoch_seconds(prev.time)
-                # Insert al inicio (es anterior a start)
+                # Insert at the beginning (it's before start)
                 sensor_points_by_pid.setdefault(pid, [])
                 sensor_points_by_pid[pid].insert(0, (epoch, float(prev.value)))
 
@@ -363,7 +524,7 @@ async def send_trend_report_email(
             epoch = _to_utc_epoch_seconds(row.time)
             manual_points_by_sid.setdefault(row.series_id, []).append((epoch, float(row.value)))
 
-        # Último antes de start para forward-fill inicial
+        # Last point before start for initial forward-fill
         for sid in manual_ids:
             stmt_prev = (
                 select(ManualTrendPoint)
@@ -384,7 +545,7 @@ async def send_trend_report_email(
     end_epoch = _to_utc_epoch_seconds(end)
     grid_epochs, sample_seconds = _build_grid_epochs(start_epoch, end_epoch, sample_seconds)
     if not grid_epochs:
-        raise HTTPException(status_code=400, detail="Rango temporal inválido o vacío")
+        raise HTTPException(status_code=400, detail="Invalid or empty time range")
     logger.info("[reports] grid rows=%s sample_seconds=%.3f", len(grid_epochs), sample_seconds)
 
     # --- Columns (headers + points) ---
@@ -424,6 +585,7 @@ async def send_trend_report_email(
         sample_seconds=sample_seconds,
         grid_epochs=grid_epochs,
         columns=columns,
+        client_motor_info=payload.clientMotorInfo,
     )
     logger.info("[reports] xlsx bytes=%s columns=%s", len(xlsx_bytes), len(columns))
 
@@ -442,13 +604,13 @@ async def send_trend_report_email(
         ]
     )
 
-    # Límite: 40MB incluyendo base64
+    # Limit: 40MB including base64
     total_base64_size = sum(len(a.get("content", "")) for a in attachments)
     max_base64 = 40 * 1024 * 1024
     if total_base64_size >= max_base64:
         raise HTTPException(
             status_code=413,
-            detail=f"Adjuntos demasiado grandes para Resend (base64={total_base64_size} bytes)",
+            detail=f"Attachments too large for Resend (base64={total_base64_size} bytes)",
         )
     logger.info("[reports] attachments=%s total_base64=%s", len(attachments), total_base64_size)
     logger.debug("[reports] attachment_names=%s", [a.get("filename") for a in attachments])
@@ -456,6 +618,11 @@ async def send_trend_report_email(
     # --- Email content ---
     subject = (payload.subject or "").strip() or f"GlobalTech Trend Report - {start_iso} to {end_iso}"
     note = (payload.note or "").strip()
+    note_html = html_utils.escape(note)
+    note_block = (
+        f'<p style="margin: 0 0 12px 0;"><strong>Note:</strong> {note_html}</p>' if note else ""
+    )
+    client_motor_html = _build_client_motor_info_table_html(payload.clientMotorInfo)
     html = f"""
     <div style="font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;">
       <h2 style="margin: 0 0 8px 0;">Trend Report</h2>
@@ -466,7 +633,8 @@ async def send_trend_report_email(
         Series: <strong>{len(payload.series)}</strong><br/>
         Attachments: <strong>{len(attachments)}</strong>
       </p>
-      {f'<p style="margin: 0 0 12px 0;"><strong>Note:</strong> {note}</p>' if note else ''}
+      {note_block}
+      {client_motor_html}
       <p style="margin: 0;">This email includes the Excel report and trend snapshots as attachments.</p>
     </div>
     """.strip()
@@ -480,7 +648,7 @@ async def send_trend_report_email(
     }
 
     if payload.privateMode:
-        # En modo privado, ocultamos la lista usando BCC
+        # In private mode, we hide the list using BCC
         params["to"] = ["onboarding@resend.dev"]
         params["bcc"] = payload.recipients
     else:
@@ -488,7 +656,7 @@ async def send_trend_report_email(
 
     try:
         result = None
-        # Reintento defensivo por fallos TLS intermitentes (ej: SSLV3_ALERT_BAD_RECORD_MAC)
+        # Defensive retry for intermittent TLS failures (e.g., SSLV3_ALERT_BAD_RECORD_MAC)
         for attempt in range(1, 4):
             try:
                 logger.info("[reports] resend attempt=%s", attempt)
@@ -500,13 +668,13 @@ async def send_trend_report_email(
                 logger.warning("[reports] resend attempt=%s failed err=%s", attempt, msg)
                 if attempt >= 3:
                     raise
-                # Backoff corto (no bloquea demasiado la UI)
+                # Short backoff (doesn't block the UI too much)
                 await asyncio.sleep(0.6 * attempt)
     except Exception as err:
         logger.exception("[reports] resend failed")
-        raise HTTPException(status_code=502, detail=f"Error enviando email con Resend: {err}")
+        raise HTTPException(status_code=502, detail=f"Error sending email with Resend: {err}")
 
-    # result suele contener {\"id\": \"...\"}
+    # result usually contains {"id": "..."}
     email_id = None
     if isinstance(result, dict):
         email_id = result.get("id")
@@ -518,3 +686,73 @@ async def send_trend_report_email(
         "attachments": len(attachments),
     }
 
+
+@router.post("/trend-email/video")
+async def send_video_report_email(
+    file: UploadFile = File(...),
+    email: str = Form(...),
+):
+    if not settings.RESEND_API_KEY:
+        raise HTTPException(status_code=500, detail="RESEND_API_KEY is not configured")
+
+    try:
+        import resend  # type: ignore
+    except Exception as err:
+        raise HTTPException(status_code=500, detail=f"Resend dependency not available: {err}")
+
+    # Clean email
+    recipients = [e.strip() for e in email.split(",") if e.strip()]
+    if not recipients:
+        raise HTTPException(status_code=400, detail="Recipients required")
+
+    # Read file content
+    content = await file.read()
+
+    # Limit requested by the project: 39MB file.
+    # Note: Resend uses base64 attachments and may fail with large files,
+    # but here we allow up to 39MB as requested.
+    max_raw = 39 * 1024 * 1024
+    if len(content) > max_raw:
+        raise HTTPException(status_code=413, detail="Video too large (max 39MB)")
+
+    generated_at_iso = datetime.now(tz=timezone.utc).isoformat()
+    filename = file.filename or f"recording-{generated_at_iso}.webm"
+
+    html = f"""
+    <div style="font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;">
+      <h2 style="margin: 0 0 8px 0;">Screen Recording Report</h2>
+      <p style="margin: 0 0 12px 0;">
+        Generated at: <strong>{generated_at_iso}</strong><br/>
+      </p>
+      <p style="margin: 0;">This email includes the screen recording as an attachment.</p>
+    </div>
+    """.strip()
+
+    resend.api_key = settings.RESEND_API_KEY
+    
+    # Prepare attachments - MUST base64 encode it.
+    content_b64 = base64.b64encode(content).decode("utf-8")
+
+    params: Dict[str, object] = {
+        "from": "GlobalTech <onboarding@resend.dev>",
+        "subject": f"GlobalTech Screen Recording - {generated_at_iso}",
+        "html": html,
+        "to": recipients,
+        "attachments": [
+            {
+                "content": content_b64,
+                "filename": filename,
+            }
+        ],
+    }
+
+    try:
+        result = resend.Emails.send(params)
+        return {
+            "status": "sent",
+            "id": result.get("id") if isinstance(result, dict) else None,
+            "recipients": recipients
+        }
+    except Exception as err:
+        logger.exception("[reports] video resend failed")
+        raise HTTPException(status_code=502, detail=f"Error sending email: {err}")
