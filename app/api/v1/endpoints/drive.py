@@ -3,6 +3,7 @@ import re
 from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, HTTPException, Query
+from pydantic import BaseModel
 
 from app.core.config import parameter_registry
 from app.core.paths import resolve_resource
@@ -13,6 +14,12 @@ MENUS_PATH = resolve_resource("config/drive_menus.json")
 MENU_OPTIONS_CACHE: Optional[List[Dict[str, Any]]] = None
 FAULT_CODES_PATH = resolve_resource("config/fault_codes.json")
 FAULT_CODES_CACHE: Optional[List[Dict[str, Any]]] = None
+ALLOWED_SCALE_FACTORS = {1, 10, 100, 1000}
+
+
+class UpdateScaleFactorRequest(BaseModel):
+    device_id: str
+    scale_factor: int
 
 
 def _load_menus() -> List[Dict[str, Any]]:
@@ -72,12 +79,39 @@ def _matches_menu(param_menu: Any, target_menu: Optional[int]) -> bool:
     return False
 
 
+def _get_available_menu_numbers(device_id: str) -> set[int]:
+    params_by_id = parameter_registry.list_parameters(device_id)
+    available_menus: set[int] = set()
+
+    for meta in params_by_id.values():
+        menu_value = meta.get("menu")
+        if isinstance(menu_value, int):
+            available_menus.add(menu_value)
+            continue
+        if isinstance(menu_value, str):
+            try:
+                available_menus.add(int(menu_value.split("-")[0].strip()))
+            except (ValueError, IndexError):
+                continue
+
+    return available_menus
+
+
 @router.get("/menus")
-async def get_drive_menus():
+async def get_drive_menus(
+    device_id: str = Query("drive_avid", description="Drive device ID"),
+):
     """
     Devuelve el catálogo de menús del drive.
     """
-    return _load_menus()
+    available_menus = _get_available_menu_numbers(device_id)
+    return [
+        menu
+        for menu in _load_menus()
+        if isinstance(menu, dict)
+        and isinstance(menu.get("menu"), int)
+        and menu["menu"] in available_menus
+    ]
 
 
 @router.get("/fault-codes")
@@ -87,6 +121,45 @@ async def get_fault_codes():
     Fuente: config/fault_codes.json
     """
     return _load_fault_codes()
+
+
+@router.patch("/parameters/{parameter_id}/scale-factor")
+async def update_drive_parameter_scale_factor(
+    parameter_id: str,
+    payload: UpdateScaleFactorRequest,
+):
+    if not parameter_registry.has_device(payload.device_id):
+        raise HTTPException(status_code=404, detail=f"Device {payload.device_id} not found")
+
+    if payload.scale_factor not in ALLOWED_SCALE_FACTORS:
+        allowed = ", ".join(str(value) for value in sorted(ALLOWED_SCALE_FACTORS))
+        raise HTTPException(
+            status_code=400,
+            detail=f"scale_factor must be one of: {allowed}",
+        )
+
+    if not parameter_registry.get_parameter(parameter_id, device_id=payload.device_id):
+        raise HTTPException(
+            status_code=404,
+            detail=f"Parameter {parameter_id} not found for device {payload.device_id}",
+        )
+
+    try:
+        updated = parameter_registry.update_scale_factor(
+            parameter_id,
+            payload.scale_factor,
+            device_id=payload.device_id,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail="Failed to update scale factor") from exc
+
+    return {
+        "device_id": payload.device_id,
+        "parameter_id": parameter_id,
+        "scale_factor": updated.get("scale_factor", payload.scale_factor),
+    }
 
 
 @router.get("/parameters")

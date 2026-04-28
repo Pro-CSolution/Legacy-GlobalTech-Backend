@@ -57,7 +57,7 @@
     "alias": "motorCurrent",
     "register_type": "holding",
     "address": 101,
-    "scale_factor": 10
+    "scale_factor": 1
   },
   {
     "id": "P1.03",
@@ -133,7 +133,7 @@
     "description": "Source: P10.00.",
     "register_type": "holding",
     "address": 105,
-    "scale_factor": 1
+    "scale_factor": 10
   },
   {
     "id": "P1.07",
@@ -149,7 +149,7 @@
     "description": "Source: P10.10.",
     "register_type": "holding",
     "address": 106,
-    "scale_factor": 1
+    "scale_factor": 1000
   },
   {
     "id": "P1.08",
@@ -165,7 +165,7 @@
     "description": "Source: P10.11.",
     "register_type": "holding",
     "address": 107,
-    "scale_factor": 1
+    "scale_factor": 1000
   },
   {
     "id": "P1.09",
@@ -184,7 +184,7 @@
     "description": "Source: P99.10.",
     "register_type": "holding",
     "address": 108,
-    "scale_factor": 1
+    "scale_factor": 1000
   },
   {
     "id": "P1.10",
@@ -205,7 +205,7 @@
     "description": "Source: P2.01.",
     "register_type": "holding",
     "address": 109,
-    "scale_factor": 1
+    "scale_factor": 1000
   },
   {
     "id": "P1.11",
@@ -266,7 +266,7 @@
     "alias": "motorNominalSpeed",
     "register_type": "holding",
     "address": 112,
-    "scale_factor": 1
+    "scale_factor": 1000
   },
   {
     "id": "P1.14",
@@ -308,7 +308,7 @@
     "alias": "maximumSpeedFwd",
     "register_type": "holding",
     "address": 114,
-    "scale_factor": 1
+    "scale_factor": 1000
   },
   {
     "id": "P1.16",
@@ -658,7 +658,7 @@
     "description": "",
     "register_type": "holding",
     "address": 199,
-    "scale_factor": 100
+    "scale_factor": 10
   },
   {
     "id": "P2.01",
@@ -699,7 +699,7 @@
     "alias": "motorFullLoadCurrentP2",
     "register_type": "holding",
     "address": 201,
-    "scale_factor": 100
+    "scale_factor": 1
   },
   {
     "id": "P2.03",
@@ -718,7 +718,7 @@
     "alias": "motorNominalPowerP2",
     "register_type": "holding",
     "address": 202,
-    "scale_factor": 1
+    "scale_factor": 10
   },
   {
     "id": "P2.04",
@@ -1069,7 +1069,7 @@
     "description": "",
     "register_type": "holding",
     "address": 304,
-    "scale_factor": 100
+    "scale_factor": 1
   },
   {
     "id": "P3.06",
@@ -4052,7 +4052,7 @@
     "alias": "torqueDemand",
     "register_type": "holding",
     "address": 903,
-    "scale_factor": 10
+    "scale_factor": 100
   },
   {
     "id": "P9.05",
@@ -7379,7 +7379,7 @@
     "alias": "dcLinkVoltage",
     "register_type": "holding",
     "address": 1102,
-    "scale_factor": 100
+    "scale_factor": 1
   },
   {
     "id": "P11.04",
@@ -17465,6 +17465,108 @@
     "scale_factor": 1
   },
   {
+    "id": "P33.01",
+    "menu": 33,
+    "name": "CF1 Source",
+    "unit": null,
+    "default": "See Table 6-15",
+    "range_numeric": null,
+    "range_text": "See Table 6-15",
+    "attributes": [
+      "E",
+      "N"
+    ],
+    "description": "See Control Flag list for defaults and other meaning defined for the instance",
+    "register_type": "holding",
+    "address": 3300,
+    "scale_factor": 1
+  },
+  {
+    "id": "P33.02",
+    "menu": 33,
+    "name": "CF2 Source",
+    "unit": null,
+    "default": "See Table 6-15",
+    "range_numeric": null,
+    "range_text": "See Table 6-15",
+    "attributes": [
+      "E",
+      "N"
+    ],
+    "description": "See Control Flag list for defaults and other meaning defined for the instance",
+    "register_type": "holding",
+    "address": 3301,
+    "scale_factor": 1
+  },
+  {
+    "id": "P33.04",
+    "menu": 33,
+    "name": "CF4 Source",
+    "unit": null,
+    "default": "See Table 6-15",
+    "range_numeric": null,
+    "range_text": "See Table 6-15",
+    "attributes": [
+      "E",
+      "N"
+    ],
+    "description": "See Control Flag list for defaults and other meaning defined for the instance",
+    "register_type": "holding",
+    "address": 3303,
+    "scale_factor": 1
+  },
+  {
+    "id": "P33.05",
+    "menu": 33,
+    "name": "CF5 Source",
+    "unit": null,
+    "default": "See Table 6-15",
+    "range_numeric": null,
+    "range_text": "See Table 6-15",
+    "attributes": [
+      "E",
+      "N"
+    ],
+    "description": "See Control Flag list for defaults and other meaning defined for the instance",
+    "register_type": "holding",
+    "address": 3304,
+    "scale_factor": 1
+  },
+  {
+    "id": "P33.06",
+    "menu": 33,
+    "name": "CF6 Source",
+    "unit": null,
+    "default": "See Table 6-15",
+    "range_numeric": null,
+    "range_text": "See Table 6-15",
+    "attributes": [
+      "E",
+      "N"
+    ],
+    "description": "See Control Flag list for defaults and other meaning defined for the instance",
+    "register_type": "holding",
+    "address": 3305,
+    "scale_factor": 1
+  },
+  {
+    "id": "P33.07",
+    "menu": 33,
+    "name": "CF7 Source",
+    "unit": null,
+    "default": "See Table 6-15",
+    "range_numeric": null,
+    "range_text": "See Table 6-15",
+    "attributes": [
+      "E",
+      "N"
+    ],
+    "description": "See Control Flag list for defaults and other meaning defined for the instance",
+    "register_type": "holding",
+    "address": 3306,
+    "scale_factor": 1
+  },
+  {
     "id": "P33.99",
     "menu": 33,
     "name": "CF99 Source",
@@ -17496,6 +17598,23 @@
     "description": "See Control Flag list for defaults and other meaning defined for the instance",
     "register_type": "holding",
     "address": 3399,
+    "scale_factor": 1
+  },
+  {
+    "id": "P34.16",
+    "menu": 34,
+    "name": "CF116 Source",
+    "unit": null,
+    "default": "See Table 6-15",
+    "range_numeric": null,
+    "range_text": "See Table 6-15",
+    "attributes": [
+      "E",
+      "N"
+    ],
+    "description": "See Control Flag list for defaults and other meaning defined for the instance",
+    "register_type": "holding",
+    "address": 3415,
     "scale_factor": 1
   },
   {
@@ -23189,7 +23308,46 @@
     "description": "",
     "register_type": "holding",
     "address": 4132,
-    "scale_factor": 1
+    "scale_factor": 100
+  },
+  {
+    "id": "P42.00",
+    "menu": 42,
+    "name": "Pointer 1 Source",
+    "unit": null,
+    "default": "1.00",
+    "range_numeric": {
+      "min": 1,
+      "max": 99.99
+    },
+    "range_text": "1.00 to 99.99",
+    "attributes": [
+      "E",
+      "N"
+    ],
+    "description": "Any Parameter",
+    "register_type": "holding",
+    "address": 4199,
+    "scale_factor": 100
+  },
+  {
+    "id": "P42.01",
+    "menu": 42,
+    "name": "Pointer 1 Scale",
+    "unit": null,
+    "default": "100.00",
+    "range_numeric": {
+      "min": -300,
+      "max": 300
+    },
+    "range_text": "-300.00 to +300.00",
+    "attributes": [
+      "E"
+    ],
+    "description": "",
+    "register_type": "holding",
+    "address": 4200,
+    "scale_factor": 100
   },
   {
     "id": "P43.00",
@@ -23210,7 +23368,7 @@
     "description": "",
     "register_type": "holding",
     "address": 4299,
-    "scale_factor": 1
+    "scale_factor": 100
   },
   {
     "id": "P43.01",
@@ -23231,7 +23389,7 @@
     "description": "",
     "register_type": "holding",
     "address": 4300,
-    "scale_factor": 1
+    "scale_factor": 100
   },
   {
     "id": "P43.02",
@@ -23250,7 +23408,7 @@
     "description": "",
     "register_type": "holding",
     "address": 4301,
-    "scale_factor": 1
+    "scale_factor": 100
   },
   {
     "id": "P43.03",
@@ -24010,7 +24168,7 @@
     "description": "",
     "register_type": "holding",
     "address": 4499,
-    "scale_factor": 1
+    "scale_factor": 10
   },
   {
     "id": "P45.01",
@@ -24029,7 +24187,7 @@
     "description": "",
     "register_type": "holding",
     "address": 4500,
-    "scale_factor": 1
+    "scale_factor": 10
   },
   {
     "id": "P45.02",
@@ -24048,7 +24206,7 @@
     "description": "",
     "register_type": "holding",
     "address": 4501,
-    "scale_factor": 1
+    "scale_factor": 10
   },
   {
     "id": "P45.03",
@@ -24143,7 +24301,7 @@
     "description": "",
     "register_type": "holding",
     "address": 4506,
-    "scale_factor": 1
+    "scale_factor": 1000
   },
   {
     "id": "P45.08",
@@ -24162,7 +24320,7 @@
     "description": "",
     "register_type": "holding",
     "address": 4507,
-    "scale_factor": 1
+    "scale_factor": 1000
   },
   {
     "id": "P45.09",
@@ -24181,7 +24339,7 @@
     "description": "",
     "register_type": "holding",
     "address": 4508,
-    "scale_factor": 1
+    "scale_factor": 1000
   },
   {
     "id": "P45.10",
@@ -24200,7 +24358,7 @@
     "description": "",
     "register_type": "holding",
     "address": 4509,
-    "scale_factor": 1
+    "scale_factor": 1000
   },
   {
     "id": "P45.11",
@@ -24219,7 +24377,7 @@
     "description": "",
     "register_type": "holding",
     "address": 4510,
-    "scale_factor": 1
+    "scale_factor": 1000
   },
   {
     "id": "P45.12",
@@ -24238,7 +24396,7 @@
     "description": "",
     "register_type": "holding",
     "address": 4511,
-    "scale_factor": 1
+    "scale_factor": 1000
   },
   {
     "id": "P45.13",
@@ -27963,7 +28121,7 @@
     "description": "",
     "register_type": "holding",
     "address": 8624,
-    "scale_factor": 1
+    "scale_factor": 100
   },
   {
     "id": "P86.26",
@@ -27980,7 +28138,7 @@
     "description": "",
     "register_type": "holding",
     "address": 8625,
-    "scale_factor": 1
+    "scale_factor": 100
   },
   {
     "id": "P86.27",
@@ -28031,7 +28189,7 @@
     "description": "",
     "register_type": "holding",
     "address": 8628,
-    "scale_factor": 1
+    "scale_factor": 100
   },
   {
     "id": "P86.30",
@@ -28050,7 +28208,7 @@
     "description": "",
     "register_type": "holding",
     "address": 8629,
-    "scale_factor": 1
+    "scale_factor": 100
   },
   {
     "id": "P86.31",

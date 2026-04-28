@@ -1,4 +1,4 @@
-from typing import List, Optional, Any, Tuple
+from typing import List, Optional, Any, Tuple, Literal
 from fastapi import APIRouter, Depends, HTTPException, Body
 from sqlmodel import select
 from sqlalchemy import delete
@@ -59,6 +59,9 @@ class ApplyProfileResult(BaseModel):
 
 class ApplyProfileResponse(BaseModel):
     results: List[ApplyProfileResult]
+
+class ApplyProfileRequest(BaseModel):
+    target_motor_scope: Optional[Literal[1, 2]] = None
 
 # --- Endpoints ---
 
@@ -165,8 +168,18 @@ async def delete_profile(profile_id: int, session: AsyncSession = Depends(get_se
     await session.commit()
     return {"ok": True}
 
+TARGET_DRIVE_DEVICE_IDS: dict[int, str] = {
+    1: "drive_avid",
+    2: "drive_avid_motor2",
+}
+PROFILE_DRIVE_DEVICE_IDS = set(TARGET_DRIVE_DEVICE_IDS.values())
+
 @router.post("/profiles/{profile_id}/apply", response_model=ApplyProfileResponse)
-async def apply_profile(profile_id: int, session: AsyncSession = Depends(get_session)):
+async def apply_profile(
+    profile_id: int,
+    apply_in: Optional[ApplyProfileRequest] = Body(default=None),
+    session: AsyncSession = Depends(get_session),
+):
     """
     Applies the profile by writing all parameters.
     Returns the list of attempted writes with initial status.
@@ -186,8 +199,20 @@ async def apply_profile(profile_id: int, session: AsyncSession = Depends(get_ses
     await session.commit()
 
     results = []
+    apply_request = apply_in or ApplyProfileRequest()
     
+    target_drive_device_id = (
+        TARGET_DRIVE_DEVICE_IDS[apply_request.target_motor_scope]
+        if apply_request.target_motor_scope is not None
+        else None
+    )
+
     for param in db_profile.parameters:
+        target_device_id = (
+            target_drive_device_id
+            if target_drive_device_id is not None and param.device_id in PROFILE_DRIVE_DEVICE_IDS
+            else param.device_id
+        )
         try:
             # Determine value type. Simple heuristic: try int, then float, else string
             # Or reliance on modbus manager to handle string conversion if needed.
@@ -205,17 +230,17 @@ async def apply_profile(profile_id: int, session: AsyncSession = Depends(get_ses
                 except ValueError:
                     pass # Keep as string
             
-            await modbus_manager.write_parameter(param.device_id, param.parameter_id, val_to_write)
+            await modbus_manager.write_parameter(target_device_id, param.parameter_id, val_to_write)
             
             results.append(ApplyProfileResult(
-                device_id=param.device_id,
+                device_id=target_device_id,
                 parameter_id=param.parameter_id,
                 status="success", # Or 'writing' if async queued
                 message="Command sent"
             ))
         except Exception as e:
             results.append(ApplyProfileResult(
-                device_id=param.device_id,
+                device_id=target_device_id,
                 parameter_id=param.parameter_id,
                 status="error",
                 message=str(e)

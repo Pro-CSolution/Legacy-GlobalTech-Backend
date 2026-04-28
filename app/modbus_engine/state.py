@@ -1,48 +1,52 @@
-from typing import Dict, Any, Set, List, Callable
+from typing import Any, Callable, Dict, List, Set
 import asyncio
 import logging
 
 logger = logging.getLogger("app.modbus_engine.state")
 
+
 class SystemState:
     _instance = None
-    _data: Dict[str, Dict[str, Any]] = {} # device_id -> {param_id: value}
-    _on_demand_subscriptions: Dict[str, Set[str]] = {} # device_id -> {param_id_1, param_id_2}
-    _subscribers: List[Callable] = [] # Callbacks for updates
+    _data: Dict[str, Dict[str, Any]] = {}  # device_id -> {param_id: value}
+    _on_demand_subscriptions: Dict[str, Set[str]] = {}  # device_id -> {param_id_1, param_id_2}
+    _trend_subscriptions: Dict[str, Set[str]] = {}  # device_id -> {param_id_1, param_id_2}
+    _subscribers: List[Callable] = []  # Callbacks for updates
     _on_demand_limit: int = 18
 
     def __new__(cls):
         if cls._instance is None:
             cls._instance = super(SystemState, cls).__new__(cls)
-            # Initialize data structure
             cls._instance._data = {}
             cls._instance._on_demand_subscriptions = {}
+            cls._instance._trend_subscriptions = {}
             cls._instance._subscribers = []
             cls._instance._on_demand_limit = 18
         return cls._instance
 
     def update(self, device_id: str, values: Dict[str, Any]):
-        """Actualiza el estado en memoria y notifica a los suscriptores"""
+        """Actualiza el estado en memoria y notifica a los suscriptores."""
         if device_id not in self._data:
             self._data[device_id] = {}
-        
+
         self._data[device_id].update(values)
         self._notify(device_id, values)
 
     def get_snapshot(self, device_id: str = None) -> Dict[str, Any]:
-        """Retorna el estado actual completo o de un dispositivo"""
+        """Retorna el estado actual completo o de un dispositivo."""
         if device_id:
             return self._data.get(device_id, {})
         return self._data
 
     def subscribe_parameter(self, device_id: str, param_id: str):
-        """Añade un parámetro a la lista de monitoreo bajo demanda"""
+        """Añade un parámetro a la lista de monitoreo bajo demanda."""
         self.add_parameters(device_id, [param_id])
 
     def unsubscribe_parameter(self, device_id: str, param_id: str):
-        """Elimina un parámetro de la lista de monitoreo bajo demanda"""
+        """Elimina un parámetro de la lista de monitoreo bajo demanda."""
         if device_id in self._on_demand_subscriptions:
             self._on_demand_subscriptions[device_id].discard(param_id)
+            if not self._on_demand_subscriptions[device_id]:
+                self._on_demand_subscriptions.pop(device_id, None)
 
     def add_parameters(self, device_id: str, param_ids: List[str]) -> List[str]:
         """
@@ -55,7 +59,6 @@ class SystemState:
         current = self._on_demand_subscriptions.get(device_id, set())
         added: List[str] = []
 
-        # Mantener límite
         space_left = max(self._on_demand_limit - len(current), 0)
         for pid in param_ids:
             if pid in current:
@@ -66,7 +69,6 @@ class SystemState:
             added.append(pid)
             space_left -= 1
 
-        # En caso de overflow previo, recorta a límite
         if len(current) > self._on_demand_limit:
             current = set(list(current)[: self._on_demand_limit])
 
@@ -78,6 +80,31 @@ class SystemState:
             return
         for pid in param_ids:
             self._on_demand_subscriptions[device_id].discard(pid)
+        if not self._on_demand_subscriptions[device_id]:
+            self._on_demand_subscriptions.pop(device_id, None)
+
+    def add_trend_parameters(self, device_id: str, param_ids: List[str]) -> List[str]:
+        if not param_ids:
+            return []
+
+        current = self._trend_subscriptions.get(device_id, set())
+        added: List[str] = []
+        for pid in param_ids:
+            if pid in current:
+                continue
+            current.add(pid)
+            added.append(pid)
+
+        self._trend_subscriptions[device_id] = current
+        return added
+
+    def remove_trend_parameters(self, device_id: str, param_ids: List[str]):
+        if device_id not in self._trend_subscriptions:
+            return
+        for pid in param_ids:
+            self._trend_subscriptions[device_id].discard(pid)
+        if not self._trend_subscriptions[device_id]:
+            self._trend_subscriptions.pop(device_id, None)
 
     def get_on_demand_limit(self) -> int:
         return self._on_demand_limit
@@ -86,12 +113,18 @@ class SystemState:
         if limit > 0:
             self._on_demand_limit = limit
 
+    def get_on_demand_parameters(self, device_id: str) -> Set[str]:
+        return set(self._on_demand_subscriptions.get(device_id, set()))
+
+    def get_trend_parameters(self, device_id: str) -> Set[str]:
+        return set(self._trend_subscriptions.get(device_id, set()))
+
     def get_active_parameters(self, device_id: str) -> Set[str]:
-        """Retorna los parámetros que se están viendo actualmente en el frontend"""
-        return self._on_demand_subscriptions.get(device_id, set())
+        """Retorna la unión de parámetros activos on-demand y de trends."""
+        return self.get_on_demand_parameters(device_id) | self.get_trend_parameters(device_id)
 
     def add_listener(self, callback: Callable):
-        """Registra un callback que se ejecutará cuando lleguen nuevos datos"""
+        """Registra un callback que se ejecutará cuando lleguen nuevos datos."""
         if callback not in self._subscribers:
             self._subscribers.append(callback)
 
@@ -105,5 +138,5 @@ class SystemState:
             except Exception as e:
                 logger.error("Error in state listener: %s", str(e))
 
-state_manager = SystemState()
 
+state_manager = SystemState()

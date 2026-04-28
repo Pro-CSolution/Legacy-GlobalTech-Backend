@@ -85,8 +85,8 @@ class ModbusClientWrapper:
         self.host = host
         self.port = port
         # Prefer predictable retries: we control reconnection/backoff ourselves.
-        timeout_s = float(os.getenv("MODBUS_TIMEOUT_S", "3"))
-        self.client = AsyncModbusTcpClient(host, port=port, timeout=timeout_s, retries=0)
+        self._timeout_s = float(os.getenv("MODBUS_TIMEOUT_S", "3"))
+        self.client = self._build_client()
 
         # Writes should win over reads if they are waiting.
         self._op_lock = _WritePriorityLock()
@@ -105,6 +105,24 @@ class ModbusClientWrapper:
         self._connect_timeout_s = float(os.getenv("MODBUS_CONNECT_TIMEOUT_S", "1.0"))
 
         # Compatibility for pymodbus API changes: device_id vs slave.
+        self._unit_kw = self._detect_unit_kw()
+
+    def _build_client(self) -> AsyncModbusTcpClient:
+        return AsyncModbusTcpClient(
+            self.host,
+            port=self.port,
+            timeout=self._timeout_s,
+            retries=0,
+        )
+
+    def _reset_client(self) -> None:
+        old_client = self.client
+        self._connect_task = None
+        try:
+            old_client.close()
+        except Exception:
+            pass
+        self.client = self._build_client()
         self._unit_kw = self._detect_unit_kw()
 
     def _detect_unit_kw(self) -> str:
@@ -130,15 +148,13 @@ class ModbusClientWrapper:
         except Exception as e:
             logger.warning("TCP connect exception to %s:%s: %s", self.host, self.port, repr(e))
             logger.debug("Connect exception details:", exc_info=True)
-            try:
-                self.client.close()
-            except Exception:
-                pass
+            self._reset_client()
             return False
 
         if not self.client.connected:
             # Typical case: SYN timeout / no response
             logger.warning("TCP connect failed to %s:%s (no response)", self.host, self.port)
+            self._reset_client()
             return False
 
         logger.info("TCP connected to %s:%s", self.host, self.port)
@@ -164,7 +180,7 @@ class ModbusClientWrapper:
         self._backoff.bad()
         return False
 
-    async def _call(self, fn, *args, is_write: bool, **kwargs):
+    async def _call(self, method_name: str, *args, is_write: bool, **kwargs):
         lock_ctx = self._op_lock.write() if is_write else self._op_lock.read()
         async with lock_ctx:
             ok = await self._ensure_connected()
@@ -172,16 +188,14 @@ class ModbusClientWrapper:
                 return None
 
             await self._gap()
+            fn = getattr(self.client, method_name)
 
             try:
                 result = await fn(*args, **kwargs)
                 if result is None or result.isError():
                     logger.error("Modbus error from %s:%s -> %s", self.host, self.port, result)
                     self._backoff.bad()
-                    try:
-                        self.client.close()
-                    except Exception:
-                        pass
+                    self._reset_client()
                     return None
 
                 self._backoff.ok()
@@ -193,13 +207,14 @@ class ModbusClientWrapper:
                 logger.error("Modbus exception %s:%s -> %s", self.host, self.port, str(e))
                 logger.debug("Modbus exception details:", exc_info=True)
                 self._backoff.bad()
-                try:
-                    self.client.close()
-                except Exception:
-                    pass
+                self._reset_client()
                 return None
 
     def close(self):
+        connect_task = self._connect_task
+        self._connect_task = None
+        if connect_task is not None and not connect_task.done():
+            connect_task.cancel()
         """Cierra la conexión de manera segura"""
         try:
             self.client.close()
@@ -210,7 +225,7 @@ class ModbusClientWrapper:
         """Lee registros de forma thread-safe"""
         kw = {self._unit_kw: unit}
         result = await self._call(
-            self.client.read_holding_registers,
+            "read_holding_registers",
             start,
             is_write=False,
             count=count,
@@ -222,7 +237,7 @@ class ModbusClientWrapper:
         """Lee input registers (función 4)"""
         kw = {self._unit_kw: unit}
         result = await self._call(
-            self.client.read_input_registers,
+            "read_input_registers",
             start,
             is_write=False,
             count=count,
@@ -234,7 +249,7 @@ class ModbusClientWrapper:
         """Lee coils (función 1). Retorna 0/1."""
         kw = {self._unit_kw: unit}
         result = await self._call(
-            self.client.read_coils,
+            "read_coils",
             start,
             is_write=False,
             count=count,
@@ -246,7 +261,7 @@ class ModbusClientWrapper:
         """Lee discrete inputs (función 2). Retorna 0/1."""
         kw = {self._unit_kw: unit}
         result = await self._call(
-            self.client.read_discrete_inputs,
+            "read_discrete_inputs",
             start,
             is_write=False,
             count=count,
@@ -258,9 +273,22 @@ class ModbusClientWrapper:
         """Escribe un registro de forma thread-safe"""
         kw = {self._unit_kw: unit}
         result = await self._call(
-            self.client.write_register,
+            "write_register",
             address,
             value,
+            is_write=True,
+            **kw,
+        )
+        return result is not None
+
+    async def write_coils(self, address: int, values: List[int | bool], unit: int = 1) -> bool:
+        """Escribe uno o mÃ¡s coils (funciÃ³n 15)."""
+        kw = {self._unit_kw: unit}
+        normalized_values = [bool(value) for value in values]
+        result = await self._call(
+            "write_coils",
+            address,
+            normalized_values,
             is_write=True,
             **kw,
         )
@@ -270,7 +298,7 @@ class ModbusClientWrapper:
         """Escribe un coil (función 5)"""
         kw = {self._unit_kw: unit}
         result = await self._call(
-            self.client.write_coil,
+            "write_coil",
             address,
             bool(value),
             is_write=True,

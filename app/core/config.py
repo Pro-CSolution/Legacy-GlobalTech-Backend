@@ -1,6 +1,8 @@
 import json
 import os
 import logging
+import tempfile
+import threading
 from typing import Dict, Any, Optional
 from pydantic_settings import BaseSettings
 from functools import lru_cache
@@ -9,31 +11,38 @@ from app.core.paths import resolve_resource
 
 logger = logging.getLogger("app.core.config")
 
+
 class Settings(BaseSettings):
     PROJECT_NAME: str = "GlobalTech IIoT"
     DATABASE_URL: str = "postgresql+asyncpg://user:password@localhost:5432/globaltech_db"
     MODBUS_POLL_INTERVAL: float = 0.35
     DATA_LOG_INTERVAL: float | None = None
+    TREND_DATA_RETENTION_DAYS: int = 30
+    TREND_RETENTION_CLEANUP_INTERVAL_HOURS: int = 12
 
     # Integraciones externas (opcional)
-    RESEND_API_KEY: str | None = None
+    RESEND_API_KEY: str | None = "re_UqTaE19S_NS1ejPj6XtrZhx8eVQEjkH4J"
+    RESEND_FROM_EMAIL: str = "noreply@globaltechconview.com"
+    RESEND_FROM_NAME: str = "GlobalTech"
 
     # System Actions (reboot, etc.)
     # Seguridad: token obligatorio para endpoints críticos
     SYSTEM_ACTIONS_TOKEN: str | None = None
     # Por defecto: NO permitir requests remotos para acciones críticas
     SYSTEM_ACTIONS_ALLOW_REMOTE: bool = False
-    
+
     # Mock Configuration
-    USE_MOCK_DATA: bool = True
+    USE_MOCK_DATA: bool = False
 
     class Config:
         env_file = ".env"
         case_sensitive = True
 
+
 @lru_cache()
 def get_settings():
     return Settings()
+
 
 class ParameterRegistry:
     """
@@ -49,10 +58,13 @@ class ParameterRegistry:
     def __new__(cls):
         if cls._instance is None:
             cls._instance = super(ParameterRegistry, cls).__new__(cls)
-            cls._instance._parameters: Dict[str, Dict[str, Dict[str, Any]]] = {}
+            cls._instance._parameters: Dict[str,
+                                            Dict[str, Dict[str, Any]]] = {}
             cls._instance._address_map: Dict[str, Dict[str, int]] = {}
-            cls._instance._reverse_address_map: Dict[str, Dict[str, Dict[int, str]]] = {}
+            cls._instance._reverse_address_map: Dict[str, Dict[str, Dict[int, str]]] = {
+            }
             cls._instance._device_files: Dict[str, str] = {}
+            cls._instance._lock = threading.RLock()
             cls._instance._load_default()
         return cls._instance
 
@@ -121,7 +133,7 @@ class ParameterRegistry:
 
             with resolved_path.open("r", encoding="utf-8") as f:
                 data = json.load(f)
-                
+
             count = 0
             for param in data:
                 pid = param.get("id")
@@ -154,21 +166,23 @@ class ParameterRegistry:
                     continue
 
                 self._address_map.setdefault(device_id, {})[pid] = address_int
-                reverse_map = self._reverse_address_map.setdefault(device_id, {}).setdefault(register_type, {})
+                reverse_map = self._reverse_address_map.setdefault(
+                    device_id, {}).setdefault(register_type, {})
                 # Si hay colisión de dirección dentro del mismo tipo, el último gana
                 reverse_map[address_int] = pid
                 count += 1
-            
+
             logger.info(
                 "Loaded %d parameters for device %s from %s",
                 count,
                 device_id,
                 str(resolved_path),
             )
-            
+
         except Exception as e:
             logger.error(
-                "Error loading parameters for %s from %s: %s", device_id, file_path, str(e)
+                "Error loading parameters for %s from %s: %s", device_id, file_path, str(
+                    e)
             )
 
     def register_device(self, device_id: str, file_path: str):
@@ -196,6 +210,10 @@ class ParameterRegistry:
         did = self._resolve_device(device_id)
         return self._parameters.get(did, {})
 
+    def has_device(self, device_id: str | None = None) -> bool:
+        did = self._resolve_device(device_id)
+        return did in self._parameters or did in self._device_files
+
     def get_address(self, param_id: str, device_id: str | None = None) -> Optional[int]:
         did = self._resolve_device(device_id)
         return self._address_map.get(did, {}).get(param_id)
@@ -206,7 +224,7 @@ class ParameterRegistry:
         return self._normalize_register_type(
             (param or {}).get("register_type") or (param or {}).get("type")
         )
-        
+
     def get_id_by_address(self, address: int, register_type: str = "holding", device_id: str | None = None) -> Optional[str]:
         did = self._resolve_device(device_id)
         normalized = self._normalize_register_type(register_type)
@@ -223,6 +241,65 @@ class ParameterRegistry:
             return param["scale_factor"]
         return 100  # Default scale factor
 
+    def update_scale_factor(self, param_id: str, scale_factor: int, device_id: str | None = None) -> Dict[str, Any]:
+        did = self._resolve_device(device_id)
+
+        with self._lock:
+            if did not in self._parameters:
+                raise ValueError(f"Device {did} not found")
+
+            param = self._parameters.get(did, {}).get(param_id)
+            if not param:
+                raise ValueError(
+                    f"Parameter {param_id} not found for device {did}")
+
+            file_path = self._device_files.get(did)
+            if not file_path:
+                raise ValueError(
+                    f"Device {did} has no registered parameter file")
+
+            resolved_path = resolve_resource(file_path)
+            if not resolved_path.exists():
+                raise ValueError(f"Parameters file not found for device {did}")
+
+            with resolved_path.open("r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            if not isinstance(data, list):
+                raise ValueError(
+                    f"Parameters file for device {did} must contain a JSON array")
+
+            found = False
+            for item in data:
+                if item.get("id") == param_id:
+                    item["scale_factor"] = scale_factor
+                    found = True
+                    break
+
+            if not found:
+                raise ValueError(
+                    f"Parameter {param_id} not found in parameters file for device {did}")
+
+            fd, temp_path = tempfile.mkstemp(
+                dir=str(resolved_path.parent),
+                prefix=f".{resolved_path.stem}.",
+                suffix=".tmp",
+            )
+            try:
+                with os.fdopen(fd, "w", encoding="utf-8") as temp_file:
+                    json.dump(data, temp_file, indent=2, ensure_ascii=False)
+                    temp_file.write("\n")
+                os.replace(temp_path, resolved_path)
+            except Exception:
+                try:
+                    os.unlink(temp_path)
+                except OSError:
+                    pass
+                raise
+
+            param["scale_factor"] = scale_factor
+            return dict(param)
+
+
 settings = get_settings()
 parameter_registry = ParameterRegistry()
-

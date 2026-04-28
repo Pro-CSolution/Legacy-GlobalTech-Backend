@@ -29,6 +29,9 @@ async def write_parameter(cmd: WriteCommand):
         return {"status": "success", "message": f"Written {cmd.value} to {cmd.parameter_id}"}
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+    except ConnectionError as e:
+        logger.error(f"Write command rejected by device: {e}")
+        raise HTTPException(status_code=502, detail=str(e))
     except Exception as e:
         logger.error(f"Write command failed: {e}")
         raise HTTPException(status_code=500, detail="Command execution failed")
@@ -43,10 +46,29 @@ async def execute_action(action_name: str, cmd: CustomCommand):
         raise HTTPException(status_code=400, detail="Action name mismatch")
 
     logger.info(f"Custom Action received: {action_name} on {cmd.device_id}")
-    
-    # TODO: Implement dispatch logic for custom actions here
-    # Example: if action_name == "start_sequence": await sequence_manager.start(cmd.device_id)
-    
-    return {"status": "success", "message": f"Action {action_name} queued/executed"}
+
+    try:
+        if action_name in {"trip-reset", "trip-reset-direct", "trip_reset", "trip_reset_direct"}:
+            params = cmd.parameters or {}
+            raw_pulse_ms = params.get("pulseMs", params.get("pulse_ms", 500))
+            pulse_ms = int(raw_pulse_ms)
+            result = await modbus_manager.pulse_trip_reset(cmd.device_id, pulse_ms=pulse_ms)
+            return {
+                "status": "success",
+                "message": "Trip reset pulse sent directly to drive",
+                "result": result,
+            }
+
+        raise HTTPException(status_code=404, detail=f"Unknown action: {action_name}")
+    except HTTPException:
+        raise
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except ConnectionError as e:
+        logger.error(f"Custom action rejected by device: {e}")
+        raise HTTPException(status_code=502, detail=str(e))
+    except Exception as e:
+        logger.error(f"Custom action failed: {e}")
+        raise HTTPException(status_code=500, detail="Action execution failed")
 
 

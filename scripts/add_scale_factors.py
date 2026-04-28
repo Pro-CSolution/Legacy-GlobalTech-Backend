@@ -85,6 +85,15 @@ SCALE_FACTORS = {
     "P11.20": 1,   # MW-Hours
     "P11.49": 100, # (0.00…300.00%)
     "P11.50": 100, # (-100.00…+100.00%)
+    # Control flag source routing and Ethernet control words
+    "P33.00": 1,   # CF0 Source (raw Table 6-15 selector)
+    "P33.01": 1,   # CF1 Source (raw Table 6-15 selector)
+    "P33.02": 1,   # CF2 Source (raw Table 6-15 selector)
+    "P34.16": 1,   # CF116 Source (raw Table 6-15 selector)
+    "P86.27": 1,   # Ch1 Control Word 1 (raw 16-bit word)
+    "P86.28": 1,   # Ch1 Control Word 2 (raw 16-bit word)
+    "P86.31": 1,   # Ch1 CW 1 Fallback (raw 16-bit word)
+    "P86.32": 1,   # Ch1 CW 2 Fallback (raw 16-bit word)
 }
 
 def determine_scale_factor(param: Dict[str, Any]) -> int:

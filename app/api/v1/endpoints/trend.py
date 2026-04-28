@@ -10,10 +10,29 @@ from sqlmodel import select
 from app.core.utils import utc_now
 from app.db.models import TrendData
 from app.db.session import get_session
+from app.services.shared_trend_config import (
+    SharedTrendConfigResponse,
+    SharedTrendConfigUpdate,
+    read_shared_trend_config,
+    write_shared_trend_config,
+)
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/trend", tags=["Trend"])
+
+
+@router.get("/shared-config", response_model=SharedTrendConfigResponse)
+async def get_shared_config(session: AsyncSession = Depends(get_session)):
+    return await read_shared_trend_config(session)
+
+
+@router.put("/shared-config", response_model=SharedTrendConfigResponse)
+async def update_shared_config(
+    payload: SharedTrendConfigUpdate,
+    session: AsyncSession = Depends(get_session),
+):
+    return await write_shared_trend_config(session, payload)
 
 
 @router.get("/history")

@@ -5,7 +5,7 @@
     "description": "Test Stand A Remote SPD IN",
     "address": 0,
     "register_type": "input",
-    "scale_factor": 1,
+    "scale_factor": 100,
     "unit": "Raw",
     "range_text": "4-20mA",
     "module": "750-476",
@@ -19,7 +19,7 @@
     "description": "Test Stand A Analog In SP 1",
     "address": 1,
     "register_type": "input",
-    "scale_factor": 1,
+    "scale_factor": 100,
     "unit": "Raw",
     "range_text": "4-20mA",
     "module": "750-476",
@@ -33,7 +33,7 @@
     "description": "Converter Cooling Water Pressure",
     "address": 2,
     "register_type": "input",
-    "scale_factor": 1,
+    "scale_factor": 100,
     "unit": "Raw",
     "range_text": "4-20mA",
     "module": "750-476",
@@ -42,28 +42,125 @@
     ]
   },
   {
-    "id": "Speed_Out_Drive",
-    "name": "Relay Booster Pump Speed Ref to Drive",
-    "description": "Relay Booster Pump Speed Ref to Drive",
-    "address": 0,
-    "register_type": "holding",
-    "scale_factor": 1,
+    "id": "Analog_Test_3",
+    "name": "Analog Test #3",
+    "description": "Analog Test #3",
+    "address": 3,
+    "register_type": "input",
+    "scale_factor": 100,
     "unit": "Raw",
-    "range_text": "0-20mA",
-    "module": "750-552",
+    "range_text": "Test",
+    "module": "custom",
     "attributes": [
-      "R",
-      "W"
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_4",
+    "name": "Analog Test #4",
+    "description": "Analog Test #4",
+    "address": 4,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_5",
+    "name": "Analog Test #5",
+    "description": "Analog Test #5",
+    "address": 5,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_6",
+    "name": "Analog Test #6",
+    "description": "Analog Test #6",
+    "address": 6,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_7",
+    "name": "Analog Test #7",
+    "description": "Analog Test #7",
+    "address": 7,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_8",
+    "name": "Analog Test #8",
+    "description": "Analog Test #8",
+    "address": 7,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_9",
+    "name": "Analog Test #9",
+    "description": "Analog Test #9",
+    "address": 9,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_10",
+    "name": "Analog Test #10",
+    "description": "Analog Test #10",
+    "address": 10,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
     ]
   },
   {
     "id": "Temp_Winding_A1",
     "alias": "temperaturexdd",
-    "name": "Test Motor A Temp Winding A1",
-    "description": "Test Motor A Temp Winding A1",
-    "address": 4,
+    "name": "Temp Winding A1",
+    "description": "Temp Winding A1",
+    "address": 11,
     "register_type": "input",
-    "scale_factor": 1,
+    "scale_factor": 100,
     "unit": "Raw",
     "range_text": "PT100",
     "module": "750-461",
@@ -73,11 +170,11 @@
   },
   {
     "id": "Temp_Winding_B1",
-    "name": "Test Motor A Temp Winding B1",
-    "description": "Test Motor A Temp Winding B1",
-    "address": 5,
+    "name": "Temp Winding B1",
+    "description": "Temp Winding B1",
+    "address": 12,
     "register_type": "input",
-    "scale_factor": 1,
+    "scale_factor": 100,
     "unit": "Raw",
     "range_text": "PT100",
     "module": "750-461",
@@ -87,11 +184,11 @@
   },
   {
     "id": "Temp_Winding_C1",
-    "name": "Test Motor A Temp Winding C1",
-    "description": "Test Motor A Temp Winding C1",
-    "address": 6,
+    "name": "Temp Winding C1",
+    "description": "Temp Winding C1",
+    "address": 13,
     "register_type": "input",
-    "scale_factor": 1,
+    "scale_factor": 100,
     "unit": "Raw",
     "range_text": "PT100",
     "module": "750-461",
@@ -101,11 +198,11 @@
   },
   {
     "id": "Temp_Bearing_DE",
-    "name": "Test Motor A Temp Bearing Drive End",
-    "description": "Test Motor A Temp Bearing Drive End",
-    "address": 10,
+    "name": "Temp Bearing Drive End",
+    "description": "Temp Bearing Drive End",
+    "address": 14,
     "register_type": "input",
-    "scale_factor": 1,
+    "scale_factor": 100,
     "unit": "Raw",
     "range_text": "PT100",
     "module": "750-461",
@@ -115,14 +212,70 @@
   },
   {
     "id": "Temp_Bearing_NDE",
-    "name": "Test Motor A Temp Bearing Non-Drive End",
-    "description": "Test Motor A Temp Bearing Non-Drive End",
-    "address": 11,
+    "name": "Temp Bearing Non-Drive End",
+    "description": "Temp Bearing Non-Drive End",
+    "address": 15,
     "register_type": "input",
-    "scale_factor": 1,
+    "scale_factor": 100,
     "unit": "Raw",
     "range_text": "PT100",
     "module": "750-461",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_16",
+    "name": "Analog Test #16",
+    "description": "Analog Test #16",
+    "address": 16,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_17",
+    "name": "Analog Test #17",
+    "description": "Analog Test #17",
+    "address": 17,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_18",
+    "name": "Analog Test #18",
+    "description": "Analog Test #18",
+    "address": 17,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_19",
+    "name": "Analog Test #19",
+    "description": "Analog Test #19",
+    "address": 18,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
     "attributes": [
       "R"
     ]
@@ -131,9 +284,9 @@
     "id": "Drive_Cooling_Temp",
     "name": "Drive Cooling Water Temp",
     "description": "Drive Cooling Water Temp",
-    "address": 20,
+    "address": 19,
     "register_type": "input",
-    "scale_factor": 1,
+    "scale_factor": 10,
     "unit": "Raw",
     "range_text": "PT100",
     "module": "750-461",
@@ -142,9 +295,1396 @@
     ]
   },
   {
+    "id": "Analog_Test_21",
+    "name": "Analog Test #21",
+    "description": "Analog Test #21",
+    "address": 20,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_22",
+    "name": "Analog Test #22",
+    "description": "Analog Test #22",
+    "address": 21,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_23",
+    "name": "Analog Test #23",
+    "description": "Analog Test #23",
+    "address": 22,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_24",
+    "name": "Analog Test #24",
+    "description": "Analog Test #24",
+    "address": 23,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_25",
+    "name": "Analog Test #25",
+    "description": "Analog Test #25",
+    "address": 24,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_26",
+    "name": "Analog Test #26",
+    "description": "Analog Test #26",
+    "address": 26,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_27",
+    "name": "Analog Test #27",
+    "description": "Analog Test #27",
+    "address": 27,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_28",
+    "name": "Analog Test #28",
+    "description": "Analog Test #28",
+    "address": 28,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_29",
+    "name": "Analog Test #29",
+    "description": "Analog Test #29",
+    "address": 29,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_30",
+    "name": "Analog Test #30",
+    "description": "Analog Test #30",
+    "address": 30,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_31",
+    "name": "Analog Test #31",
+    "description": "Analog Test #31",
+    "address": 31,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_32",
+    "name": "Analog Test #32",
+    "description": "Analog Test #32",
+    "address": 32,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_33",
+    "name": "Analog Test #33",
+    "description": "Analog Test #33",
+    "address": 33,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_34",
+    "name": "Analog Test #34",
+    "description": "Analog Test #34",
+    "address": 34,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_35",
+    "name": "Analog Test #35",
+    "description": "Analog Test #35",
+    "address": 35,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_36",
+    "name": "Analog Test #36",
+    "description": "Analog Test #36",
+    "address": 36,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_37",
+    "name": "Analog Test #37",
+    "description": "Analog Test #37",
+    "address": 37,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_38",
+    "name": "Analog Test #38",
+    "description": "Analog Test #38",
+    "address": 38,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_39",
+    "name": "Analog Test #39",
+    "description": "Analog Test #39",
+    "address": 39,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_40",
+    "name": "Analog Test #40",
+    "description": "Analog Test #40",
+    "address": 40,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_41",
+    "name": "Analog Test #41",
+    "description": "Analog Test #41",
+    "address": 41,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_42",
+    "name": "Analog Test #42",
+    "description": "Analog Test #42",
+    "address": 42,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_43",
+    "name": "Analog Test #43",
+    "description": "Analog Test #43",
+    "address": 43,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_44",
+    "name": "Analog Test #44",
+    "description": "Analog Test #44",
+    "address": 44,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_45",
+    "name": "Analog Test #45",
+    "description": "Analog Test #45",
+    "address": 45,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_46",
+    "name": "Analog Test #46",
+    "description": "Analog Test #46",
+    "address": 46,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_47",
+    "name": "Analog Test #47",
+    "description": "Analog Test #47",
+    "address": 47,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_48",
+    "name": "Analog Test #48",
+    "description": "Analog Test #48",
+    "address": 48,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_49",
+    "name": "Analog Test #49",
+    "description": "Analog Test #49",
+    "address": 49,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_50",
+    "name": "Analog Test #50",
+    "description": "Analog Test #50",
+    "address": 50,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_51",
+    "name": "Analog Test #51",
+    "description": "Analog Test #51",
+    "address": 51,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_52",
+    "name": "Analog Test #52",
+    "description": "Analog Test #52",
+    "address": 52,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_53",
+    "name": "Analog Test #53",
+    "description": "Analog Test #53",
+    "address": 53,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_54",
+    "name": "Analog Test #54",
+    "description": "Analog Test #54",
+    "address": 54,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_55",
+    "name": "Analog Test #55",
+    "description": "Analog Test #55",
+    "address": 55,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_56",
+    "name": "Analog Test #56",
+    "description": "Analog Test #56",
+    "address": 56,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_57",
+    "name": "Analog Test #57",
+    "description": "Analog Test #57",
+    "address": 57,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_58",
+    "name": "Analog Test #58",
+    "description": "Analog Test #58",
+    "address": 58,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_59",
+    "name": "Analog Test #59",
+    "description": "Analog Test #59",
+    "address": 59,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_60",
+    "name": "Analog Test #60",
+    "description": "Analog Test #60",
+    "address": 60,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_61",
+    "name": "Analog Test #61",
+    "description": "Analog Test #61",
+    "address": 61,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_62",
+    "name": "Analog Test #62",
+    "description": "Analog Test #62",
+    "address": 62,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_63",
+    "name": "Analog Test #63",
+    "description": "Analog Test #63",
+    "address": 63,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_64",
+    "name": "Analog Test #64",
+    "description": "Analog Test #64",
+    "address": 64,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_65",
+    "name": "Analog Test #65",
+    "description": "Analog Test #65",
+    "address": 65,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_66",
+    "name": "Analog Test #66",
+    "description": "Analog Test #66",
+    "address": 66,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_67",
+    "name": "Analog Test #67",
+    "description": "Analog Test #67",
+    "address": 67,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_68",
+    "name": "Analog Test #68",
+    "description": "Analog Test #68",
+    "address": 68,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_69",
+    "name": "Analog Test #69",
+    "description": "Analog Test #69",
+    "address": 69,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_70",
+    "name": "Analog Test #70",
+    "description": "Analog Test #70",
+    "address": 70,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_71",
+    "name": "Analog Test #71",
+    "description": "Analog Test #71",
+    "address": 71,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_72",
+    "name": "Analog Test #72",
+    "description": "Analog Test #72",
+    "address": 72,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_73",
+    "name": "Analog Test #73",
+    "description": "Analog Test #73",
+    "address": 73,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_74",
+    "name": "Analog Test #74",
+    "description": "Analog Test #74",
+    "address": 74,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_75",
+    "name": "Analog Test #75",
+    "description": "Analog Test #75",
+    "address": 75,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_76",
+    "name": "Analog Test #76",
+    "description": "Analog Test #76",
+    "address": 76,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_77",
+    "name": "Analog Test #77",
+    "description": "Analog Test #77",
+    "address": 77,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_78",
+    "name": "Analog Test #78",
+    "description": "Analog Test #78",
+    "address": 78,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_79",
+    "name": "Analog Test #79",
+    "description": "Analog Test #79",
+    "address": 79,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_80",
+    "name": "Analog Test #80",
+    "description": "Analog Test #80",
+    "address": 80,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_81",
+    "name": "Analog Test #81",
+    "description": "Analog Test #81",
+    "address": 81,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_82",
+    "name": "Analog Test #82",
+    "description": "Analog Test #82",
+    "address": 82,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_83",
+    "name": "Analog Test #83",
+    "description": "Analog Test #83",
+    "address": 83,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_84",
+    "name": "Analog Test #84",
+    "description": "Analog Test #84",
+    "address": 84,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_85",
+    "name": "Analog Test #85",
+    "description": "Analog Test #85",
+    "address": 85,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_86",
+    "name": "Analog Test #86",
+    "description": "Analog Test #86",
+    "address": 86,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_87",
+    "name": "Analog Test #87",
+    "description": "Analog Test #87",
+    "address": 87,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_88",
+    "name": "Analog Test #88",
+    "description": "Analog Test #88",
+    "address": 88,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_89",
+    "name": "Analog Test #89",
+    "description": "Analog Test #89",
+    "address": 89,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_90",
+    "name": "Analog Test #90",
+    "description": "Analog Test #90",
+    "address": 90,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_91",
+    "name": "Analog Test #91",
+    "description": "Analog Test #91",
+    "address": 91,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_92",
+    "name": "Analog Test #92",
+    "description": "Analog Test #92",
+    "address": 92,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_93",
+    "name": "Analog Test #93",
+    "description": "Analog Test #93",
+    "address": 93,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_94",
+    "name": "Analog Test #94",
+    "description": "Analog Test #94",
+    "address": 94,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_95",
+    "name": "Analog Test #95",
+    "description": "Analog Test #95",
+    "address": 95,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_96",
+    "name": "Analog Test #96",
+    "description": "Analog Test #96",
+    "address": 96,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_97",
+    "name": "Analog Test #97",
+    "description": "Analog Test #97",
+    "address": 97,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_98",
+    "name": "Analog Test #98",
+    "description": "Analog Test #98",
+    "address": 98,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_99",
+    "name": "Analog Test #99",
+    "description": "Analog Test #99",
+    "address": 99,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Analog_Test_100",
+    "name": "Analog Test #100",
+    "description": "Analog Test #100",
+    "address": 100,
+    "register_type": "input",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "Test",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Speed_Out_Drive",
+    "name": "Speed Ref to Drive",
+    "description": "Speed Ref to Drive",
+    "address": 0,
+    "register_type": "holding",
+    "scale_factor": 100,
+    "unit": "Raw",
+    "range_text": "0-20mA",
+    "module": "750-552",
+    "attributes": [
+      "R",
+      "W"
+    ]
+  },
+  {
+    "id": "Motor_Winding_A1_DEGF",
+    "name": "Motor_Winding_A1_DEGF",
+    "description": "Motor_Winding_A1_DEGF",
+    "address": 9,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Motor_Winding_B1_DEGF",
+    "name": "Motor_Winding_B1_DEGF",
+    "description": "Motor_Winding_B1_DEGF",
+    "address": 10,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Motor_Winding_C1_DEGF",
+    "name": "Motor_Winding_C1_DEGF",
+    "description": "Motor_Winding_C1_DEGF",
+    "address": 11,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Motor_Winding_A2_DEGF",
+    "name": "Motor_Winding_A2_DEGF",
+    "description": "Motor_Winding_A2_DEGF",
+    "address": 12,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Motor_Winding_B2_DEGF",
+    "name": "Motor_Winding_B2_DEGF",
+    "description": "Motor_Winding_B2_DEGF",
+    "address": 13,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Motor_Winding_C2_DEGF",
+    "name": "Motor_Winding_C2_DEGF",
+    "description": "Motor_Winding_C2_DEGF",
+    "address": 14,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Motor_Bearing_DE_DEGF",
+    "name": "Motor_Bearing_DE_DEGF",
+    "description": "Motor_Bearing_DE_DEGF",
+    "address": 15,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Motor_Bearing_NDE_DEGF",
+    "name": "Motor_Bearing_NDE_DEGF",
+    "description": "Motor_Bearing_NDE_DEGF",
+    "address": 16,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Motor_Winding_A1_Spare_DEGF",
+    "name": "Motor_Winding_A1_Spare_DEGF",
+    "description": "Motor_Winding_A1_Spare_DEGF",
+    "address": 17,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Motor_Winding_B1_Spare_DEGF",
+    "name": "Motor_Winding_B1_Spare_DEGF",
+    "description": "Motor_Winding_B1_Spare_DEGF",
+    "address": 18,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Motor_Winding_C1_Spare_DEGF",
+    "name": "Motor_Winding_C1_Spare_DEGF",
+    "description": "Motor_Winding_C1_Spare_DEGF",
+    "address": 19,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Motor_Winding_A2_Spare_DEGF",
+    "name": "Motor_Winding_A2_Spare_DEGF",
+    "description": "Motor_Winding_A2_Spare_DEGF",
+    "address": 20,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Motor_Winding_B2_Spare_DEGF",
+    "name": "Motor_Winding_B2_Spare_DEGF",
+    "description": "Motor_Winding_B2_Spare_DEGF",
+    "address": 21,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Motor_Winding_C2_Spare_DEGF",
+    "name": "Motor_Winding_C2_Spare_DEGF",
+    "description": "Motor_Winding_C2_Spare_DEGF",
+    "address": 22,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Motor_Bearing_DE_Spare_DEGF",
+    "name": "Motor_Bearing_DE_Spare_DEGF",
+    "description": "Motor_Bearing_DE_Spare_DEGF",
+    "address": 23,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Motor_Bearing_NDE_Spare_DEGF",
+    "name": "Motor_Bearing_NDE_Spare_DEGF",
+    "description": "Motor_Bearing_NDE_Spare_DEGF",
+    "address": 24,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Coolant_Temp_DEGF",
+    "name": "Coolant_Temp_DEGF",
+    "description": "Coolant_Temp_DEGF",
+    "address": 25,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "deg F",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Coolant_Pressure_PSI",
+    "name": "Coolant_Pressure_PSI",
+    "description": "Coolant_Pressure_PSI",
+    "address": 26,
+    "register_type": "holding",
+    "scale_factor": 1,
+    "unit": "PSI",
+    "range_text": "S16",
+    "module": "custom",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
     "id": "RB_Local_Control",
-    "name": "Relay Booster Local Control",
-    "description": "Relay Booster Local Control",
+    "name": "Local Control",
+    "description": "Local Control",
     "address": 3,
     "register_type": "discrete",
     "scale_factor": 1,
@@ -157,8 +1697,8 @@
   },
   {
     "id": "RB_Remote_Control",
-    "name": "Relay Booster Remote Control",
-    "description": "Relay Booster Remote Control",
+    "name": "Remote Control",
+    "description": "Remote Control",
     "address": 4,
     "register_type": "discrete",
     "scale_factor": 1,
@@ -171,8 +1711,8 @@
   },
   {
     "id": "RB_Breaker_Close",
-    "name": "Relay Booster Breaker Close",
-    "description": "Relay Booster Breaker Close",
+    "name": "Breaker Close",
+    "description": "Breaker Close",
     "address": 7,
     "register_type": "discrete",
     "scale_factor": 1,
@@ -185,8 +1725,8 @@
   },
   {
     "id": "RB_Breaker_Open",
-    "name": "Relay Booster Breaker Open",
-    "description": "Relay Booster Breaker Open",
+    "name": "Breaker Open",
+    "description": "Breaker Open",
     "address": 8,
     "register_type": "discrete",
     "scale_factor": 1,
@@ -199,9 +1739,9 @@
   },
   {
     "id": "RB_Estop_Status",
-    "name": "Relay Booster E-Stop Status",
-    "description": "Relay Booster E-Stop Status",
-    "address": 11,
+    "name": "E-Stop Status",
+    "description": "E-Stop Status",
+    "address": 12,
     "register_type": "discrete",
     "scale_factor": 1,
     "unit": "Bool",
@@ -240,10 +1780,10 @@
     ]
   },
   {
-    "id": "Conv_Pump_Auto",
-    "name": "Converter Cooling Water Pump Auto",
-    "description": "Converter Cooling Water Pump Auto",
-    "address": 35,
+    "id": "Drive_Coolant_Pump2_Running",
+    "name": "Drive_Coolant_Pump2_Running",
+    "description": "Drive_Coolant_Pump2_Running",
+    "address": 32,
     "register_type": "discrete",
     "scale_factor": 1,
     "unit": "Bool",
@@ -254,9 +1794,23 @@
     ]
   },
   {
-    "id": "Conv_Pump_Run",
-    "name": "Converter Cooling Water Pump 1 Running",
-    "description": "Converter Cooling Water Pump 1 Running",
+    "id": "Drive_Coolant_Pump_Hand",
+    "name": "Drive_Coolant_Pump_Hand",
+    "description": "Drive_Coolant_Pump_Hand",
+    "address": 33,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Drive_Cooland Pump_Auto",
+    "name": "Drive_Cooland Pump_Auto",
+    "description": "Drive_Cooland Pump_Auto",
     "address": 36,
     "register_type": "discrete",
     "scale_factor": 1,
@@ -268,10 +1822,10 @@
     ]
   },
   {
-    "id": "Drive_Coolant_Flow",
-    "name": "Drive Coolant Flow",
-    "description": "Drive Coolant Flow",
-    "address": 39,
+    "id": "Drive_Coolant_Pump1_Running",
+    "name": "Drive_Coolant_Pump1_Running",
+    "description": "Drive_Coolant_Pump1_Running",
+    "address": 37,
     "register_type": "discrete",
     "scale_factor": 1,
     "unit": "Bool",
@@ -282,9 +1836,9 @@
     ]
   },
   {
-    "id": "Drive_Coolant_Press",
-    "name": "Drive Coolant Pressure",
-    "description": "Drive Coolant Pressure",
+    "id": "Drive_Coolant_Flow_Sw",
+    "name": "Drive_Coolant_Flow_Sw",
+    "description": "Drive_Coolant_Flow_Sw",
     "address": 40,
     "register_type": "discrete",
     "scale_factor": 1,
@@ -296,10 +1850,38 @@
     ]
   },
   {
-    "id": "Drive_Coolant_Leak",
-    "name": "Drive Coolant Leakage",
-    "description": "Drive Coolant Leakage",
-    "address": 43,
+    "id": "Drive_Coolant_Pressure_Sw",
+    "name": "Drive_Coolant_Pressure_Sw",
+    "description": "Drive_Coolant_Pressure_Sw",
+    "address": 41,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Drive_Coolant Leak_Sw",
+    "name": "Drive_Coolant Leak_Sw",
+    "description": "Drive_Coolant Leak_Sw",
+    "address": 44,
+    "register_type": "discrete",
+    "scale_factor": 1,
+    "unit": "Bool",
+    "range_text": "0-1",
+    "module": "750-421",
+    "attributes": [
+      "R"
+    ]
+  },
+  {
+    "id": "Drive_Coolant_Pump_Sw",
+    "name": "Drive_Coolant_Pump_Sw",
+    "description": "Drive_Coolant_Pump_Sw",
+    "address": 48,
     "register_type": "discrete",
     "scale_factor": 1,
     "unit": "Bool",
@@ -311,8 +1893,8 @@
   },
   {
     "id": "RB_Drive_OK",
-    "name": "Relay Booster Pump Drive DO1 Drive OK",
-    "description": "Relay Booster Pump Drive DO1 Drive OK",
+    "name": "DO1 Drive OK",
+    "description": "Drive DO1 Drive OK",
     "address": 59,
     "register_type": "discrete",
     "scale_factor": 1,
@@ -325,8 +1907,8 @@
   },
   {
     "id": "RB_Drive_Running",
-    "name": "Relay Booster Pump Drive DO2 Drive Running",
-    "description": "Relay Booster Pump Drive DO2 Drive Running",
+    "name": "Drive DO2 Drive Running",
+    "description": "Drive DO2 Drive Running",
     "address": 60,
     "register_type": "discrete",
     "scale_factor": 1,
@@ -339,8 +1921,8 @@
   },
   {
     "id": "RB_Precharge_OK",
-    "name": "Relay Booster Pump Drive DO3 Precharge Complete",
-    "description": "Relay Booster Pump Drive DO3 Precharge Complete",
+    "name": "Drive DO3 Precharge Complete",
+    "description": "Drive DO3 Precharge Complete",
     "address": 63,
     "register_type": "discrete",
     "scale_factor": 1,
@@ -352,9 +1934,9 @@
     ]
   },
   {
-    "id": "Conv_Cooling_Start",
-    "name": "Converter Cooling Water Pump 1 Start",
-    "description": "Converter Cooling Water Pump 1 Start",
+    "id": "Coolant_Pump1_Run",
+    "name": "Coolant_Pump1_Run",
+    "description": "Coolant_Pump1_Run",
     "address": 0,
     "register_type": "coil",
     "scale_factor": 1,
@@ -398,8 +1980,8 @@
   },
   {
     "id": "RB_Main_Brk_Open",
-    "name": "Relay Booster Main Breaker Open",
-    "description": "Relay Booster Main Breaker Open",
+    "name": "Main Breaker Open",
+    "description": "Main Breaker Open",
     "address": 5,
     "register_type": "coil",
     "scale_factor": 1,
@@ -413,8 +1995,8 @@
   },
   {
     "id": "RB_Estop_Reset",
-    "name": "Relay Pump E-Stop Reset",
-    "description": "Relay Pump E-Stop Reset",
+    "name": "E-Stop Reset",
+    "description": "E-Stop Reset",
     "address": 7,
     "register_type": "coil",
     "scale_factor": 1,
@@ -428,9 +2010,9 @@
   },
   {
     "id": "RB_Blower_Start",
-    "name": "Relay Booster Pump Motor Blower Start",
-    "description": "Relay Booster Pump Motor Blower Start",
-    "address": 8,
+    "name": "Motor Blower Start",
+    "description": "Motor Blower Start",
+    "address": 9,
     "register_type": "coil",
     "scale_factor": 1,
     "unit": "Bool",
@@ -443,8 +2025,8 @@
   },
   {
     "id": "RB_Main_Brk_Close",
-    "name": "Relay Pump Main Breaker Close",
-    "description": "Relay Pump Main Breaker Close",
+    "name": "Main Breaker Close",
+    "description": "Main Breaker Close",
     "address": 12,
     "register_type": "coil",
     "scale_factor": 1,
@@ -457,9 +2039,9 @@
     ]
   },
   {
-    "id": "Drive_Cooling_Start",
-    "name": "Drive Cooling Water Pump 2 Start",
-    "description": "Drive Cooling Water Pump 2 Start",
+    "id": "Coolant_Pump2_Run",
+    "name": "Coolant_Pump2_Run",
+    "description": "Coolant_Pump2_Run",
     "address": 17,
     "register_type": "coil",
     "scale_factor": 1,
@@ -488,9 +2070,9 @@
   },
   {
     "id": "RB_Drive_Start",
-    "name": "Relay Booster Pump Drive Start",
-    "description": "Relay Booster Pump Drive Start",
-    "address": 20,
+    "name": "Drive Start",
+    "description": "Drive Start",
+    "address": 21,
     "register_type": "coil",
     "scale_factor": 1,
     "unit": "Bool",
@@ -503,9 +2085,9 @@
   },
   {
     "id": "RB_Drive_Reset",
-    "name": "Relay Booster Pump Drive Reset",
-    "description": "Relay Booster Pump Drive Reset",
-    "address": 21,
+    "name": "Drive Reset",
+    "description": "Drive Reset",
+    "address": 20,
     "register_type": "coil",
     "scale_factor": 1,
     "unit": "Bool",

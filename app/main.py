@@ -28,7 +28,20 @@ from app.db.session import (
 from app.modbus_engine.manager import modbus_manager
 from app.services.socket_manager import sio
 from app.services.data_logger import data_logger
-from app.api.v1.endpoints import data, commands, trend, drive, profiles, manual_trend, reports, system
+from app.services.trip_event_logger import trip_event_logger
+from app.api.v1.endpoints import (
+    commands,
+    data,
+    drive,
+    manual_trend,
+    monitor,
+    profiles,
+    reports,
+    system,
+    trend,
+    wago_live,
+)
+from app.api.v1.endpoints.wago_live import close_live_clients
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -42,8 +55,12 @@ async def lifespan(app: FastAPI):
     # 2. Start Modbus Engine
     logger.info("Initializing Modbus Manager...")
     await modbus_manager.start()
+
+    # 3. Start Trip Event Logger
+    logger.info("Initializing Trip Event Logger...")
+    await trip_event_logger.start()
     
-    # 3. Start Data Logger
+    # 4. Start Data Logger
     logger.info("Initializing Data Logger...")
     await data_logger.start()
     
@@ -61,7 +78,9 @@ async def lifespan(app: FastAPI):
             pass
 
     await modbus_manager.stop()
+    await trip_event_logger.stop()
     await data_logger.stop()
+    await close_live_clients()
     await close_db()
 
 app = FastAPI(
@@ -80,6 +99,7 @@ app.add_middleware(
 
 # API Routers
 app.include_router(data.router, prefix="/api/v1", tags=["Data"])
+app.include_router(monitor.router, prefix="/api/v1")
 app.include_router(commands.router, prefix="/api/v1/commands", tags=["Commands"])
 app.include_router(trend.router, prefix="/api/v1")
 app.include_router(drive.router, prefix="/api/v1")
@@ -87,6 +107,7 @@ app.include_router(profiles.router, prefix="/api/v1", tags=["Profiles"])
 app.include_router(manual_trend.router, prefix="/api/v1")
 app.include_router(reports.router, prefix="/api/v1")
 app.include_router(system.router, prefix="/api/v1/system", tags=["System"])
+app.include_router(wago_live.router, prefix="/api/v1")
 
 @app.exception_handler(DatabaseUnavailableError)
 async def database_unavailable_handler(_: Request, exc: DatabaseUnavailableError):

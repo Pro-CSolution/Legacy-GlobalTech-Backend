@@ -70,6 +70,7 @@ async def init_db() -> None:
     # Ensure performance indexes (best-effort; no migrations in this project)
     async with engine.connect() as conn:
         await _ensure_trend_data_indexes(conn)
+        await _ensure_trip_event_indexes(conn)
 
     # Setup TimescaleDB Hypertable in a separate connection/transaction (best-effort)
     async with engine.connect() as conn:
@@ -238,4 +239,33 @@ async def _ensure_trend_data_indexes(conn):
         await conn.rollback()
         logger.warning(
             "DB Migration: could not ensure trend_data indexes (continuing).", exc_info=True
+        )
+
+
+async def _ensure_trip_event_indexes(conn):
+    """Indexes for trip history lookups and retention cleanup."""
+    try:
+        await conn.execute(
+            text(
+                """
+                CREATE INDEX IF NOT EXISTS idx_trip_events_device_time_desc
+                ON trip_events (device_id, time DESC);
+                """
+            )
+        )
+        await conn.execute(
+            text(
+                """
+                CREATE INDEX IF NOT EXISTS idx_trip_events_time
+                ON trip_events (time);
+                """
+            )
+        )
+        await conn.commit()
+        logger.info("DB Migration: ensured trip_events indexes")
+    except Exception:
+        await conn.rollback()
+        logger.warning(
+            "DB Migration: could not ensure trip_events indexes (continuing).",
+            exc_info=True,
         )

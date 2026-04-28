@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import List, Optional
-from sqlalchemy import Column, String, Integer, ForeignKey, Float, DateTime
+from sqlalchemy import Column, String, Integer, ForeignKey, Float, DateTime, Text
 from sqlmodel import SQLModel, Field, Relationship
 from app.core.utils import utc_now
 
@@ -15,6 +15,18 @@ class TrendData(SQLModel, table=True):
     device_id: str = Field(primary_key=True, nullable=False)
     parameter_id: str = Field(primary_key=True, nullable=False)
     value: float = Field(nullable=False)
+
+
+class StoredTripEvent(SQLModel, table=True):
+    __tablename__ = "trip_events"
+
+    id: Optional[int] = Field(default=None, primary_key=True)
+    time: datetime = Field(
+        default_factory=utc_now,
+        sa_column=Column(DateTime(timezone=True), nullable=False),
+    )
+    device_id: str = Field(nullable=False, index=True)
+    code: int = Field(sa_column=Column(Integer, nullable=False))
 
 
 # Manual Trend Models
@@ -57,6 +69,34 @@ class ManualTrendPoint(SQLModel, table=True):
     )
 
     series: Optional[ManualTrendSeries] = Relationship(back_populates="points")
+
+
+class SharedTrendConfig(SQLModel, table=True):
+    __tablename__ = "shared_trend_config"
+
+    key: str = Field(default="default", primary_key=True)
+    selected_var_ids_json: str = Field(
+        default="[]", sa_column=Column(Text, nullable=False)
+    )
+    selected_manual_ids_json: str = Field(
+        default="[]", sa_column=Column(Text, nullable=False)
+    )
+    time_range: int = Field(default=60, nullable=False)
+    range_mode: str = Field(default="relative", sa_column=Column(String, nullable=False))
+    custom_range_json: Optional[str] = Field(
+        default=None, sa_column=Column(Text, nullable=True)
+    )
+    y_axis_scale_json: str = Field(
+        default='{"mode":"auto","min":"","max":""}',
+        sa_column=Column(Text, nullable=False),
+    )
+    series_color_overrides_json: str = Field(
+        default="{}", sa_column=Column(Text, nullable=False)
+    )
+    updated_at: datetime = Field(
+        default_factory=utc_now,
+        sa_column=Column(DateTime(timezone=True), nullable=False, onupdate=utc_now),
+    )
 
 
 # New Profile Models
